@@ -1,0 +1,13 @@
+.editableSpanText {
+    max-width: 120px;
+    background-color: rgba(240, 255, 255, 0);
+    outline: none;
+    border: none;
+}
+
+.editableSpanNumber {
+    max-width: 50px;
+    border: none;
+    outline: none;
+    background-color: rgba(240, 255, 255, 0);
+}

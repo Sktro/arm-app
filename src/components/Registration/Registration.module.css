@@ -1,0 +1,146 @@
+.containRegistration {
+    display: flex;
+    justify-content: space-around;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    max-width: 237px;
+}
+
+.registeredAthletes {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+}
+
+.athletes {
+    min-width: 500px;
+    padding: 3px 10px;
+    background-color: white;
+    margin: 1px;
+    color: #187eff;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #187eff;
+    border-radius: 10px;
+}
+
+.error {
+    color: red;
+}
+
+.addAthleteButton {
+    align-self: center;
+    padding: 3px;
+    margin-right: 15px;
+    margin-bottom: 3px;
+    border: 1px #187eff solid;
+    font-weight: bold;
+    color: #187eff;
+    border-radius: 5px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.removeButton {
+    padding: 2px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid red;
+    border-radius: 50%;
+    color: red;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.fullName {
+    font-weight: bold;
+    min-width: 200px;
+    margin: 0 3px;
+}
+
+.team {
+    min-width: 130px;
+    margin: 0 3px;
+    text-align: center;
+}
+
+.rank {
+    min-width: 68px;
+    text-align: center;
+    margin: 0 3px;
+}
+
+.weight {
+    min-width: 68px;
+    margin: 0 3px;
+}
+
+
+.weightsCategories {
+    margin-left: 10px;
+}
+
+.weightFemale {
+    padding: 3px;
+    margin: 3px;
+    border: 1px #e3006a solid;
+    font-weight: bold;
+    color: #e3006a;
+    border-radius: 5px;
+    width: 37px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.weightMale {
+    padding: 3px;
+    margin: 0 3px;
+    border: 1px #187eff solid;
+    font-weight: bold;
+    color: #187eff;
+    border-radius: 5px;
+    width: 37px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.registrationDescription {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.startTournamentButton {
+    padding: 3px;
+    margin-right: 15px;
+    margin-bottom: 3px;
+    border: 1px #05a200 solid;
+    font-weight: bold;
+    color: #05a200;
+    border-radius: 5px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.deleteTournamentButton {
+    padding: 3px;
+    margin-right: 15px;
+    margin-bottom: 3px;
+    border: 1px #af0000 solid;
+    font-weight: bold;
+    color: #af0000;
+    border-radius: 5px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.startAndDeleteTournamentButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
