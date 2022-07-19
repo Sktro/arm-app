@@ -30,7 +30,7 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 
 function App() {
     // Starting modal window
-    const [modalActive, setModalActive] = useState<boolean>(false)
+    const [modalActive, setModalActive] = useState<boolean>(true)
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
     const [location, setLocation] = useState<string>('')

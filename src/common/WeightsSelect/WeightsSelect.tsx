@@ -21,10 +21,10 @@ const createOption = (label: string) => ({
 type WeightSelectPropsType = {
     inputValue: string,
     value: readonly Option[]
-     onChange: (inputValue: string, value: readonly Option[]) => void
+    onChange: (inputValue: string, value: readonly Option[]) => void
 }
 
-export default class WeightsSelect extends Component<WeightSelectPropsType, {} > {
+export default class WeightsSelect extends Component<WeightSelectPropsType, {}> {
 
     handleChange = (
         value: OnChangeValue<Option, true>,
@@ -37,7 +37,7 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {} >
         if (Number(inputValue) < 1000
             || Number(inputValue) === undefined
             || inputValue.slice(-1) === '+') {
-            this.props.onChange(inputValue, this.props.value)
+            this.props.onChange(inputValue.replace(/(\D)(?=.*\1)/g, ""), this.props.value)
         }
     };
     handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
@@ -46,25 +46,55 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {} >
         switch (event.key) {
             case 'Enter':
             case 'Tab':
-                console.group('Value Added');
-                console.log(value);
-                console.groupEnd();
-                const find = value.find(el => el.value === inputValue)
-                if (!find && inputValue.length > 1) {
+                     console.group('Value Added');
+                     console.log(value);
+                     console.groupEnd();
+                const foundMatch = value.find(el => el.value === inputValue.replace(/\s/g, ''))
+                const foundPlus = value.find(el => el.value.slice(-1) === '+')
+
+                const chart = (str: string) => {
+                    let newArr = value.map(v => v.value)
+                    for (let i = 0; i < newArr.length; i++) {
+                        if (newArr[i].slice(-1) === '+') {
+                            let newChart = newArr[i].slice(0, -1)
+                            return Number(newChart) < Number(str)
+                        }
+                    }
+                }
+
+                if (!foundMatch
+                    && inputValue[0] !== '0'
+                    && !chart(inputValue)
+                    && (!foundPlus || (foundPlus && !inputValue.includes('+')))
+                    && !inputValue.includes('.')) {
+
                     this.props.onChange(
-                         '',
-                         [...value, createOption(inputValue)],
+                        '',
+                        [...value, createOption(inputValue)]
                     );
+
                     event.preventDefault();
+
                 } else {
-                    this.props.onChange('',this.props.value)
+                    this.props.onChange('', this.props.value)
                 }
         }
     };
 
     render() {
         const {inputValue, value} = this.props;
-        const sortValue = value.map(v => v).sort((a, b) => Number(a.value) - Number(b.value))
+
+        const foundValuePlus = value.find(el => el.value.slice(-1) === '+')
+        const arrForSort = value.filter(el => el.value.slice(-1) !== '+')
+        const temp = arrForSort.map(v => v).sort((a, b) => Number(a.value) - Number(b.value))
+        let result;
+        if (foundValuePlus) {
+            result = [...temp, foundValuePlus]
+        } else {
+            result = [...temp]
+        }
+        console.log(value)
+
         return (
             <div className={style.creatableSelect}>
                 <CreatableSelect
@@ -77,7 +107,7 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {} >
                     onInputChange={this.handleInputChange}
                     onKeyDown={this.handleKeyDown}
                     placeholder="Введите весовые категории"
-                    value={sortValue}
+                    value={result}
                 />
             </div>
         );

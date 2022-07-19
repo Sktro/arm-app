@@ -19,7 +19,7 @@ type ModalPropsType = {
     mainReferee: string
     setMainReferee: (value: string) => void
     mainSecretary: string
-    setDate: (separator: string)=> void
+    setDate: (separator: string) => void
 
 }
 
@@ -32,10 +32,12 @@ export const Modal = (props: ModalPropsType) => {
     const onChangeMale = (inputValue: string, value: readonly Option[]) => {
         setInputValueMale(inputValue)
         props.setWeightMale(value)
+        setError(false)
     }
     const onChangeFemale = (inputValue: string, value: readonly Option[]) => {
         setInputValueFemale(inputValue)
         props.setWeightFemale(value)
+        setError(false)
     }
 
     const addTitleTournament = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,14 +58,16 @@ export const Modal = (props: ModalPropsType) => {
         props.setMainSecretary(e.currentTarget.value)
     }
 
+    const sumWeight = props.weightFemale.length > 0 || props.weightMale.length > 0
+
 
     const addTournament = () => {
         if (props.tournament !== ''
             && props.date !== ''
             && props.location !== ''
-            && props.weightMale.length !== 0) {
+            && sumWeight) {
             props.setModalActive(false)
-            props.setWeightMale(props.weightMale)
+            //props.setWeightMale(props.weightMale)
         } else {
             setError(true)
         }
@@ -129,6 +133,7 @@ export const Modal = (props: ModalPropsType) => {
                             onClick={() => setGenderActive(false)}>Женщины
                     </button>
                 </div>
+                <div className={styleM.s}>*</div>
                 <div className={genderActive ? styleM.weightsMalesOn : styleM.weightsMalesOff}>
                     <WeightsSelect value={props.weightMale} inputValue={inputValueMale} onChange={onChangeMale}/>
                 </div>

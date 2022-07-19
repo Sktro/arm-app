@@ -8,6 +8,7 @@ type  InputAnimationPropsType = {
     value?: string | number
     handleFocusEvent?: (e: FocusEvent<HTMLInputElement>) => void
     obligatoryField?: boolean
+    autofocus?: boolean
 }
 
 
@@ -16,6 +17,7 @@ export const InputAnimationForRegistration = (props: InputAnimationPropsType) =>
     return (
         <div className={style.form}>
             <input type={props.type}
+                   autoFocus={props.autofocus}
                    className={style.form__input}
                    autoComplete="off"
                    placeholder=" "

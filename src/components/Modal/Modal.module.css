@@ -124,3 +124,15 @@
     color: #187eff;
     background-color: #eef3ff;
 }
+
+.s {
+    text-align: end;
+    color: red;
+    font-weight: bold;
+    width: 10px;
+    height: 15px;
+    display: flex;
+    position: relative;
+    bottom: -10px;
+    right: -322px;
+}

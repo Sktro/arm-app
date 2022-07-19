@@ -13,7 +13,7 @@ type RegistrationAthletePropsType = {
 export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
 
     const [fullName, setFullName] = useState('')
-    const [weight, setWeight] = useState(0)
+    const [weight, setWeight] = useState(Number(toString()))
     const [rank, setRank] = useState<RankType>(props.ranks[0])
     const [team, setTeam] = useState('')
     const [error, setError] = useState(false)
@@ -39,7 +39,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
         if (trimmedFullName && weight > 10) {
             props.addAthleteCallback(trimmedFullName, weight, trimmedTeam === '' ? '----' : trimmedTeam, rank)
             setFullName('')
-            setWeight(0)
+            setWeight(Number(toString()))
             setRank(props.ranks[0])
             setTeam('')
         } else {
@@ -53,6 +53,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
             <InputAnimationForRegistration type={"text"}
                                            obligatoryField={true}
                                            placeholder={"Участник"}
+                                           autofocus={true}
                                            onChange={setFullNameCallback}
                                            value={fullName}/>
             <InputAnimationForRegistration type={"number"}
