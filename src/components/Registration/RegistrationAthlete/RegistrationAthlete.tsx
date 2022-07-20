@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import styleR from "../Registration.module.css";
 import {InputAnimationForRegistration} from "../../../common/InputAnimation/InputAnimationForRegistration";
-import {SelectAnimation} from "../../../common/SelectAnimation/SelectAnimation";
+import {SelectAnimationForRegAthl} from "../../../common/SelectAnimation/SelectAnimationForRegAthl";
 import {RankType} from "../../../App";
 
 
@@ -66,10 +66,10 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                                            placeholder={"Команда"}
                                            onChange={setTeamCallback}
                                            value={team}/>
-            <SelectAnimation placeholder={"Квалификация"}
-                             options={props.ranks}
-                             value={rank}
-                             onChangeOption={setRankCallback}/>
+            <SelectAnimationForRegAthl placeholder={"Квалификация"}
+                                       options={props.ranks}
+                                       value={rank}
+                                       onChangeOption={setRankCallback}/>
             {error && <span className={styleR.error}>ERROR</span>}
             <button className={styleR.addAthleteButton} onClick={addAthlete}>Добавить</button>
         </div>

@@ -136,3 +136,69 @@
     bottom: -10px;
     right: -322px;
 }
+
+.addCategoryClose {
+    background: url(../../img/strvn.png) top right no-repeat;
+    background-size: 30px;
+    user-select: none;
+    border-radius: 5px;
+    text-align: center;
+    color: #187eff;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px #187eff solid;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    z-index: 1;
+}
+
+.addCategoryOpen {
+    background: url(../../img/strvv.png) 100% 100% no-repeat;
+    background-size: 30px;
+}
+
+.settingAddCategoryClose {
+    border: 1px #187eff solid;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+    position: relative;
+    bottom: 20px;
+    z-index: 0;
+    height: 5px;
+}
+
+.settingAddCategoryOpen {
+    height: 95px;
+}
+
+.selects {
+    padding-top: 15px;
+    padding-left: 18px;
+    height: 94px;
+}
+
+.selectCategoryAthl {
+    position: relative;
+    bottom: 84px;
+    left: 115px;
+}
+
+.addNewCategory {
+    position: relative;
+    bottom: 87px;
+    left: 150px;
+    border: 1px solid grey;
+    width: 90px;
+    text-align: center;
+    padding: 4px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: grey;
+    user-select: none;
+}
+
+.addNewCategory:hover {
+    color: #00a92f;
+    border: 2px solid #00a92f;
+}

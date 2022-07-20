@@ -8,6 +8,7 @@ type  InputAnimationPropsType = {
     value?: string | number
     handleFocusEvent?: (e: FocusEvent<HTMLInputElement>) => void
     obligatoryField?: boolean
+    minDate?: string
 }
 
 
@@ -19,6 +20,7 @@ export const InputAnimationForModal = (props: InputAnimationPropsType) => {
                    className={style.form__input}
                    autoComplete="off"
                    placeholder=" "
+                   min={props.minDate}
                    onChange={props.onChange}
                    value={props.value}
                    onBlur={props.handleFocusEvent}/>

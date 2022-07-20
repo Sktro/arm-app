@@ -18,6 +18,29 @@ export type RankType =
     | 'МС'
     | 'МСМК'
     | 'ЗМС';
+
+export type GenderType =
+    'мужской'
+    | 'женский'
+
+export type AgeType =
+    '14-15'
+    | '16-18'
+    | '19-21'
+    | '22+'
+    | '40+'
+    | '50+'
+    | '60+'
+
+export type CategoryAthlete =
+    'Любители'
+    | 'Профессионалы'
+    | 'Инвалиды'
+    | 'Инвалиды(HEAR)'
+    | 'Инвалиды(VIS)'
+    | 'Инвалиды(STAND)'
+    | 'Инвалиды(SIT)'
+
 export type AthletesType = {
     id: string
     fullName: string
@@ -25,8 +48,10 @@ export type AthletesType = {
     team: string
     rank: RankType
 }
-
+export const categoryAthlete: CategoryAthlete[] = ['Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
+export const ageAthletes: AgeType[] = ['14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
 export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р.', '3в.р.', '2в.р.', '1в.р.', 'КМС', 'МС', 'МСМК', 'ЗМС']
+export const genderAthletes: GenderType[] = ['мужской', 'женский']
 
 function App() {
     // Starting modal window
@@ -34,7 +59,8 @@ function App() {
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
     const [location, setLocation] = useState<string>('')
-    const [date, setDate] = useState<string>(getCurrentDate())
+    const [startTournamentDate, setStartTournamentDate] = useState<string>(getCurrentDate())
+    const [endTournamentDate, setEndTournamentDate] = useState<string>(getCurrentDate())
     const [mainReferee, setMainReferee] = useState<string>('')
     const [mainSecretary, setMainSecretary] = useState<string>('')
     // settings for tournament
@@ -75,7 +101,8 @@ function App() {
         <>
             {!modalActive && <div className={styleA.containTournament}>
                 <Header tournament={tournament}
-                        date={date}
+                        endTournamentDate={endTournamentDate}
+                        startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
                               setAthletes={setAthletes}
@@ -96,7 +123,10 @@ function App() {
                               changeRankAthlete={changeRankAthlete}/>
             </div>}
             <Modal modalActive={modalActive}
+                   categoryAthlete={categoryAthlete}
                    location={location}
+                   ageAthletes={ageAthletes}
+                   gender={genderAthletes}
                    setLocation={setLocation}
                    setTournament={setTournament}
                    setModalActive={setModalActive}
@@ -105,12 +135,15 @@ function App() {
                    weightFemale={weightFemale}
                    setWeightFemale={setWeightFemale}
                    tournament={tournament}
-                   date={date}
+                   startTournamentDate={startTournamentDate}
+                   endTournamentDate={endTournamentDate}
                    setMainSecretary={setMainSecretary}
                    setMainReferee={setMainReferee}
                    mainReferee={mainReferee}
                    mainSecretary={mainSecretary}
-                   setDate={setDate}/>
+                   setStartTournamentDate={setStartTournamentDate}
+                   setEndTournamentDate={setEndTournamentDate}
+            />
         </>
     );
 }

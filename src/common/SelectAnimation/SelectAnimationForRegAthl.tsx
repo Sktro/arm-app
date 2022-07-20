@@ -1,5 +1,5 @@
 import React, {SelectHTMLAttributes, DetailedHTMLProps, ChangeEvent} from 'react'
-import style from "./SelectAnimation.module.css";
+import style from "./SelectAnimationForRegAthl.module.css";
 
 
 type DefaultSelectPropsType = DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>
@@ -10,7 +10,7 @@ type SuperSelectPropsType = DefaultSelectPropsType & {
 }
 
 
-export const SelectAnimation: React.FC<SuperSelectPropsType> = (
+export const SelectAnimationForRegAthl: React.FC<SuperSelectPropsType> = (
     {
         options,
         placeholder,

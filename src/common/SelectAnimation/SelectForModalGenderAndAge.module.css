@@ -11,13 +11,13 @@
     top: 0;
     left: 0;
     font-weight: bold;
-    width: 70%;
+    width: 31%;
     border: 1px solid #bdc0c7;
     border-radius: 0.5rem;
     font-family: inherit;
     color: #000000;
     outline: none;
-    padding: 0.5rem 0.5rem 0.3rem 0.8rem;
+    padding: 0.3rem 0.3rem 0.3rem 0.5rem;
     background: none;
 }
 

@@ -2,6 +2,9 @@ import React, {ChangeEvent, useState} from "react";
 import styleM from "./Modal.module.css"
 import {InputAnimationForModal} from "../../common/InputAnimation/InputAnimationForModal";
 import WeightsSelect, {Option} from "../../common/WeightsSelect/WeightsSelect";
+import {AgeType, CategoryAthlete, GenderType} from "../../App";
+import {SelectForModalGenderAndAge} from "../../common/SelectAnimation/SelectForModalGenderAndAge";
+import {SelectForModalCategoryAthl} from "../../common/SelectAnimation/SelectForModalCategoryAthl";
 
 type ModalPropsType = {
     setModalActive: (value: boolean) => void
@@ -14,13 +17,17 @@ type ModalPropsType = {
     weightFemale: readonly Option[]
     setWeightMale: (value: readonly Option[]) => void
     setWeightFemale: (value: readonly Option[]) => void
-    date: string
+    startTournamentDate: string
+    endTournamentDate: string
     setMainSecretary: (value: string) => void
     mainReferee: string
     setMainReferee: (value: string) => void
     mainSecretary: string
-    setDate: (separator: string) => void
-
+    setStartTournamentDate: (separator: string) => void
+    setEndTournamentDate: (separator: string) => void
+    gender: GenderType[]
+    ageAthletes: AgeType[]
+    categoryAthlete: CategoryAthlete[]
 }
 
 export const Modal = (props: ModalPropsType) => {
@@ -28,6 +35,7 @@ export const Modal = (props: ModalPropsType) => {
     const [genderActive, setGenderActive] = useState(true)
     const [inputValueMale, setInputValueMale] = useState('')
     const [inputValueFemale, setInputValueFemale] = useState('')
+    const [addCategory, setAddCategory] = useState(true)
 
     const onChangeMale = (inputValue: string, value: readonly Option[]) => {
         setInputValueMale(inputValue)
@@ -48,9 +56,13 @@ export const Modal = (props: ModalPropsType) => {
         props.setLocation(e.currentTarget.value)
         setError(false)
     }
-    const addDateTournament = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setDate(e.currentTarget.value)
+    const addDateStartTournament = (e: ChangeEvent<HTMLInputElement>) => {
+        props.setStartTournamentDate(e.currentTarget.value)
     }
+    const addDateEndTournament = (e: ChangeEvent<HTMLInputElement>) => {
+        props.setEndTournamentDate(e.currentTarget.value)
+    }
+
     const addMainReferee = (e: ChangeEvent<HTMLInputElement>) => {
         props.setMainReferee(e.currentTarget.value)
     }
@@ -63,11 +75,10 @@ export const Modal = (props: ModalPropsType) => {
 
     const addTournament = () => {
         if (props.tournament !== ''
-            && props.date !== ''
+            && props.startTournamentDate !== ''
             && props.location !== ''
             && sumWeight) {
             props.setModalActive(false)
-            //props.setWeightMale(props.weightMale)
         } else {
             setError(true)
         }
@@ -111,10 +122,15 @@ export const Modal = (props: ModalPropsType) => {
                                         placeholder={"Место проведения"}
                                         onChange={addLocationTournament}/>
                 <InputAnimationForModal type={'date'}
-                                        placeholder={"Дата проведения"}
-                                        onChange={addDateTournament}
-                                        value={props.date}/>
-                <InputAnimationForModal type={'text'}
+                                        placeholder={"Дата начала турнира"}
+                                        onChange={addDateStartTournament}
+                                        value={props.startTournamentDate}/>
+                <InputAnimationForModal type={'date'}
+                                        minDate={props.startTournamentDate}
+                                        placeholder={"Дата окончания турнира"}
+                                        onChange={addDateEndTournament}
+                                        value={props.endTournamentDate}/>
+                {/*                <InputAnimationForModal type={'text'}
                                         handleFocusEvent={trimmedReferee}
                                         value={props.mainReferee}
                                         onChange={addMainReferee}
@@ -123,7 +139,7 @@ export const Modal = (props: ModalPropsType) => {
                                         handleFocusEvent={trimmedSecretary}
                                         value={props.mainSecretary}
                                         onChange={addMainSecretary}
-                                        placeholder={"Главный секретарь"}/>
+                                        placeholder={"Главный секретарь"}/>*/}
                 <span className={styleM.settingTournament}>Настройка турнира:</span>
                 <div className={styleM.genderContainer}>
                     <button className={activeGenderMale}
@@ -140,6 +156,34 @@ export const Modal = (props: ModalPropsType) => {
                 <div className={!genderActive ? styleM.weightsFemalesOn : styleM.weightsFemalesOff}>
                     <WeightsSelect value={props.weightFemale} inputValue={inputValueFemale} onChange={onChangeFemale}/>
                 </div>
+
+                <div
+                    className={addCategory ? styleM.addCategoryClose : `${styleM.addCategoryClose} ${styleM.addCategoryOpen}`}
+                    onClick={() => setAddCategory(!addCategory)}>
+
+                    добавить категории
+
+                </div>
+
+                <div
+                    className={addCategory ? styleM.settingAddCategory : `${styleM.settingAddCategoryClose} ${styleM.settingAddCategoryOpen}`}>
+
+                    {!addCategory &&
+                        <div className={styleM.selects}>
+                            <div><SelectForModalGenderAndAge options={props.gender}
+                                                             placeholder={"Пол"}/></div>
+                            <div><SelectForModalGenderAndAge options={props.ageAthletes}
+                                                             placeholder={"Возраст"}/></div>
+                            <div className={styleM.selectCategoryAthl}>
+                                <SelectForModalCategoryAthl options={props.categoryAthlete}
+                                                            placeholder={"Категория спортсменов"}/></div>
+                            <div className={styleM.addNewCategory}>Добавить</div>
+                        </div>
+
+                    }
+
+                </div>
+
                 {error && <span className={styleM.error}>заполните обязательные поля( * )</span>}
                 <button className={styleM.creatableTournamentButton} onClick={addTournament}>Создать турнир</button>
             </div>

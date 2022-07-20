@@ -3,7 +3,8 @@ import style from "./Header.module.css"
 
 type HeaderPropsType = {
     tournament: string
-    date: string
+    startTournamentDate: string
+    endTournamentDate:string
     location: string
 }
 
@@ -11,6 +12,8 @@ type HeaderPropsType = {
 export const Header = (props: HeaderPropsType) => {
 
     return (
-        <div className={style.header}>{props.tournament}({props.location}, {props.date})</div>
+        <div className={style.header}>{props.tournament}({props.location},
+            {(props.startTournamentDate === props.endTournamentDate) && <span> {props.startTournamentDate}</span> }
+            {(props.startTournamentDate !== props.endTournamentDate) && <span> {props.startTournamentDate} / {props.endTournamentDate}</span>})</div>
     )
 }
