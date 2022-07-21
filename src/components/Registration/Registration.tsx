@@ -10,8 +10,7 @@ import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDelet
 
 type RegistrationPropsType = {
     ranks: RankType[]
-    weightMale: readonly Option[]
-    weightFemale: readonly Option[]
+    weightNewCategory: readonly Option[]
     athletes: AthletesType[]
     addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType) => void
     changeFullNameAndTeamAthlete: (fullNameAndTeam: string, AthleteID: string) => void
@@ -21,10 +20,9 @@ type RegistrationPropsType = {
     setModalActive: (value: boolean) => void
     setTournament: (value: string) => void
     setLocation: (value: string) => void
-    setWeightMale: (value: readonly Option[]) => void
+    setWeightNewCategory: (value: readonly Option[]) => void
     setMainSecretary: (value: string) => void
     setMainReferee: (value: string) => void
-    setWeightFemale: (value: readonly Option[]) => void
     setAthletes:(value: AthletesType[])=> void
 }
 
@@ -44,8 +42,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                   changeRankAthlete={props.changeRankAthlete}
                                   ranks={props.ranks}
                                   removeAthlete={props.removeAthlete}/>
-                    <CategoriesList weightMale={props.weightMale}
-                                    weightFemale={props.weightFemale}/>
+                    <CategoriesList weightNewCategory={props.weightNewCategory}/>
 
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
@@ -57,8 +54,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                    setLocation={props.setLocation}
                                    setMainReferee={props.setMainReferee}
                                    setMainSecretary={props.setMainSecretary}
-                                   setWeightFemale={props.setWeightFemale}
-                                   setWeightMale={props.setWeightMale}
+                                   setWeightNewCategory={props.setWeightNewCategory}
                                    modalDelete={modalDelete}/>
         </div>
     )

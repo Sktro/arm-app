@@ -1,0 +1,64 @@
+.contain {
+    border: solid 1px #00a92f;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    min-height: 55px;
+    max-height: 180px;
+    padding: 5px;
+    overflow: auto;
+    z-index: 1;
+}
+
+.contain::-webkit-scrollbar-track {
+    background-color: #e0e0e0; /*Цвет скролла*/
+    border-radius: 80px;
+    z-index: 0;
+}
+.contain::-webkit-scrollbar-thumb {
+    border-radius: 80px; /*Закругление ползунка*/
+    background-color: #818080; /*Цвет ползунка*/
+}
+.contain::-webkit-scrollbar{
+    width: 6px;  /*Толщина скролла*/
+}
+
+.containCategory {
+    margin: 3px 0 3px 0;
+}
+
+.gender {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    padding: 0 3px 2px 3px;
+    margin: 1px;
+    border-radius: 5px;
+}
+
+.genderF {
+    background-color: rgba(227, 0, 106, 0.8);
+}
+
+.weight {
+    /*border: 1px solid rgba(24, 126, 255, 0.8);
+    border-radius: 5px;*/
+/*    padding: 1px;
+    font-weight: bold;*/
+    color: rgba(24, 126, 255, 0.8);
+}
+
+.weightF {
+    background-color: rgba(227, 0, 106, 0.8);
+}
+.weights{
+    color: rgba(24, 126, 255, 0.8);
+    font-weight: bold;
+}
+
+.weightsF{
+    color: rgba(227, 0, 106, 0.8);
+    font-weight: bold;
+}
+

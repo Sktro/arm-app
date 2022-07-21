@@ -45,68 +45,6 @@
     text-align: center;
 }
 
-.gender {
-    padding: 1px;
-    border: 1px solid #bdc0c7;
-    width: 85px;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 8px;
-    color: rgba(0, 0, 0, 0.4);
-    background-color: transparent;
-    cursor: pointer;
-    margin: 5px;
-}
-
-.gender:hover {
-    border: 1px solid #87878d;
-    color: #87878d;
-}
-
-.genderContainer {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-
-.genderMale {
-    background-color: #2684FF;
-    color: white;
-    border: none;
-}
-
-.genderMale:hover {
-    border: none;
-    color: white;
-}
-
-.genderFemale {
-    background-color: #e3006a;
-    color: white;
-    border: none;
-}
-
-.genderFemale:hover {
-    border: none;
-    color: white;
-}
-
-.weightsMalesOn {
-    display: block;
-}
-
-.weightsMalesOff {
-    display: none;
-}
-
-.weightsFemalesOn {
-    display: block;
-}
-
-.weightsFemalesOff {
-    display: none;
-}
-
 .creatableTournamentButton {
     align-self: center;
     padding: 3px;
@@ -138,8 +76,6 @@
 }
 
 .addCategoryClose {
-    background: url(../../img/strvn.png) top right no-repeat;
-    background-size: 30px;
     user-select: none;
     border-radius: 5px;
     text-align: center;
@@ -152,53 +88,9 @@
     z-index: 1;
 }
 
-.addCategoryOpen {
-    background: url(../../img/strvv.png) 100% 100% no-repeat;
-    background-size: 30px;
-}
-
-.settingAddCategoryClose {
-    border: 1px #187eff solid;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top: none;
-    position: relative;
-    bottom: 20px;
-    z-index: 0;
-    height: 5px;
-}
-
-.settingAddCategoryOpen {
-    height: 95px;
-}
-
 .selects {
-    padding-top: 15px;
-    padding-left: 18px;
-    height: 94px;
-}
-
-.selectCategoryAthl {
-    position: relative;
-    bottom: 84px;
-    left: 115px;
-}
-
-.addNewCategory {
-    position: relative;
-    bottom: 87px;
-    left: 150px;
-    border: 1px solid grey;
-    width: 90px;
-    text-align: center;
-    padding: 4px;
-    border-radius: 8px;
-    font-weight: bold;
-    color: grey;
-    user-select: none;
-}
-
-.addNewCategory:hover {
-    color: #00a92f;
-    border: 2px solid #00a92f;
+    display: flex;
+    padding-top: 9px;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

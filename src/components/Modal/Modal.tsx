@@ -2,21 +2,23 @@ import React, {ChangeEvent, useState} from "react";
 import styleM from "./Modal.module.css"
 import {InputAnimationForModal} from "../../common/InputAnimation/InputAnimationForModal";
 import WeightsSelect, {Option} from "../../common/WeightsSelect/WeightsSelect";
-import {AgeType, CategoryAthlete, GenderType} from "../../App";
-import {SelectForModalGenderAndAge} from "../../common/SelectAnimation/SelectForModalGenderAndAge";
-import {SelectForModalCategoryAthl} from "../../common/SelectAnimation/SelectForModalCategoryAthl";
+import {AgeType, CategoryAthleteType, CategoryType, GenderType} from "../../App";
+import {SelectForModalAge} from "../../common/Select/SelectForModalAge";
+import {SelectForModalCategoryAthl} from "../../common/Select/SelectForModalCategoryAthl";
+import {SelectForModalGender} from "../../common/Select/SelectForModalGender";
+import {ListOfCategories} from "./ListOfCategories/ListOfCategories";
 
 type ModalPropsType = {
+    arrCategory: CategoryType[]
+    addNewCategoryAthletes: (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => void
     setModalActive: (value: boolean) => void
     modalActive: boolean
     setTournament: (value: string) => void
     tournament: string
     setLocation: (value: string) => void
     location: string
-    weightMale: readonly Option[]
-    weightFemale: readonly Option[]
-    setWeightMale: (value: readonly Option[]) => void
-    setWeightFemale: (value: readonly Option[]) => void
+    weightNewCategory: readonly Option[]
+    setWeightNewCategory: (value: readonly Option[]) => void
     startTournamentDate: string
     endTournamentDate: string
     setMainSecretary: (value: string) => void
@@ -27,25 +29,31 @@ type ModalPropsType = {
     setEndTournamentDate: (separator: string) => void
     gender: GenderType[]
     ageAthletes: AgeType[]
-    categoryAthlete: CategoryAthlete[]
+    categoryAthlete: CategoryAthleteType[]
 }
 
 export const Modal = (props: ModalPropsType) => {
     const [error, setError] = useState(false)
-    const [genderActive, setGenderActive] = useState(true)
-    const [inputValueMale, setInputValueMale] = useState('')
-    const [inputValueFemale, setInputValueFemale] = useState('')
-    const [addCategory, setAddCategory] = useState(true)
+    const [inputValueNewCategory, setInputValueNewCategory] = useState('')
 
-    const onChangeMale = (inputValue: string, value: readonly Option[]) => {
-        setInputValueMale(inputValue)
-        props.setWeightMale(value)
+    const [gender, setGender] = useState<GenderType>(props.gender[0])
+    const [age, setAge] = useState<AgeType>(props.ageAthletes[0])
+    const [categoryAthletes, setCategoryAthletes] = useState<CategoryAthleteType>(props.categoryAthlete[0])
+
+    const onChangeNewCategory = (inputValue: string, value: readonly Option[]) => {
+        setInputValueNewCategory(inputValue)
+        props.setWeightNewCategory(value)
         setError(false)
     }
-    const onChangeFemale = (inputValue: string, value: readonly Option[]) => {
-        setInputValueFemale(inputValue)
-        props.setWeightFemale(value)
-        setError(false)
+
+    const onChangeGender = (value: string) => {
+        setGender(value as GenderType)
+    }
+    const onChangeAge = (value: string) => {
+        setAge(value as AgeType)
+    }
+    const onChangeCategoryAthletes = (value: string) => {
+        setCategoryAthletes(value as CategoryAthleteType)
     }
 
     const addTitleTournament = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,21 +71,29 @@ export const Modal = (props: ModalPropsType) => {
         props.setEndTournamentDate(e.currentTarget.value)
     }
 
-    const addMainReferee = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setMainReferee(e.currentTarget.value)
+    /*    const addMainReferee = (e: ChangeEvent<HTMLInputElement>) => {
+            props.setMainReferee(e.currentTarget.value)
+        }
+        const addMainSecretary = (e: ChangeEvent<HTMLInputElement>) => {
+            props.setMainSecretary(e.currentTarget.value)
+        }*/
+
+    const addCategories = () => {
+        if(props.weightNewCategory.length > 0) {
+            props.addNewCategoryAthletes(gender, age, categoryAthletes, props.weightNewCategory)
+            setGender(props.gender[0])
+            setAge(props.ageAthletes[0])
+            setCategoryAthletes(props.categoryAthlete[0])
+            props.setWeightNewCategory([])
+        } else {
+            setError(true)
+        }
     }
-    const addMainSecretary = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setMainSecretary(e.currentTarget.value)
-    }
-
-    const sumWeight = props.weightFemale.length > 0 || props.weightMale.length > 0
-
-
     const addTournament = () => {
         if (props.tournament !== ''
             && props.startTournamentDate !== ''
-            && props.location !== ''
-            && sumWeight) {
+            && props.arrCategory.length > 0
+            && props.location !== '') {
             props.setModalActive(false)
         } else {
             setError(true)
@@ -92,17 +108,16 @@ export const Modal = (props: ModalPropsType) => {
         const textTrim = props.location.replace(/ +/g, ' ').trim()
         props.setLocation(textTrim)
     }
-    const trimmedReferee = () => {
-        const textTrim = props.mainReferee.replace(/ +/g, ' ').trim()
-        props.setMainReferee(textTrim)
-    }
-    const trimmedSecretary = () => {
-        const textTrim = props.mainSecretary.replace(/ +/g, ' ').trim()
-        props.setMainSecretary(textTrim)
-    }
+    /*    const trimmedReferee = () => {
+            const textTrim = props.mainReferee.replace(/ +/g, ' ').trim()
+            props.setMainReferee(textTrim)
+        }
+        const trimmedSecretary = () => {
+            const textTrim = props.mainSecretary.replace(/ +/g, ' ').trim()
+            props.setMainSecretary(textTrim)
+        }*/
 
-    const activeGenderMale = genderActive ? `${styleM.gender} ${styleM.genderMale}` : styleM.gender
-    const activeGenderFemale = !genderActive ? `${styleM.gender} ${styleM.genderFemale}` : styleM.gender
+
 
     return (
         <div className={props.modalActive ?
@@ -122,12 +137,12 @@ export const Modal = (props: ModalPropsType) => {
                                         placeholder={"Место проведения"}
                                         onChange={addLocationTournament}/>
                 <InputAnimationForModal type={'date'}
-                                        placeholder={"Дата начала турнира"}
+                                        placeholder={"Дата начала"}
                                         onChange={addDateStartTournament}
                                         value={props.startTournamentDate}/>
                 <InputAnimationForModal type={'date'}
                                         minDate={props.startTournamentDate}
-                                        placeholder={"Дата окончания турнира"}
+                                        placeholder={"Дата окончания"}
                                         onChange={addDateEndTournament}
                                         value={props.endTournamentDate}/>
                 {/*                <InputAnimationForModal type={'text'}
@@ -140,51 +155,37 @@ export const Modal = (props: ModalPropsType) => {
                                         value={props.mainSecretary}
                                         onChange={addMainSecretary}
                                         placeholder={"Главный секретарь"}/>*/}
-                <span className={styleM.settingTournament}>Настройка турнира:</span>
-                <div className={styleM.genderContainer}>
-                    <button className={activeGenderMale}
-                            onClick={() => setGenderActive(true)}>Мужчины
-                    </button>
-                    <button className={activeGenderFemale}
-                            onClick={() => setGenderActive(false)}>Женщины
-                    </button>
-                </div>
-                <div className={styleM.s}>*</div>
-                <div className={genderActive ? styleM.weightsMalesOn : styleM.weightsMalesOff}>
-                    <WeightsSelect value={props.weightMale} inputValue={inputValueMale} onChange={onChangeMale}/>
-                </div>
-                <div className={!genderActive ? styleM.weightsFemalesOn : styleM.weightsFemalesOff}>
-                    <WeightsSelect value={props.weightFemale} inputValue={inputValueFemale} onChange={onChangeFemale}/>
+                <span className={styleM.settingTournament}>Категории:</span>
+
+                {/*<div className={styleM.s}>*</div>*/}
+
+                <div className={styleM.selects}>
+                    <div><SelectForModalGender options={props.gender}
+                                               onChangeOption={onChangeGender}
+                                               value={gender}
+                                               placeholder={"Пол"}/></div>
+                    <div><SelectForModalAge options={props.ageAthletes}
+                                            onChangeOption={onChangeAge}
+                                            value={age}
+                                            placeholder={"Возраст"}/></div>
+                    <div>
+                        <SelectForModalCategoryAthl options={props.categoryAthlete}
+                                                    onChangeOption={onChangeCategoryAthletes}
+                                                    value={categoryAthletes}
+                                                    placeholder={"Категория спортсменов"}/></div>
+                    <div><WeightsSelect inputValue={inputValueNewCategory}
+                                        value={props.weightNewCategory}
+                                        onChange={onChangeNewCategory}/></div>
                 </div>
 
-                <div
-                    className={addCategory ? styleM.addCategoryClose : `${styleM.addCategoryClose} ${styleM.addCategoryOpen}`}
-                    onClick={() => setAddCategory(!addCategory)}>
-
+                <div className={styleM.addCategoryClose}
+                     onClick={addCategories}>
                     добавить категории
-
                 </div>
-
-                <div
-                    className={addCategory ? styleM.settingAddCategory : `${styleM.settingAddCategoryClose} ${styleM.settingAddCategoryOpen}`}>
-
-                    {!addCategory &&
-                        <div className={styleM.selects}>
-                            <div><SelectForModalGenderAndAge options={props.gender}
-                                                             placeholder={"Пол"}/></div>
-                            <div><SelectForModalGenderAndAge options={props.ageAthletes}
-                                                             placeholder={"Возраст"}/></div>
-                            <div className={styleM.selectCategoryAthl}>
-                                <SelectForModalCategoryAthl options={props.categoryAthlete}
-                                                            placeholder={"Категория спортсменов"}/></div>
-                            <div className={styleM.addNewCategory}>Добавить</div>
-                        </div>
-
-                    }
-
-                </div>
+                {props.arrCategory.length > 0 && <ListOfCategories listOfCategories={props.arrCategory}/>}
 
                 {error && <span className={styleM.error}>заполните обязательные поля( * )</span>}
+
                 <button className={styleM.creatableTournamentButton} onClick={addTournament}>Создать турнир</button>
             </div>
         </div>

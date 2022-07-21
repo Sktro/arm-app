@@ -7,10 +7,9 @@ type ModalDeleteTournamentPropsType = {
     setModalDelete: (value: boolean) => void
     modalDelete: boolean
     setModalActive: (value: boolean) => void
-    setWeightFemale: (value: readonly Option[]) => void
     setMainReferee: (value: string) => void
     setMainSecretary: (value: string) => void
-    setWeightMale: (value: readonly Option[]) => void
+    setWeightNewCategory: (value: readonly Option[]) => void
     setLocation: (value: string) => void
     setTournament: (value: string) => void
     setAthletes:(value: AthletesType[])=> void
@@ -27,8 +26,7 @@ export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => 
         props.setLocation('')
         props.setMainReferee('')
         props.setMainSecretary('')
-        props.setWeightMale([])
-        props.setWeightFemale([])
+        props.setWeightNewCategory([])
         props.setModalActive(true)
     }
 

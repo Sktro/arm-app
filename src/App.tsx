@@ -20,11 +20,12 @@ export type RankType =
     | 'ЗМС';
 
 export type GenderType =
-    'мужской'
-    | 'женский'
+    'муж'
+    | 'жен'
 
 export type AgeType =
-    '14-15'
+    'Взрослые'
+    |'14-15'
     | '16-18'
     | '19-21'
     | '22+'
@@ -32,8 +33,9 @@ export type AgeType =
     | '50+'
     | '60+'
 
-export type CategoryAthlete =
-    'Любители'
+export type CategoryAthleteType =
+    'Общая'
+    |'Любители'
     | 'Профессионалы'
     | 'Инвалиды'
     | 'Инвалиды(HEAR)'
@@ -48,10 +50,19 @@ export type AthletesType = {
     team: string
     rank: RankType
 }
-export const categoryAthlete: CategoryAthlete[] = ['Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
-export const ageAthletes: AgeType[] = ['14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
+
+export type CategoryType = {
+    gender: GenderType
+    age: AgeType
+    categoryAthlete: CategoryAthleteType
+    weightsCategory: readonly Option[]
+}
+
+
+export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
+export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
 export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р.', '3в.р.', '2в.р.', '1в.р.', 'КМС', 'МС', 'МСМК', 'ЗМС']
-export const genderAthletes: GenderType[] = ['мужской', 'женский']
+export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
     // Starting modal window
@@ -64,13 +75,14 @@ function App() {
     const [mainReferee, setMainReferee] = useState<string>('')
     const [mainSecretary, setMainSecretary] = useState<string>('')
     // settings for tournament
-    const [weightMale, setWeightMale] = useState<readonly Option[]>([])
-    const [weightFemale, setWeightFemale] = useState<readonly Option[]>([])
+    const [weightNewCategory, setWeightNewCategory] = useState<readonly Option[]>([])
     // New athlete
     const [athletes, setAthletes] = useState<Array<AthletesType>>([
         {id: v1(), fullName: 'Петров Артем', weight: 89.6, team: 'ФАТО', rank: 'б/р'},
         {id: v1(), fullName: 'Кервалидзе Игорь', weight: 87, team: 'ФАТО', rank: '1в.р.'}
     ])
+    // New category
+    const [arrCategory, setArrCategory] = useState<Array<CategoryType>>([])
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -83,6 +95,10 @@ function App() {
     const addAthleteCallback = (fullName: string, weight: number, team: string, rank: RankType) => {
         let newAthlete = {id: v1(), fullName, weight, team, rank}
         setAthletes([newAthlete, ...athletes])
+    }
+    const addNewCategoryAthletes = (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => {
+        let newCategory = {gender, age, categoryAthlete, weightsCategory}
+        setArrCategory([newCategory, ...arrCategory])
     }
     const removeAthlete = (AthleteID: string) => {
         setAthletes(athletes.filter(atl => atl.id !== AthleteID))
@@ -112,17 +128,17 @@ function App() {
                               addAthleteCallback={addAthleteCallback}
                               changeFullNameAndTeamAthlete={changeFullNameAndTeamAthlete}
                               changeWeightAthlete={changeWeightAthlete}
-                              weightMale={weightMale}
-                              setWeightFemale={setWeightFemale}
+                              weightNewCategory={weightNewCategory}
                               setTournament={setTournament}
                               setLocation={setLocation}
                               setMainReferee={setMainReferee}
                               setMainSecretary={setMainSecretary}
-                              setWeightMale={setWeightMale}
-                              weightFemale={weightFemale}
+                              setWeightNewCategory={setWeightNewCategory}
                               changeRankAthlete={changeRankAthlete}/>
             </div>}
             <Modal modalActive={modalActive}
+                   arrCategory={arrCategory}
+                   addNewCategoryAthletes={addNewCategoryAthletes}
                    categoryAthlete={categoryAthlete}
                    location={location}
                    ageAthletes={ageAthletes}
@@ -130,10 +146,8 @@ function App() {
                    setLocation={setLocation}
                    setTournament={setTournament}
                    setModalActive={setModalActive}
-                   setWeightMale={setWeightMale}
-                   weightMale={weightMale}
-                   weightFemale={weightFemale}
-                   setWeightFemale={setWeightFemale}
+                   setWeightNewCategory={setWeightNewCategory}
+                   weightNewCategory={weightNewCategory}
                    tournament={tournament}
                    startTournamentDate={startTournamentDate}
                    endTournamentDate={endTournamentDate}
