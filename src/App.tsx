@@ -6,6 +6,7 @@ import {Modal} from "./components/Modal/Modal";
 import {Header} from "./components/Header/Header";
 import {Option} from "./common/WeightsSelect/WeightsSelect";
 
+export type TableForArm =  '1' | '2' | '3' | '4'| '5' | '6'
 export type RankType =
     'б/р'
     | '3ю.р.'
@@ -52,13 +53,14 @@ export type AthletesType = {
 }
 
 export type CategoryType = {
+    id: string
     gender: GenderType
     age: AgeType
     categoryAthlete: CategoryAthleteType
     weightsCategory: readonly Option[]
 }
 
-
+export const TableForArm: TableForArm[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
 export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
 export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р.', '3в.р.', '2в.р.', '1в.р.', 'КМС', 'МС', 'МСМК', 'ЗМС']
@@ -97,11 +99,14 @@ function App() {
         setAthletes([newAthlete, ...athletes])
     }
     const addNewCategoryAthletes = (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => {
-        let newCategory = {gender, age, categoryAthlete, weightsCategory}
+        let newCategory = {id: v1(), gender, age, categoryAthlete, weightsCategory}
         setArrCategory([newCategory, ...arrCategory])
     }
     const removeAthlete = (AthleteID: string) => {
         setAthletes(athletes.filter(atl => atl.id !== AthleteID))
+    }
+    const deleteCategories = (CategoryID: string) => {
+        setArrCategory(arrCategory.filter(c => c.id !== CategoryID))
     }
     const changeFullNameAndTeamAthlete = (FullNameAndTeam: string, AthleteID: string) => {
         setAthletes(athletes.map(at => at.id === AthleteID ? {...at, FullNameAndTeam} : at))
@@ -137,7 +142,9 @@ function App() {
                               changeRankAthlete={changeRankAthlete}/>
             </div>}
             <Modal modalActive={modalActive}
+                   tableForArm={TableForArm}
                    arrCategory={arrCategory}
+                   deleteCategories={deleteCategories}
                    addNewCategoryAthletes={addNewCategoryAthletes}
                    categoryAthlete={categoryAthlete}
                    location={location}

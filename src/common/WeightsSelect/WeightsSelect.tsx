@@ -64,6 +64,7 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
 
                 if (!foundMatch
                     && inputValue[0] !== '0'
+                    && inputValue[0] !== '+'
                     && !chart(inputValue)
                     && (!foundPlus || (foundPlus && !inputValue.includes('+')))
                     && !inputValue.includes('.')) {

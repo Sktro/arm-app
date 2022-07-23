@@ -14,12 +14,14 @@
     border-radius: 80px;
     z-index: 0;
 }
+
 .contain::-webkit-scrollbar-thumb {
     border-radius: 80px; /*Закругление ползунка*/
     background-color: #818080; /*Цвет ползунка*/
 }
-.contain::-webkit-scrollbar{
-    width: 6px;  /*Толщина скролла*/
+
+.contain::-webkit-scrollbar {
+    width: 6px; /*Толщина скролла*/
 }
 
 .containCategory {
@@ -42,23 +44,33 @@
 }
 
 .weight {
-    /*border: 1px solid rgba(24, 126, 255, 0.8);
-    border-radius: 5px;*/
-/*    padding: 1px;
-    font-weight: bold;*/
     color: rgba(24, 126, 255, 0.8);
 }
 
 .weightF {
     background-color: rgba(227, 0, 106, 0.8);
 }
-.weights{
+
+.weights {
     color: rgba(24, 126, 255, 0.8);
     font-weight: bold;
+    font-size: 16px;
+    margin-left: 5px;
 }
 
-.weightsF{
+.weightsF {
     color: rgba(227, 0, 106, 0.8);
     font-weight: bold;
 }
 
+.deleteCategories {
+    background: url(../../../../img/red.png) no-repeat;
+    position: relative;
+    top: 11px;
+    background-size: 14px;
+    display: inline-block;
+    margin-right: 2px;
+    height: 22px;
+    width: 15px;
+    cursor: pointer;
+}
