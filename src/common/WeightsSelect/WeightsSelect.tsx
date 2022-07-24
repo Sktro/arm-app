@@ -71,7 +71,7 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
 
                     this.props.onChange(
                         '',
-                        [...value, createOption(inputValue)]
+                        [...value, createOption(inputValue.replace(/\s/g, ''))]
                     );
 
                     event.preventDefault();

@@ -11,6 +11,7 @@ type ListOfCategoriesType = {
     setAge: (value: AgeType) => void
     setCategoryAthletes: (value: CategoryAthleteType) => void
     setWeightNewCategory: (value: readonly Option[]) => void
+    setErrorCategory: (value: boolean) => void
 }
 
 export const ListOfCategories = (props: ListOfCategoriesType) => {
@@ -26,7 +27,7 @@ export const ListOfCategories = (props: ListOfCategoriesType) => {
             props.setCategoryAthletes(cat.categoryAthlete)
             props.setWeightNewCategory(result)
             props.deleteCategories(cat.id)
-
+            props.setErrorCategory(false)
     }
         let result: Option[];
         if (foundValuePlus) {

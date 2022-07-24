@@ -18,6 +18,8 @@ type InfoCategoryType = {
     setWeightNewCategory: (value: readonly Option[]) => void
     setError: (value: boolean) => void
     setButtonActive: (value: boolean) => void
+    setErrorCategory: (value: boolean) => void
+    errorCategory: boolean
 }
 
 
@@ -35,24 +37,37 @@ export const InfoCategory = (props: InfoCategoryType) => {
 
     const onChangeGender = (value: string) => {
         setGender(value as GenderType)
+        props.setErrorCategory(false)
     }
     const onChangeAge = (value: string) => {
         setAge(value as AgeType)
+        props.setErrorCategory(false)
     }
     const onChangeCategoryAthletes = (value: string) => {
         setCategoryAthletes(value as CategoryAthleteType)
+        props.setErrorCategory(false)
     }
 
-    const addCategories = () => {
-        if (props.weightNewCategory.length > 0) {
-            props.addNewCategoryAthletes(gender, age, categoryAthletes, props.weightNewCategory)
-            setGender(props.gender[0])
-            setAge(props.ageAthletes[0])
-            setCategoryAthletes(props.categoryAthlete[0])
-            props.setWeightNewCategory([])
-        } else {
-            props.setError(true)
+    const coincidence = (genderA: GenderType, ageA:AgeType, categoryA: CategoryAthleteType) => {
+        let newString = genderA + ageA + categoryA
+        for (let i = 0; i < props.arrCategory.length; i++) {
+            if (newString === (props.arrCategory[i].gender + props.arrCategory[i].age + props.arrCategory[i].categoryAthlete)) {
+                return true
+            }
         }
+    }
+
+        const addCategories = () => {
+            if (props.weightNewCategory.length > 0 && !coincidence(gender, age, categoryAthletes)) {
+                props.addNewCategoryAthletes(gender, age, categoryAthletes, props.weightNewCategory)
+                setGender(props.gender[0])
+                setAge(props.ageAthletes[0])
+                setCategoryAthletes(props.categoryAthlete[0])
+                props.setWeightNewCategory([])
+            } else {
+                props.setErrorCategory(true)
+                props.setError(false)
+            }
     }
 
     return (
@@ -74,20 +89,22 @@ export const InfoCategory = (props: InfoCategoryType) => {
                 <div><WeightsSelect inputValue={inputValueNewCategory}
                                     value={props.weightNewCategory}
                                     onChange={onChangeNewCategory}/></div>
-            </div>
 
-            <div className={styleM.addCategoryClose}
+            </div>
+            <button className={styleM.addCategoryClose} disabled={props.weightNewCategory.length === 0}
                  onClick={addCategories}>
                 добавить категории
-            </div>
-            {props.arrCategory.length > 0 && <ListOfCategories listOfCategories={props.arrCategory}
+            </button>
 
+            {props.arrCategory.length > 0 && <ListOfCategories listOfCategories={props.arrCategory}
+                                                               setErrorCategory={props.setErrorCategory}
                                                                setGender={setGender}
                                                                setAge={setAge}
                                                                setCategoryAthletes={setCategoryAthletes}
                                                                setWeightNewCategory={props.setWeightNewCategory}
 
                                                                deleteCategories={props.deleteCategories}/>}
+            {props.errorCategory && <span className={styleM.errorCategory}>Данная категория уже существует</span>}
         </>
     )
 }

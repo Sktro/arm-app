@@ -60,6 +60,17 @@ export type CategoryType = {
     weightsCategory: readonly Option[]
 }
 
+export type SettingsType = {
+    tableNumb: TableForArm
+    place5_6: boolean
+    wrestlingSeparately: boolean
+    leftHand: boolean
+    rightHand: boolean
+    semifinalAndFinal: boolean
+    semifinal: boolean
+    final: boolean
+}
+
 export const TableForArm: TableForArm[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
 export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
@@ -85,6 +96,11 @@ function App() {
     ])
     // New category
     const [arrCategory, setArrCategory] = useState<Array<CategoryType>>([])
+
+    // Settings tournament
+    const [settings, SetSettings] = useState<Array<SettingsType>>([
+        {tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, wrestlingSeparately: false}
+    ])
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -142,6 +158,7 @@ function App() {
                               changeRankAthlete={changeRankAthlete}/>
             </div>}
             <Modal modalActive={modalActive}
+                   settings={settings}
                    tableForArm={TableForArm}
                    arrCategory={arrCategory}
                    deleteCategories={deleteCategories}
