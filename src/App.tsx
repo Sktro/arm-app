@@ -124,6 +124,18 @@ function App() {
     const deleteCategories = (CategoryID: string) => {
         setArrCategory(arrCategory.filter(c => c.id !== CategoryID))
     }
+    const sortCategory = (arrayCategory: CategoryType) => {
+        const foundValuePlus = arrayCategory.weightsCategory.find(el => el.value.slice(-1) === '+')
+        const arrForSort = arrayCategory.weightsCategory.filter(el => el.value.slice(-1) !== '+')
+        const temp = arrForSort.map(v => v).sort((a, b) => Number(a.value) - Number(b.value))
+        let result: Option[];
+        if (foundValuePlus) {
+            result = [...temp, foundValuePlus]
+        } else {
+            result = [...temp]
+        }
+        return result
+    }
     const changeFullNameAndTeamAthlete = (FullNameAndTeam: string, AthleteID: string) => {
         setAthletes(athletes.map(at => at.id === AthleteID ? {...at, FullNameAndTeam} : at))
     }
@@ -158,6 +170,7 @@ function App() {
                               changeRankAthlete={changeRankAthlete}/>
             </div>}
             <Modal modalActive={modalActive}
+                   sortCategory={sortCategory}
                    settings={settings}
                    tableForArm={TableForArm}
                    arrCategory={arrCategory}

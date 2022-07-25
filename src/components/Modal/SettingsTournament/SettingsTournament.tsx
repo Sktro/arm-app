@@ -111,7 +111,6 @@ export const SettingsTournament = (props: SettingsTournamentType) => {
                                                              onChange={onChangeFinal}
                                                              checked={final}/></div>
             </div>}
-            <button onClick={()=> console.log(props.settings[0])}>LOG</button>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import {ListOfCategories} from "./ListOfCategories/ListOfCategories";
 import {AgeType, CategoryAthleteType, CategoryType, GenderType} from "../../../App";
 
 type InfoCategoryType = {
+    sortCategory: (value: CategoryType) => Option[]
     addNewCategoryAthletes: (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => void
     gender: GenderType[]
     ageAthletes: AgeType[]
@@ -97,6 +98,7 @@ export const InfoCategory = (props: InfoCategoryType) => {
             </button>
 
             {props.arrCategory.length > 0 && <ListOfCategories listOfCategories={props.arrCategory}
+                                                               sortCategory={props.sortCategory}
                                                                setErrorCategory={props.setErrorCategory}
                                                                setGender={setGender}
                                                                setAge={setAge}
