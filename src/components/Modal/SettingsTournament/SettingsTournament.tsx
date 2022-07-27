@@ -5,75 +5,75 @@ import {SelectNumberTable} from "../../../common/Select/SelectNumberTable";
 
 type SettingsTournamentType = {
     tableForArm: TableForArm[]
-    settings: SettingsType[]
+    settings: SettingsType
 }
 
 export const SettingsTournament = (props: SettingsTournamentType) => {
 
-    const [table, setTable] = useState<TableForArm>(props.settings[0].tableNumb)
-    const [place, setPlace] = useState<boolean>(props.settings[0].place5_6)
-    const [wrestlingSeparately, setWrestlingSeparately] = useState<boolean>(props.settings[0].wrestlingSeparately)
-    const [semifinalFinal, setSemifinalFinal] = useState<boolean>(props.settings[0].semifinalAndFinal)
-    const [leftHand, setLeftHand] = useState<boolean>(props.settings[0].leftHand)
-    const [rightHand, setRightHand] = useState<boolean>(props.settings[0].rightHand)
-    const [semifinal, setSemifinal] = useState<boolean>(props.settings[0].semifinal)
-    const [final, setFinal] = useState<boolean>(props.settings[0].final)
+    const [table, setTable] = useState<TableForArm>(props.settings.tableNumb)
+    const [place, setPlace] = useState<boolean>(props.settings.place5_6)
+    const [wrestlingSeparately, setWrestlingSeparately] = useState<boolean>(props.settings.wrestlingSeparately)
+    const [semifinalFinal, setSemifinalFinal] = useState<boolean>(props.settings.semifinalAndFinal)
+    const [leftHand, setLeftHand] = useState<boolean>(props.settings.leftHand)
+    const [rightHand, setRightHand] = useState<boolean>(props.settings.rightHand)
+    const [semifinal, setSemifinal] = useState<boolean>(props.settings.semifinal)
+    const [final, setFinal] = useState<boolean>(props.settings.final)
 
     const onChangeTable = (value: string) => {
         setTable(value as TableForArm)
-        props.settings[0].tableNumb = value as TableForArm
+        props.settings.tableNumb = value as TableForArm
     }
 
     const onChangePlace = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings[0].place5_6 = e.currentTarget.checked
-        setPlace(props.settings[0].place5_6)
+        props.settings.place5_6 = e.currentTarget.checked
+        setPlace(props.settings.place5_6)
     }
 
     const onChangeWrestlingSeparately = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings[0].wrestlingSeparately = e.currentTarget.checked
-        setWrestlingSeparately(props.settings[0].wrestlingSeparately)
+        props.settings.wrestlingSeparately = e.currentTarget.checked
+        setWrestlingSeparately(props.settings.wrestlingSeparately)
         if(wrestlingSeparately) {
-            setLeftHand(props.settings[0].leftHand = false)
-            setRightHand(props.settings[0].rightHand = false)
+            setLeftHand(props.settings.leftHand = false)
+            setRightHand(props.settings.rightHand = false)
         } else {
-            setLeftHand(props.settings[0].leftHand = true)
-            setRightHand(props.settings[0].rightHand = true)
+            setLeftHand(props.settings.leftHand = true)
+            setRightHand(props.settings.rightHand = true)
         }
     }
 
     const onChangeSemifinalFinal = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings[0].semifinalAndFinal = e.currentTarget.checked
-        setSemifinalFinal(props.settings[0].semifinalAndFinal)
+        props.settings.semifinalAndFinal = e.currentTarget.checked
+        setSemifinalFinal(props.settings.semifinalAndFinal)
         if(semifinalFinal) {
-            setFinal(props.settings[0].final = false)
-            setSemifinal(props.settings[0].semifinal = false)
+            setFinal(props.settings.final = false)
+            setSemifinal(props.settings.semifinal = false)
         } else {
-            setFinal(props.settings[0].final = true)
+            setFinal(props.settings.final = true)
         }
     }
 
     const onChangeLeftHand = (e: ChangeEvent<HTMLInputElement>) => {
-        if(props.settings[0].rightHand){
-            props.settings[0].leftHand = e.currentTarget.checked
-            setLeftHand(props.settings[0].leftHand)
+        if(props.settings.rightHand){
+            props.settings.leftHand = e.currentTarget.checked
+            setLeftHand(props.settings.leftHand)
         }
     }
 
     const onChangeRightHand = (e: ChangeEvent<HTMLInputElement>) => {
-        if(props.settings[0].leftHand){
-            props.settings[0].rightHand = e.currentTarget.checked
-            setRightHand(props.settings[0].rightHand)
+        if(props.settings.leftHand){
+            props.settings.rightHand = e.currentTarget.checked
+            setRightHand(props.settings.rightHand)
         }
     }
 
     const onChangeSemifinal = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings[0].semifinal = e.currentTarget.checked
-        setSemifinal(props.settings[0].semifinal)
+        props.settings.semifinal = e.currentTarget.checked
+        setSemifinal(props.settings.semifinal)
     }
 
     const onChangeFinal = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings[0].final = e.currentTarget.checked
-        setFinal(props.settings[0].final = true)
+        props.settings.final = e.currentTarget.checked
+        setFinal(props.settings.final = true)
     }
 
     return (

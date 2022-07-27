@@ -1,0 +1,107 @@
+.checkInfo {
+    padding: 5px;
+    border: 2px solid #00a92f;
+    position: fixed;
+    width: 560px;
+    border-radius: 12px;
+    text-align: center;
+    z-index: 20;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textNewTournament {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.aboutTournament {
+    display: flex;
+    flex-direction: column;
+}
+.aboutTournament span {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.categoriesAndSettings {
+    width: 545px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.categoryAll {
+    width: 320px;
+    border: 1px solid #00a92f;
+    border-radius: 12px;
+    text-align: left;
+    padding-left: 3px;
+    padding-bottom: 3px;
+}
+.categoryAll span {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.settingsAll {
+    border: 1px solid #00a92f;
+    border-radius: 12px;
+    width: 220px;
+    text-align: left;
+    padding-left: 6px;
+    padding-bottom: 3px;
+}
+.settingsAll span{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.warring {
+    color: red;
+    font-size: 14px;
+}
+
+.buttonAcceptCancel {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.creatableTournament{
+    padding: 5px;
+    border: 1px rgba(18, 87, 173, 0.6) solid;
+    font-weight: bold;
+    color: #187eff;
+    border-radius: 5px;
+    width: 145px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.creatableTournament:hover {
+    color: white;
+    background-color: #187eff;
+    border: 1px rgba(18, 87, 173, 0.6) solid;
+}
+
+.cancel{
+    padding: 5px;
+    border: 1px rgba(175, 0, 0, 0.6) solid;
+    font-weight: bold;
+    color: red;
+    border-radius: 5px;
+    width: 145px;
+    background-color: white;
+    cursor: pointer;
+}
+.cancel:hover {
+    border: 1px rgba(175, 0, 0, 0.6) solid;
+    color: white;
+    background-color: red;
+}

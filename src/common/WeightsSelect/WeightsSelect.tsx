@@ -33,7 +33,6 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
         this.props.onChange(this.props.inputValue, value)
     };
     handleInputChange = (inputValue: string) => {
-        console.log(inputValue)
         if (Number(inputValue) < 1000
             || Number(inputValue) === undefined
             || inputValue.slice(-1) === '+') {
@@ -46,11 +45,20 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
         switch (event.key) {
             case 'Enter':
             case 'Tab':
-                     console.group('Value Added');
+                     /*console.group('Value Added');
                      console.log(value);
-                     console.groupEnd();
+                     console.groupEnd();*/
                 const foundMatch = value.find(el => el.value === inputValue.replace(/\s/g, ''))
                 const foundPlus = value.find(el => el.value.slice(-1) === '+')
+
+                const findMax = (str: string) => {
+                    let newArr = value.map(v => Number(v.value))
+                    let maxValue = Math.max(...newArr)
+                    if(!foundPlus && str.slice(-1) === '+') {
+                        let newValue = Number(str.slice(0, -1))
+                        return maxValue > newValue
+                    }
+                }
 
                 const chart = (str: string) => {
                     let newArr = value.map(v => v.value)
@@ -65,6 +73,8 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
                 if (!foundMatch
                     && inputValue[0] !== '0'
                     && inputValue[0] !== '+'
+                    && !findMax(inputValue)
+                    && !inputValue.match(/[a-zа-я]+/gui)
                     && !chart(inputValue)
                     && (!foundPlus || (foundPlus && !inputValue.includes('+')))
                     && !inputValue.includes('.')) {
@@ -94,7 +104,6 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
         } else {
             result = [...temp]
         }
-        console.log(value)
 
         return (
             <div className={style.creatableSelect}>

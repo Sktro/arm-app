@@ -50,6 +50,7 @@ export type AthletesType = {
     weight: number
     team: string
     rank: RankType
+    gender: GenderType
 }
 
 export type CategoryType = {
@@ -91,16 +92,16 @@ function App() {
     const [weightNewCategory, setWeightNewCategory] = useState<readonly Option[]>([])
     // New athlete
     const [athletes, setAthletes] = useState<Array<AthletesType>>([
-        {id: v1(), fullName: 'Петров Артем', weight: 89.6, team: 'ФАТО', rank: 'б/р'},
-        {id: v1(), fullName: 'Кервалидзе Игорь', weight: 87, team: 'ФАТО', rank: '1в.р.'}
+        {id: v1(), fullName: 'Петров Артем', weight: 89.6, team: 'ФАТО', rank: 'б/р', gender: 'муж'},
+        {id: v1(), fullName: 'Кервалидзе Игорь', weight: 87, team: 'ФАТО', rank: '1в.р.', gender: 'муж'}
     ])
     // New category
     const [arrCategory, setArrCategory] = useState<Array<CategoryType>>([])
 
     // Settings tournament
-    const [settings, SetSettings] = useState<Array<SettingsType>>([
+    const [settings, SetSettings] = useState<SettingsType>(
         {tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, wrestlingSeparately: false}
-    ])
+    )
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -110,8 +111,8 @@ function App() {
         return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date}`
     }
 
-    const addAthleteCallback = (fullName: string, weight: number, team: string, rank: RankType) => {
-        let newAthlete = {id: v1(), fullName, weight, team, rank}
+    const addAthleteCallback = (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => {
+        let newAthlete = {id: v1(), fullName, weight, team, rank, gender}
         setAthletes([newAthlete, ...athletes])
     }
     const addNewCategoryAthletes = (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => {
@@ -154,6 +155,11 @@ function App() {
                         startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
+                              SetSettings={SetSettings}
+                              setArrCategory={setArrCategory}
+                              sortCategory={sortCategory}
+                              gender={genderAthletes}
+                              arrCategory={arrCategory}
                               setAthletes={setAthletes}
                               setModalActive={setModalActive}
                               removeAthlete={removeAthlete}

@@ -12,9 +12,10 @@ import {
 import {InfoTournament} from "./InfoTournament/InfoTournament";
 import {InfoCategory} from "./InfoCategory/InfoCategory";
 import {SettingsTournament} from "./SettingsTournament/SettingsTournament";
+import {CheckInfoWindow} from "./CheckInfoWindow/CheckInfoWindow";
 
 type ModalPropsType = {
-    settings: SettingsType[]
+    settings: SettingsType
     sortCategory: (value: CategoryType) => Option[]
     tableForArm: TableForArm[]
     arrCategory: CategoryType[]
@@ -57,100 +58,58 @@ export const Modal = (props: ModalPropsType) => {
             setError(true)
             setErrorCategory(false)
         }
-
     }
-
-    const addNewTournament = () => {
-        props.setModalActive(false)
-        setCreateNewTournament(false)
-    }
-
     return (
-            <div className={props.modalActive ? `${styleM.modal} ${styleM.active}` : styleM.modal}>
-
-                {createNewTournament && <div className={styleM.checkInfo}>
-                    <div className={styleM.textNewTournament}>Создан новый турнир!</div>
-                    <div className={styleM.aboutTournament}>
-                        <div>Название: {props.tournament}</div>
-                        <div>Место проведения: {props.location}</div>
-                        <div>Дата начала/окончания: {props.startTournamentDate === props.endTournamentDate
-                            ? <span>{props.startTournamentDate}</span>
-                            : <span>{props.startTournamentDate} / {props.endTournamentDate}</span>}</div>
-                    </div>
-                    <div className={styleM.categoriesAndSettings}>
-                        <div className={styleM.categoryAll}><span>Категории:</span>
-                            {props.arrCategory
-                                .map(v => <div> {v.gender} / {v.categoryAthlete} ({v.age}): {props.sortCategory(v)
-                                    .map((v, index) => (index ? '; ' : '') + v.value)}</div>)}
+        <div className={props.modalActive ? `${styleM.modal} ${styleM.active}` : styleM.modal}>
+            {createNewTournament && <CheckInfoWindow settings={props.settings}
+                                                     location={props.location}
+                                                     setModalActive={props.setModalActive}
+                                                     sortCategory={props.sortCategory}
+                                                     startTournamentDate={props.startTournamentDate}
+                                                     tournament={props.tournament}
+                                                     setCreateNewTournament={setCreateNewTournament}
+                                                     arrCategory={props.arrCategory}
+                                                     endTournamentDate={props.endTournamentDate}/>}
+            <div className={!createNewTournament ? styleM.modalContent : `${styleM.modalContent} ${styleM.notActive}`}>
+                <InfoTournament setTournament={props.setTournament}
+                                tournament={props.tournament}
+                                setError={setError}
+                                location={props.location}
+                                setLocation={props.setLocation}
+                                setStartTournamentDate={props.setStartTournamentDate}
+                                startTournamentDate={props.startTournamentDate}
+                                endTournamentDate={props.endTournamentDate}
+                                setEndTournamentDate={props.setEndTournamentDate}/>
+                <div>
+                    <div className={styleM.modalButtonContain}>
+                        <div className={buttonActive ? styleM.modalButtonOn : styleM.modalButton}
+                             onClick={() => setButtonActive(true)}>Категории
                         </div>
-                        <div className={styleM.settingsAll}><span>Настройки турнира:</span>
-                            <div>- Кол-во столов: {props.settings[0].tableNumb}</div>
-                            {props.settings[0].place5_6 && <div> - Борьба за 5-6 место</div>}
-                            {!props.settings[0].wrestlingSeparately && <div>- Двоеборье</div>}
-                            {props.settings[0].leftHand && <div>- Борьба на левой руке </div>}
-                            {props.settings[0].rightHand && <div>- Борьба на правой руке </div>}
-                            {props.settings[0].final && props.settings[0].semifinal ?
-                                <div>- Полуфиналы и финалы проводятся отдельно</div>
-                                : props.settings[0].final && !props.settings[0].semifinal ?
-                                    <div>- Финалы проводятся отдельно</div> : ''}
+                        <div className={!buttonActive ? styleM.modalButtonOn : styleM.modalButton}
+                             onClick={() => setButtonActive(false)}>Настройки турнира
                         </div>
                     </div>
-                    <div className={styleM.warring}>ВНИМАНИЕ! При нажатии на кнопку "Создать турнир" возможность
-                        внесения
-                        изменений турнира будет невозможна.
-                    </div>
-                    <div className={styleM.buttonAcceptCancel}>
-                        <button className={styleM.creatableTournament} onClick={addNewTournament}>Создать турнир
-                        </button>
-                        <button className={styleM.cancel} onClick={() => setCreateNewTournament(false)}>Отмена</button>
-                    </div>
-                </div>}
-
-
-                <div className={!createNewTournament ? styleM.modalContent : `${styleM.modalContent} ${styleM.notActive}`}>
-                    <InfoTournament setTournament={props.setTournament}
-                                    tournament={props.tournament}
-                                    setError={setError}
-                                    location={props.location}
-                                    setLocation={props.setLocation}
-                                    setStartTournamentDate={props.setStartTournamentDate}
-                                    startTournamentDate={props.startTournamentDate}
-                                    endTournamentDate={props.endTournamentDate}
-                                    setEndTournamentDate={props.setEndTournamentDate}/>
-                    <div>
-
-                        <div className={styleM.modalButtonContain}>
-                            <div className={buttonActive ? styleM.modalButtonOn : styleM.modalButton}
-                                 onClick={() => setButtonActive(true)}>Категории
-                            </div>
-                            <div className={!buttonActive ? styleM.modalButtonOn : styleM.modalButton}
-                                 onClick={() => setButtonActive(false)}>Настройки турнира
-                            </div>
-                        </div>
-                        {!buttonActive && <SettingsTournament tableForArm={props.tableForArm}
-                                                              settings={props.settings}/>}
-                        {buttonActive && <InfoCategory addNewCategoryAthletes={props.addNewCategoryAthletes}
-                                                       sortCategory={props.sortCategory}
-                                                       errorCategory={errorCategory}
-                                                       setErrorCategory={setErrorCategory}
-                                                       setButtonActive={setButtonActive}
-                                                       gender={props.gender}
-                                                       ageAthletes={props.ageAthletes}
-                                                       categoryAthlete={props.categoryAthlete}
-                                                       weightNewCategory={props.weightNewCategory}
-                                                       arrCategory={props.arrCategory}
-                                                       deleteCategories={props.deleteCategories}
-                                                       setWeightNewCategory={props.setWeightNewCategory}
-                                                       setError={setError}/>}
-                    </div>
-
-
-                    {error && (props.tournament === "" || props.location === ''
-                        ? <span className={styleM.error}>заполните обязательные поля( * )</span>
-                        : <span className={styleM.error}>Не добалено ни одной весовой категории</span>)}
-
-                    <button className={styleM.creatableTournamentButton} onClick={addTournament}>Создать турнир</button>
+                    {!buttonActive && <SettingsTournament tableForArm={props.tableForArm}
+                                                          settings={props.settings}/>}
+                    {buttonActive && <InfoCategory addNewCategoryAthletes={props.addNewCategoryAthletes}
+                                                   sortCategory={props.sortCategory}
+                                                   errorCategory={errorCategory}
+                                                   setErrorCategory={setErrorCategory}
+                                                   setButtonActive={setButtonActive}
+                                                   gender={props.gender}
+                                                   ageAthletes={props.ageAthletes}
+                                                   categoryAthlete={props.categoryAthlete}
+                                                   weightNewCategory={props.weightNewCategory}
+                                                   arrCategory={props.arrCategory}
+                                                   deleteCategories={props.deleteCategories}
+                                                   setWeightNewCategory={props.setWeightNewCategory}
+                                                   setError={setError}/>}
                 </div>
+                {error && (props.tournament === "" || props.location === ''
+                    ? <span className={styleM.error}>заполните обязательные поля( * )</span>
+                    : <span className={styleM.error}>Не добалено ни одной весовой категории</span>)}
+                <button className={styleM.creatableTournamentButton} onClick={addTournament}>Создать турнир</button>
             </div>
+        </div>
     )
 }

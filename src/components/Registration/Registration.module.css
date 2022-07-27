@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: column;
     max-width: 237px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .registeredAthletes {
@@ -15,7 +17,7 @@
     min-height: 100px;
 }
 
-.athletes {
+.athletesM {
     min-width: 500px;
     padding: 3px 10px;
     background-color: white;
@@ -27,8 +29,15 @@
     border-radius: 10px;
 }
 
+.athletesF {
+    color: rgba(227, 0, 106, 0.8);
+    border: 1px solid rgba(227, 0, 106, 0.8);
+}
+
 .error {
     color: red;
+    font-size: 14px;
+    text-align: center;
 }
 
 .addAthleteButton {
@@ -143,4 +152,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+.sectionWeightAndSelect {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }

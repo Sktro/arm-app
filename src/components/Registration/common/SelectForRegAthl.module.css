@@ -1,8 +1,7 @@
 .form {
     position: relative;
-    width: 20rem;
-    height: 2rem;
-    margin-bottom: 10px;
+    width:135px;
+    height: 32px;
 }
 
 .form__input {
@@ -11,7 +10,7 @@
     top: 0;
     left: 0;
     font-weight: bold;
-    width: 70%;
+    width: 100%;
     border: 1px solid #bdc0c7;
     border-radius: 0.5rem;
     font-family: inherit;

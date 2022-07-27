@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styleR from './Registration.module.css'
-import {AthletesType, RankType} from "../../App";
+import {AthletesType, CategoryType, GenderType, RankType, SettingsType} from "../../App";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
 import {RegistrationAthlete} from "./RegistrationAthlete/RegistrationAthlete";
 import {AthletesList} from "./AthletesList/AthletesList";
@@ -9,10 +9,14 @@ import {ModalDeleteTournament} from "./ModalDelete/ModalDeleteTournament";
 import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDeleteTournament";
 
 type RegistrationPropsType = {
+    SetSettings:(value: SettingsType) => void
+    arrCategory: CategoryType[]
+    setArrCategory:(value: CategoryType[]) => void
+    sortCategory: (value: CategoryType) => Option[]
     ranks: RankType[]
     weightNewCategory: readonly Option[]
     athletes: AthletesType[]
-    addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType) => void
+    addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => void
     changeFullNameAndTeamAthlete: (fullNameAndTeam: string, AthleteID: string) => void
     changeWeightAthlete: (AthleteID: string, weightAthlete: number) => void
     changeRankAthlete: (AthleteID: string, rankAthlete: RankType) => void
@@ -23,7 +27,8 @@ type RegistrationPropsType = {
     setWeightNewCategory: (value: readonly Option[]) => void
     setMainSecretary: (value: string) => void
     setMainReferee: (value: string) => void
-    setAthletes:(value: AthletesType[])=> void
+    setAthletes: (value: AthletesType[]) => void
+    gender: GenderType[]
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -35,6 +40,7 @@ export const Registration = (props: RegistrationPropsType) => {
             {!modalDelete && <div>
                 <div className={styleR.containRegistration}>
                     <RegistrationAthlete addAthleteCallback={props.addAthleteCallback}
+                                         gender={props.gender}
                                          ranks={props.ranks}/>
                     <AthletesList athletes={props.athletes}
                                   changeFullNameAndTeamAthlete={props.changeFullNameAndTeamAthlete}
@@ -42,12 +48,15 @@ export const Registration = (props: RegistrationPropsType) => {
                                   changeRankAthlete={props.changeRankAthlete}
                                   ranks={props.ranks}
                                   removeAthlete={props.removeAthlete}/>
-                    <CategoriesList weightNewCategory={props.weightNewCategory}/>
+                    <CategoriesList arrCategory={props.arrCategory}
+                                    sortCategory={props.sortCategory}/>
 
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
             </div>}
             <ModalDeleteTournament setModalActive={props.setModalActive}
+                                   SetSettings={props.SetSettings}
+                                   setArrCategory={props.setArrCategory}
                                    setAthletes={props.setAthletes}
                                    setModalDelete={setModalDelete}
                                    setTournament={props.setTournament}

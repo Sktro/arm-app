@@ -30,7 +30,8 @@ export const AthletesList = (props: AthletesListPropsType) => {
             }
 
             return (
-                <div key={atl.id} className={styleR.athletes}>
+                <div key={atl.id} className={atl.gender === 'жен'
+                    ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
                     <div className={styleR.fullName}><EditableSpanText fullNameAndTeam={atl.fullName} changeFullNameAndTeam={changeDataAthlete}/></div>
                     <div className={styleR.team}><EditableSpanText fullNameAndTeam={atl.team}
                                                                    changeFullNameAndTeam={changeDataAthlete}/></div>

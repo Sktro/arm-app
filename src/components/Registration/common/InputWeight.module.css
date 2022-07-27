@@ -1,20 +1,3 @@
-/*!*   color variables *!
-$clr-primary: #18ffff;
-$clr-primary-light: #adffff;
-$clr-primary-dark: #091034;
-$clr-gray100: #f9fbff;
-$clr-gray150: #f4f6fb;
-$clr-gray200: #eef1f6;
-$clr-gray300: #e1e5ee;
-$clr-gray400: #767b91;
-$clr-gray500: #4f546c;
-$clr-gray600: #2a324b;
-$clr-gray700: #161d34;
-$clr-bg: #060b23;
-
-!*   border radius *!
-$radius: 0.5rem;*/
-
 *,
 *::before,
 *::after {
@@ -23,17 +6,10 @@ $radius: 0.5rem;*/
     padding: 0;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
 .form {
     position: relative;
-    width: 14rem;
-    height: 2rem;
-    margin-bottom: 10px;
+    width: 70px;
+    height: 32px;
     }
 
 .form__input {
@@ -103,7 +79,7 @@ reduce the size of the label and move upwards
 
 .obligatory {
     position: relative;
-    left: 228px;
+    left: 73px;
     bottom: 4px;
     color: red;
     width: 9px;
