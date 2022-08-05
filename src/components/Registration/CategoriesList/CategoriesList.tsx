@@ -33,18 +33,18 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
     return (
         <div className={styleR.weightsCategories}>
                 <span className={styleR.registrationDescription}>
-                    Список весовых категорий(M:{findQty('муж')}; Ж:{findQty('жен')}):
-                    {findQty('муж')
-                        ? <div>Мужчины:
+                    Список весовых категорий({findQty('муж') > 0 ? <span>M:{findQty('муж')}</span> : ''}
+                    {findQty('муж') > 0 && findQty('жен') > 0 ? ';' : ''}
+                    {findQty('жен') > 0 ?<span>Ж:{findQty('жен')}</span> : ''}):
+                    {findQty('муж') ? <div>Мужчины:
                     <div>{sortArrayGender(props.arrCategory, 'муж')
-                        .map(c => <div key={c.id}>- {c.categoryAthlete}({c.age}): {props.sortCategory(c)
-                        .map((w, index) => (index ? '; ': '') + w.value)}</div>)}</div>
+                        .map(c => <div key={c.id}><span className={styleR.listMale}>- {c.categoryAthlete}({c.age}):</span><span className={styleR.weightListM}>{props.sortCategory(c)
+                            .map((w, index) => (index ? '; ': '') + w.value)}</span> </div>)}</div>
                     </div> : ''}
-                    {findQty('жен')
-                        ? <div>Женщины:
+                    {findQty('жен') ? <div>Женщины:
                             <div>{sortArrayGender(props.arrCategory, 'жен')
-                                .map(c => <div key={c.id}>- {c.categoryAthlete}({c.age}): {props.sortCategory(c)
-                                .map((w, index) => (index ? '; ': '') + w.value)}</div>)}</div>
+                                .map(c => <div key={c.id}><span className={styleR.listFemale}>- {c.categoryAthlete}({c.age}):</span><span className={styleR.weightListF}>{props.sortCategory(c)
+                                    .map((w, index) => (index ? '; ': '') + w.value)}</span></div>)}</div>
                         </div> : ''}
                 </span>
         </div>

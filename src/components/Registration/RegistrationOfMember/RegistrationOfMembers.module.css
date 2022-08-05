@@ -1,0 +1,36 @@
+.buttonsContain {
+    margin-top: 3px;
+    display: flex;
+    justify-content: space-around;
+}
+.button {
+    border: solid 2px rgba(58, 58, 58, 0.13);
+    padding: 0 6px 1px 6px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: rgba(128, 128, 128, 0.59);
+    width: 75px;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    border: solid 2px rgba(58, 58, 58, 0.18);
+    background-color: rgba(128, 128, 128, 0.71);
+}
+
+.buttonOn {
+    width: 75px;
+    border: solid 2px #079643;
+    padding: 0 6px 1px 6px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #00a92f;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+}
+.formContain{
+    margin-top: 9px;
+}

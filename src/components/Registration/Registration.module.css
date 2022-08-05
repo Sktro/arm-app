@@ -29,6 +29,18 @@
     border-radius: 10px;
 }
 
+.judges {
+    min-width: 500px;
+    padding: 3px 10px;
+    background-color: white;
+    margin: 1px;
+    color: #3f3f3f;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #3f3f3f;
+    border-radius: 10px;
+}
+
 .athletesF {
     color: rgba(227, 0, 106, 0.8);
     border: 1px solid rgba(227, 0, 106, 0.8);
@@ -67,8 +79,11 @@
 
 .fullName {
     font-weight: bold;
-    min-width: 200px;
+    width: 200px;
     margin: 0 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .team {
@@ -159,3 +174,32 @@
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
+.listMale {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+    display: inline-block;
+    padding: 0 3px 2px 3px;
+    margin: 1px;
+    border-radius: 5px;
+}
+
+.weightListM {
+    color: rgba(24, 126, 255, 0.8);
+    margin-left: 2px;
+}
+
+.weightListF {
+    color: rgba(227, 0, 106, 0.8);
+    margin-left: 2px;
+}
+
+.listFemale {
+    background-color: rgba(227, 0, 106, 0.8);
+    color: white;
+    display: inline-block;
+    padding: 0 3px 2px 3px;
+    margin: 1px;
+    border-radius: 5px;
+}
+

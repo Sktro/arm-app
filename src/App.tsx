@@ -24,6 +24,9 @@ export type GenderType =
     'муж'
     | 'жен'
 
+export type CategoryJudgeType =
+    'б/к' | '3 категория' | '2 категория' | '1 категория' | 'ВК' | 'МК'
+
 export type AgeType =
     'Взрослые'
     |'14-15'
@@ -53,6 +56,14 @@ export type AthletesType = {
     gender: GenderType
 }
 
+export type JudgeType = {
+    id: string
+    fullName: string
+    category: CategoryJudgeType
+    gender: GenderType
+    region: string
+}
+
 export type CategoryType = {
     id: string
     gender: GenderType
@@ -72,6 +83,7 @@ export type SettingsType = {
     final: boolean
 }
 
+export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 категория', '2 категория', '1 категория', 'ВК', 'МК']
 export const TableForArm: TableForArm[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
 export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
@@ -95,6 +107,8 @@ function App() {
         {id: v1(), fullName: 'Петров Артем', weight: 89.6, team: 'ФАТО', rank: 'б/р', gender: 'муж'},
         {id: v1(), fullName: 'Кервалидзе Игорь', weight: 87, team: 'ФАТО', rank: '1в.р.', gender: 'муж'}
     ])
+    // New judge
+    const [judge, setJudge] = useState<Array<JudgeType>>([])
     // New category
     const [arrCategory, setArrCategory] = useState<Array<CategoryType>>([])
 
@@ -108,12 +122,16 @@ function App() {
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let year = newDate.getFullYear();
-        return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date}`
+        return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date < 10 ?`0${date}` : `${date}`}`
     }
 
-    const addAthleteCallback = (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => {
+    const addAthlete = (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => {
         let newAthlete = {id: v1(), fullName, weight, team, rank, gender}
         setAthletes([newAthlete, ...athletes])
+    }
+    const addJudges = (fullName: string, gender: GenderType, category: CategoryJudgeType, region: string) => {
+        let newJudge = {id: v1(), fullName, gender, category, region}
+        setJudge([newJudge, ...judge])
     }
     const addNewCategoryAthletes = (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => {
         let newCategory = {id: v1(), gender, age, categoryAthlete, weightsCategory}
@@ -121,6 +139,9 @@ function App() {
     }
     const removeAthlete = (AthleteID: string) => {
         setAthletes(athletes.filter(atl => atl.id !== AthleteID))
+    }
+    const removeJudge = (JudgeID: string) => {
+        setJudge(judge.filter(jud => jud.id !== JudgeID))
     }
     const deleteCategories = (CategoryID: string) => {
         setArrCategory(arrCategory.filter(c => c.id !== CategoryID))
@@ -155,6 +176,10 @@ function App() {
                         startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
+                              removeJudge={removeJudge}
+                              judge={judge}
+                              addJudges={addJudges}
+                              categoryJudge={categoryJudge}
                               SetSettings={SetSettings}
                               setArrCategory={setArrCategory}
                               sortCategory={sortCategory}
@@ -164,7 +189,7 @@ function App() {
                               setModalActive={setModalActive}
                               removeAthlete={removeAthlete}
                               ranks={ranksAthletes}
-                              addAthleteCallback={addAthleteCallback}
+                              addAthleteCallback={addAthlete}
                               changeFullNameAndTeamAthlete={changeFullNameAndTeamAthlete}
                               changeWeightAthlete={changeWeightAthlete}
                               weightNewCategory={weightNewCategory}

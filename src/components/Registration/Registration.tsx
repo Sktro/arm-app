@@ -1,17 +1,28 @@
 import React, {useState} from "react";
 import styleR from './Registration.module.css'
-import {AthletesType, CategoryType, GenderType, RankType, SettingsType} from "../../App";
+import {
+    AthletesType,
+    CategoryJudgeType,
+    CategoryType,
+    GenderType, JudgeType,
+    RankType,
+    SettingsType
+} from "../../App";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
-import {RegistrationAthlete} from "./RegistrationAthlete/RegistrationAthlete";
 import {AthletesList} from "./AthletesList/AthletesList";
 import {CategoriesList} from "./CategoriesList/CategoriesList";
 import {ModalDeleteTournament} from "./ModalDelete/ModalDeleteTournament";
 import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDeleteTournament";
+import {RegistrationOfMembers} from "./RegistrationOfMember/RegistrationOfMembers";
 
 type RegistrationPropsType = {
-    SetSettings:(value: SettingsType) => void
+    addJudges: (fullName: string, gender: GenderType, category: CategoryJudgeType, region: string) => void
+    removeJudge: (JudgeID: string) => void
+    categoryJudge: CategoryJudgeType[]
+    judge: JudgeType[]
+    SetSettings: (value: SettingsType) => void
     arrCategory: CategoryType[]
-    setArrCategory:(value: CategoryType[]) => void
+    setArrCategory: (value: CategoryType[]) => void
     sortCategory: (value: CategoryType) => Option[]
     ranks: RankType[]
     weightNewCategory: readonly Option[]
@@ -39,10 +50,15 @@ export const Registration = (props: RegistrationPropsType) => {
         <div>
             {!modalDelete && <div>
                 <div className={styleR.containRegistration}>
-                    <RegistrationAthlete addAthleteCallback={props.addAthleteCallback}
-                                         gender={props.gender}
-                                         ranks={props.ranks}/>
+                    <RegistrationOfMembers arrCategory={props.arrCategory}
+                                           addJudges={props.addJudges}
+                                           gender={props.gender}
+                                           ranks={props.ranks}
+                                           categoryJudge={props.categoryJudge}
+                                           addAthleteCallback={props.addAthleteCallback}/>
                     <AthletesList athletes={props.athletes}
+                                  removeJudge={props.removeJudge}
+                                  judge={props.judge}
                                   changeFullNameAndTeamAthlete={props.changeFullNameAndTeamAthlete}
                                   changeWeightAthlete={props.changeWeightAthlete}
                                   changeRankAthlete={props.changeRankAthlete}
