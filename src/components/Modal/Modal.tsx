@@ -7,7 +7,7 @@ import {
     CategoryType,
     GenderType,
     SettingsType,
-    TableForArm
+    TableForArmType
 } from "../../App";
 import {InfoTournament} from "./InfoTournament/InfoTournament";
 import {InfoCategory} from "./InfoCategory/InfoCategory";
@@ -17,7 +17,7 @@ import {CheckInfoWindow} from "./CheckInfoWindow/CheckInfoWindow";
 type ModalPropsType = {
     settings: SettingsType
     sortCategory: (value: CategoryType) => Option[]
-    tableForArm: TableForArm[]
+    tableForArm: TableForArmType[]
     arrCategory: CategoryType[]
     addNewCategoryAthletes: (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => void
     setModalActive: (value: boolean) => void

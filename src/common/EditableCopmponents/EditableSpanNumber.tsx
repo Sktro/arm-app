@@ -2,21 +2,21 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import style from './editable.module.css'
 
 type EditableSpanNumberPropsType = {
-    weightAthlete: number
-    changeWeightAthlete: (weightAthlete: number) => void
+    value: number
+    changeValue: (weightAthlete: number) => void
 }
 
 
 export const EditableSpanNumber = (props: EditableSpanNumberPropsType) => {
-    const [weight, setWeight] = useState<number>(props.weightAthlete)
+    const [value, setValue] = useState<number>(props.value)
     const [editModeSN, setEditModeSN] = useState<boolean>(false)
 
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => setWeight(e.currentTarget.valueAsNumber)
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.valueAsNumber)
     const onEditMode = () => setEditModeSN(true)
     const offEditMode = () => {
-        if (weight > 1){
+        if (value > 1){
             setEditModeSN(false)
-            props.changeWeightAthlete(props.weightAthlete)
+            props.changeValue(value)
         } else {
             setEditModeSN(true)
         }
@@ -34,10 +34,10 @@ export const EditableSpanNumber = (props: EditableSpanNumberPropsType) => {
             className={style.editableSpanNumber}
                 onKeyPress={onKeyPressAddItem}
                 type={'number'}
-                value={weight}
+                value={value}
                 autoFocus={true}
                 onBlur={offEditMode}
                 onChange={changeTitle}/>
-            : <span onDoubleClick={onEditMode}>{weight.toFixed(2) + " кг"}</span>
+            : <span onDoubleClick={onEditMode}>{value.toFixed(2) + " кг"}</span>
     );
 };

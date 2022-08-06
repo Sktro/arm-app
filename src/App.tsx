@@ -6,7 +6,7 @@ import {Modal} from "./components/Modal/Modal";
 import {Header} from "./components/Header/Header";
 import {Option} from "./common/WeightsSelect/WeightsSelect";
 
-export type TableForArm =  '1' | '2' | '3' | '4'| '5' | '6'
+export type TableForArmType =  '1' | '2' | '3' | '4'| '5' | '6'
 export type RankType =
     'б/р'
     | '3ю.р.'
@@ -73,7 +73,7 @@ export type CategoryType = {
 }
 
 export type SettingsType = {
-    tableNumb: TableForArm
+    tableNumb: TableForArmType
     place5_6: boolean
     wrestlingSeparately: boolean
     leftHand: boolean
@@ -84,7 +84,7 @@ export type SettingsType = {
 }
 
 export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 категория', '2 категория', '1 категория', 'ВК', 'МК']
-export const TableForArm: TableForArm[] = ['1', '2', '3', '4', '5', '6']
+export const TableForArm: TableForArmType[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
 export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
 export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р.', '3в.р.', '2в.р.', '1в.р.', 'КМС', 'МС', 'МСМК', 'ЗМС']
@@ -158,15 +158,60 @@ function App() {
         }
         return result
     }
-    const changeFullNameAndTeamAthlete = (FullNameAndTeam: string, AthleteID: string) => {
-        setAthletes(athletes.map(at => at.id === AthleteID ? {...at, FullNameAndTeam} : at))
+    const changeFullNameAthlete = (athleteID: string, fullName: string) => {
+        const athlete = athletes.find(at => at.id === athleteID)
+        if(athlete) {
+            athlete.fullName = fullName
+            setAthletes([...athletes])
+        }
+       /* setAthletes(athletes.map(at => at.id === athleteID ? {...at, fullName} : at))*/
     }
-    const changeWeightAthlete = (AthleteID: string, weightAthlete: number) => {
-        setAthletes(athletes.map(at => at.id === AthleteID ? {...at, weightAthlete} : at))
+    const changeTeamAthlete = (athleteID: string, team: string) => {
+        const athlete = athletes.find(at => at.id === athleteID)
+        if(athlete) {
+            athlete.team = team
+            setAthletes([...athletes])
+        }
+       /* setAthletes(athletes.map(at => at.id === athleteID ? {...at, team} : at))*/
     }
-    const changeRankAthlete = (AthleteID: string, rank: RankType) => {
-        setAthletes(athletes.map(at => at.id === AthleteID ? {...at, rank} : at))
+    const changeWeightAthlete = (athleteID: string, weight: number) => {
+        const athlete = athletes.find(at => at.id === athleteID)
+        if(athlete) {
+            athlete.weight = weight
+            setAthletes([...athletes])
+        }
+        //setAthletes(athletes.map(at => at.id === athleteID ? {...at, weight} : at))
     }
+    const changeRankAthlete = (athleteID: string, rank: RankType) => {
+        const athlete = athletes.find(at => at.id === athleteID)
+        if(athlete) {
+            athlete.rank = rank
+            setAthletes([...athletes])
+        }
+        //setAthletes(athletes.map(at => at.id === athleteID ? {...at, rank} : at))
+    }
+
+    const changeFullNameJudge = (judgeID: string, fullName: string) => {
+        const findJudge = judge.find(j => j.id === judgeID)
+        if(findJudge) {
+            findJudge.fullName = fullName
+        }
+    }
+
+    const changeRegionJudge = (judgeID: string, region: string) => {
+        const findJudge = judge.find(j => j.id === judgeID)
+        if(findJudge) {
+            findJudge.region = region
+        }
+    }
+
+    const changeCategoryJudge = (judgeID: string, category: CategoryJudgeType) => {
+        const findJudge = judge.find(j => j.id === judgeID)
+        if(findJudge) {
+            findJudge.category = category
+        }
+    }
+
 
     return (
         <>
@@ -176,6 +221,9 @@ function App() {
                         startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
+                              changeRegionJudge={changeRegionJudge}
+                              changeFullNameJudge={changeFullNameJudge}
+                              changeCategoryJudge={changeCategoryJudge}
                               removeJudge={removeJudge}
                               judge={judge}
                               addJudges={addJudges}
@@ -190,7 +238,8 @@ function App() {
                               removeAthlete={removeAthlete}
                               ranks={ranksAthletes}
                               addAthleteCallback={addAthlete}
-                              changeFullNameAndTeamAthlete={changeFullNameAndTeamAthlete}
+                              changeTeamAthlete={changeTeamAthlete}
+                              changeFullNameAthlete={changeFullNameAthlete}
                               changeWeightAthlete={changeWeightAthlete}
                               weightNewCategory={weightNewCategory}
                               setTournament={setTournament}

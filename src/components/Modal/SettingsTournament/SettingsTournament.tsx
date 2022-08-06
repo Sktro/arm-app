@@ -1,16 +1,16 @@
 import React, {ChangeEvent, useState} from "react";
 import styleMS from './SettingsTournament.module.css'
-import {SettingsType, TableForArm} from "../../../App";
+import {SettingsType, TableForArmType} from "../../../App";
 import {SelectNumberTable} from "../../../common/Select/SelectNumberTable";
 
 type SettingsTournamentType = {
-    tableForArm: TableForArm[]
+    tableForArm: TableForArmType[]
     settings: SettingsType
 }
 
 export const SettingsTournament = (props: SettingsTournamentType) => {
 
-    const [table, setTable] = useState<TableForArm>(props.settings.tableNumb)
+    const [table, setTable] = useState<TableForArmType>(props.settings.tableNumb)
     const [place, setPlace] = useState<boolean>(props.settings.place5_6)
     const [wrestlingSeparately, setWrestlingSeparately] = useState<boolean>(props.settings.wrestlingSeparately)
     const [semifinalFinal, setSemifinalFinal] = useState<boolean>(props.settings.semifinalAndFinal)
@@ -20,8 +20,8 @@ export const SettingsTournament = (props: SettingsTournamentType) => {
     const [final, setFinal] = useState<boolean>(props.settings.final)
 
     const onChangeTable = (value: string) => {
-        setTable(value as TableForArm)
-        props.settings.tableNumb = value as TableForArm
+        setTable(value as TableForArmType)
+        props.settings.tableNumb = value as TableForArmType
     }
 
     const onChangePlace = (e: ChangeEvent<HTMLInputElement>) => {
