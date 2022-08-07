@@ -1983,6 +1983,13 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
+"@types/react-custom-scroll@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@types/react-custom-scroll/-/react-custom-scroll-4.3.2.tgz#04001a7452af519e9661a33dcec9758f428e9a4c"
+  integrity sha512-0gFAkoTihBzYcyoiw68qYIgTeHwPbCLbRMFftsVYlXLLvXx4y519If/+1r7UtOaF7aAXRRJOCYaHZj/HRyfc8Q==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^17.0.9":
   version "17.0.11"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.11.tgz#e1eadc3c5e86bdb5f7684e00274ae228e7bcc466"
@@ -7344,6 +7351,11 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-custom-scroll@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-custom-scroll/-/react-custom-scroll-4.4.0.tgz#8425c70d5991cfba0346b1c069d958dda4ed9e78"
+  integrity sha512-FN8F8rWq7Ub4lxScJqAqBd/owkMnunH71YAMvOyzjamDRfMxv3lVieUA1lUwIjsPaXcyPGi+R2k/N3tUr0rIZw==
+
 react-dev-utils@^12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-12.0.0.tgz#4eab12cdb95692a077616770b5988f0adf806526"
@@ -7387,6 +7399,11 @@ react-error-overlay@^6.0.10:
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.10.tgz#0fe26db4fa85d9dbb8624729580e90e7159a59a6"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
+
+react-horizontal-scrolling@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/react-horizontal-scrolling/-/react-horizontal-scrolling-0.1.9.tgz#20f4d9a37fbfd2e8fb4e152ad8378ee5fbaafc3d"
+  integrity sha512-9bbP4CZAWnsxTMmbzSo3NUm3y9qo2GYgn3YNQKMxd58ayhC12ijDvf4GMNc76RtQe9Z/DyXWK/SlQGaw0/6fyQ==
 
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.1"

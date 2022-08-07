@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 import {RegistrationAthlete} from "./RegistrationAthlete/RegistrationAthlete";
-import {CategoryJudgeType, CategoryType, GenderType, RankType} from "../../../App";
+import {CategoryJudgeType, CategoryType, GenderType, RankType, StatusJudgeType} from "../../../App";
 import {RegistrationOfJudges} from "./RegistrationOfJudges/RegistrationOfJudges";
 import styleROM from "./RegistrationOfMembers.module.css"
 
 type RegistrationOfMembersType = {
     addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => void
-    addJudges: (fullName: string, gender: GenderType, category: CategoryJudgeType, region: string) => void
+    addJudges: (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => void
     arrCategory: CategoryType[]
     gender: GenderType[]
     ranks: RankType[]
     categoryJudge: CategoryJudgeType[]
+    statusJudge: StatusJudgeType[]
 }
 
 export const RegistrationOfMembers = (props: RegistrationOfMembersType) => {
@@ -34,6 +35,7 @@ export const RegistrationOfMembers = (props: RegistrationOfMembersType) => {
                                                 gender={props.gender}
                                                 ranks={props.ranks}/>}
                 {!button && <RegistrationOfJudges addJudges={props.addJudges}
+                                                  statusJudge={props.statusJudge}
                                                   setError={setError}
                                                   error={error}
                                                   gender={props.gender}

@@ -6,19 +6,21 @@ import {
     CategoryType,
     GenderType, JudgeType,
     RankType,
-    SettingsType
+    SettingsType,
+    StatusJudgeType
 } from "../../App";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
-import {AthletesList} from "./AthletesList/AthletesList";
+import {ListMembers} from "./AthletesList/ListMembers";
 import {CategoriesList} from "./CategoriesList/CategoriesList";
 import {ModalDeleteTournament} from "./ModalDelete/ModalDeleteTournament";
 import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDeleteTournament";
 import {RegistrationOfMembers} from "./RegistrationOfMember/RegistrationOfMembers";
 
 type RegistrationPropsType = {
-    addJudges: (fullName: string, gender: GenderType, category: CategoryJudgeType, region: string) => void
+    addJudges: (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => void
     removeJudge: (JudgeID: string) => void
     categoryJudge: CategoryJudgeType[]
+    statusJudge: StatusJudgeType[]
     judge: JudgeType[]
     SetSettings: (value: SettingsType) => void
     arrCategory: CategoryType[]
@@ -44,6 +46,7 @@ type RegistrationPropsType = {
     changeFullNameJudge: (judgeID: string, fullName: string) => void
     changeRegionJudge: (judgeID: string, region: string) => void
     changeCategoryJudge: (judgeID: string, category: CategoryJudgeType) => void
+    changeStatusJudge:  (judgeID: string, category: StatusJudgeType) => void
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -56,27 +59,30 @@ export const Registration = (props: RegistrationPropsType) => {
                 <div className={styleR.containRegistration}>
                     <RegistrationOfMembers arrCategory={props.arrCategory}
                                            addJudges={props.addJudges}
+                                           statusJudge={props.statusJudge}
                                            gender={props.gender}
                                            ranks={props.ranks}
                                            categoryJudge={props.categoryJudge}
                                            addAthleteCallback={props.addAthleteCallback}/>
-                    <AthletesList athletes={props.athletes}
-                                  categoryJudge={props.categoryJudge}
-                                  changeCategoryJudge={props.changeCategoryJudge}
-                                  changeRegionJudge={props.changeRegionJudge}
-                                  changeFullNameJudge={props.changeFullNameJudge}
-                                  removeJudge={props.removeJudge}
-                                  judge={props.judge}
-                                  changeFullNameAthlete={props.changeFullNameAthlete}
-                                  changeWeightAthlete={props.changeWeightAthlete}
-                                  changeTeamAthlete={props.changeTeamAthlete}
-                                  changeRankAthlete={props.changeRankAthlete}
-                                  ranks={props.ranks}
-                                  removeAthlete={props.removeAthlete}/>
+                    <ListMembers athletes={props.athletes}
+                                 statusJudge={props.statusJudge}
+                                 changeStatusJudge={props.changeStatusJudge}
+                                 categoryJudge={props.categoryJudge}
+                                 changeCategoryJudge={props.changeCategoryJudge}
+                                 changeRegionJudge={props.changeRegionJudge}
+                                 changeFullNameJudge={props.changeFullNameJudge}
+                                 removeJudge={props.removeJudge}
+                                 judge={props.judge}
+                                 changeFullNameAthlete={props.changeFullNameAthlete}
+                                 changeWeightAthlete={props.changeWeightAthlete}
+                                 changeTeamAthlete={props.changeTeamAthlete}
+                                 changeRankAthlete={props.changeRankAthlete}
+                                 ranks={props.ranks}
+                                 removeAthlete={props.removeAthlete}/>
                     <CategoriesList arrCategory={props.arrCategory}
                                     athletes={props.athletes}
                                     sortCategory={props.sortCategory}/>
-                    {/*<button onClick={()=> console.log(props.judge)}>LOG</button>*/}
+                    {/*<button onClick={()=> console.log(props.athletes)}>LOG</button>*/}
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
             </div>}

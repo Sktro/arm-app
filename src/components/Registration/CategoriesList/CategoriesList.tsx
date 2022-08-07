@@ -58,7 +58,7 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
                                 .map((w, index) => (index ? '; ' : '') + w.value)}</span></div>)}</div>
                     </div> : ''}
                 </span>
-            <span className={styleR.registrationDescription}>Список команд({sortTeam.length}):{sortTeam
+            <span className={styleR.registrationDescription}>Список команд({sortTeam.length}): {sortTeam
                 .map((t, index) => (index ? '; ' : '') + t)}
             </span>
         </div>

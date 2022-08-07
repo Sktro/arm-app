@@ -1,5 +1,6 @@
 import React, {KeyboardEvent, useState} from 'react';
 import {SuperSelect} from "./SuperSelect";
+import styleES from "./EditableSpanSelect.module.css"
 
 type EditableSpanSelectPropsType = {
     value: string
@@ -34,6 +35,6 @@ export const EditableSpanSelect = (props: EditableSpanSelectPropsType) => {
                            value={rankAthlete}
                            onBlur={offEditMode}
             />
-            : <span onDoubleClick={onEditMode} >{rankAthlete}</span>
+            : <span className={styleES.spanEditable} onDoubleClick={onEditMode} >{rankAthlete}</span>
     );
 };

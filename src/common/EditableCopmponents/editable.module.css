@@ -11,3 +11,15 @@
     outline: none;
     background-color: rgba(240, 255, 255, 0);
 }
+
+
+
+
+.editableSpanText_40{
+    transition: all 2s ease-in-out;
+}
+
+.editableSpanText_40:hover{
+    transform: translate(-40px,0);
+    transition: all 2s ease-in-out;
+}

@@ -18,7 +18,7 @@ export const EditableSpanText = (props: EditableSpanTextPropsType) => {
     const offEditMode = () => {
         if (value.length > 1){
             setEditModeST(false)
-            props.changeValue(value)
+            props.changeValue(value.replace(/ +/g, ' ').trim())
         } else {
             setEditModeST(true)
         }
@@ -39,6 +39,6 @@ export const EditableSpanText = (props: EditableSpanTextPropsType) => {
                 autoFocus={true}
                 onBlur={offEditMode}
                 onChange={changeTitle}/>
-            : <div onDoubleClick={onEditMode}>{value}</div>
+            : <div className={value.length > 22 ? style.editableSpanText_40 : ''} onDoubleClick={onEditMode}>{value}</div>
     );
 };

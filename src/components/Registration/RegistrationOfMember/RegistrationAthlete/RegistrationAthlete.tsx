@@ -60,8 +60,8 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
     }
 
     const addNewAthlete = () => {
-        const trimmedFullName = fullName.trim()
-        const trimmedTeam = team.trim()
+        const trimmedFullName = fullName.replace(/ +/g, ' ').trim()
+        const trimmedTeam = team.replace(/ +/g, ' ').trim()
         if (trimmedFullName && Number(weight) > 10) {
             props.addAthleteCallback(trimmedFullName, Number(weight), trimmedTeam === '' ? '----' : trimmedTeam, rank, genderAthlete)
             setFullName('')

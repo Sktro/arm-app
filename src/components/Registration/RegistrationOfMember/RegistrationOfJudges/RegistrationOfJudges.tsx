@@ -1,17 +1,19 @@
 import React, {ChangeEvent, useState} from "react";
 import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration";
 import {SelectForRegAthl} from "../../common/SelectForRegAthl";
-import {CategoryJudgeType, GenderType} from "../../../../App";
+import {CategoryJudgeType, GenderType, StatusJudgeType} from "../../../../App";
 import styleR from "../../Registration.module.css";
 import {SelectForModalGender} from "../../../../common/Select/SelectForModalGender";
 import styleRJ from "./RegistrationOfJudges.module.css"
+import {SelectForCategoryJudge} from "../../common/SelectForCategoryJudge";
 
 type RegistrationOfJudgesType = {
     categoryJudge: CategoryJudgeType[]
-    addJudges: (fullName: string, gender: GenderType, category: CategoryJudgeType, region: string) => void
+    addJudges: (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => void
     gender: GenderType[]
     setError: (value: boolean) => void
     error: boolean
+    statusJudge: StatusJudgeType[]
 }
 
 
@@ -20,13 +22,16 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
     const [region, setRegion] = useState('')
     const [judgesCategory, setJudgesCategory] = useState(props.categoryJudge[0])
     const [gender, setGender] = useState(props.gender[0])
+    const [status, setStatus] = useState(props.statusJudge[4])
 
     const onChangeFullNameJudges = (e: ChangeEvent<HTMLInputElement>) => {
         setFullNameJudges(e.currentTarget.value)
+        props.setError(false)
     }
 
     const onChangeRegion = (e: ChangeEvent<HTMLInputElement>) => {
         setRegion(e.currentTarget.value)
+        props.setError(false)
     }
 
     const onChangeCategory = (value: string) => {
@@ -37,14 +42,19 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
         setGender(value as GenderType)
     }
 
+    const onChangeStatusJudge = (value: string) => {
+        setStatus(value as StatusJudgeType)
+    }
+
 
     const addNewJudge = () => {
         if (fullNameJudges !== '' && region !== '') {
-            props.addJudges(fullNameJudges, gender, judgesCategory, region)
+            props.addJudges(fullNameJudges, gender, status, judgesCategory, region)
             setFullNameJudges('')
             setRegion('')
             setJudgesCategory(props.categoryJudge[0])
             setGender(props.gender[0])
+            setStatus(props.statusJudge[4])
         } else {
             props.setError(true)
         }
@@ -64,6 +74,10 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
                                            obligatoryField={true}
                                            onChange={onChangeRegion}
                                            value={region}/>
+            <SelectForCategoryJudge placeholder={"Статус судьи"}
+                              options={props.statusJudge}
+                              value={status}
+                              onChangeOption={onChangeStatusJudge}/>
             <div className={styleRJ.containCategoryAndGender}>
                 <SelectForRegAthl placeholder={"Категория"}
                                   options={props.categoryJudge}

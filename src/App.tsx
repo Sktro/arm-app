@@ -24,6 +24,9 @@ export type GenderType =
     'муж'
     | 'жен'
 
+export type StatusJudgeType =
+    'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'судья'
+
 export type CategoryJudgeType =
     'б/к' | '3 категория' | '2 категория' | '1 категория' | 'ВК' | 'МК'
 
@@ -59,6 +62,7 @@ export type AthletesType = {
 export type JudgeType = {
     id: string
     fullName: string
+    status: StatusJudgeType
     category: CategoryJudgeType
     gender: GenderType
     region: string
@@ -82,7 +86,7 @@ export type SettingsType = {
     semifinal: boolean
     final: boolean
 }
-
+export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
 export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 категория', '2 категория', '1 категория', 'ВК', 'МК']
 export const TableForArm: TableForArmType[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
@@ -129,8 +133,8 @@ function App() {
         let newAthlete = {id: v1(), fullName, weight, team, rank, gender}
         setAthletes([newAthlete, ...athletes])
     }
-    const addJudges = (fullName: string, gender: GenderType, category: CategoryJudgeType, region: string) => {
-        let newJudge = {id: v1(), fullName, gender, category, region}
+    const addJudges = (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => {
+        let newJudge = {id: v1(), fullName, gender, status, category, region}
         setJudge([newJudge, ...judge])
     }
     const addNewCategoryAthletes = (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => {
@@ -205,6 +209,13 @@ function App() {
         }
     }
 
+    const changeStatusJudge = (judgeID: string, status: StatusJudgeType) => {
+        const findJudge = judge.find(j => j.id === judgeID)
+        if(findJudge) {
+            findJudge.status = status
+        }
+    }
+
     const changeCategoryJudge = (judgeID: string, category: CategoryJudgeType) => {
         const findJudge = judge.find(j => j.id === judgeID)
         if(findJudge) {
@@ -221,11 +232,13 @@ function App() {
                         startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
+                              changeStatusJudge={changeStatusJudge}
                               changeRegionJudge={changeRegionJudge}
                               changeFullNameJudge={changeFullNameJudge}
                               changeCategoryJudge={changeCategoryJudge}
                               removeJudge={removeJudge}
                               judge={judge}
+                              statusJudge={statusJudge}
                               addJudges={addJudges}
                               categoryJudge={categoryJudge}
                               SetSettings={SetSettings}

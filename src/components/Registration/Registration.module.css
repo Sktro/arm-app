@@ -81,7 +81,7 @@
     font-weight: bold;
     width: 200px;
     margin: 0 3px;
-    overflow: auto;
+    overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
 }
@@ -106,6 +106,13 @@
     cursor: pointer;
 }
 
+.statusJudge {
+    border: 1px solid red;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
 
 .weightsCategories {
     margin-left: 10px;
@@ -208,4 +215,14 @@
 
 .teamList {
     border: solid 1px red
+}
+
+.block1 {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    border-radius: 50%;
+    background: blue;
 }

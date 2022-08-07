@@ -1,6 +1,6 @@
 import React from "react";
 import styleR from "../Registration.module.css";
-import {AthletesType, CategoryJudgeType, JudgeType, RankType} from "../../../App";
+import {AthletesType, CategoryJudgeType, JudgeType, RankType, StatusJudgeType} from "../../../App";
 import {EditableSpanText} from "../../../common/EditableCopmponents/EditableSpanText";
 import {EditableSpanNumber} from "../../../common/EditableCopmponents/EditableSpanNumber";
 import {EditableSpanSelect} from "../../../common/EditableCopmponents/EditableSpanSelect";
@@ -19,9 +19,11 @@ type AthletesListPropsType = {
     changeRegionJudge: (judgeID: string, region: string) => void
     changeCategoryJudge: (judgeID: string, category: CategoryJudgeType) => void
     categoryJudge: CategoryJudgeType[]
+    changeStatusJudge: (judgeID: string, category: StatusJudgeType) => void
+    statusJudge: StatusJudgeType[]
 }
 
-export const AthletesList = (props: AthletesListPropsType) => {
+export const ListMembers = (props: AthletesListPropsType) => {
 
     const athletesJSX = props.athletes
         .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
@@ -43,7 +45,8 @@ export const AthletesList = (props: AthletesListPropsType) => {
                 <div key={atl.id} className={atl.gender === 'жен'
                     ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
                     <div className={styleR.fullName}><EditableSpanText value={atl.fullName}
-                                                                       changeValue={changeFullNameAthlete}/></div>
+                                                                       changeValue={changeFullNameAthlete}/>
+                    </div>
                     <div className={styleR.team}><EditableSpanText value={atl.team}
                                                                    changeValue={changeTeamAthlete}/></div>
                     <div className={styleR.weight}><EditableSpanNumber value={atl.weight}
@@ -55,6 +58,7 @@ export const AthletesList = (props: AthletesListPropsType) => {
                 </div>
             )
         })
+
     const judgesJSX = props.judge
 
         .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
@@ -68,20 +72,25 @@ export const AthletesList = (props: AthletesListPropsType) => {
             const changeCategoryJudge = (category: string) => {
                 props.changeCategoryJudge(jud.id, category as CategoryJudgeType)
             }
+            const changeStatusJudge = (status: string) => {
+                props.changeStatusJudge(jud.id, status as StatusJudgeType)
+            }
             return (
                 <div key={jud.id} className={styleR.judges}>
                     <div className={styleR.fullName}><EditableSpanText value={jud.fullName}
                                                                        changeValue={changeFullNameJudge}/></div>
+                    <div className={styleR.statusJudge}><EditableSpanSelect value={jud.status}
+                                                                            changeOptions={changeStatusJudge}
+                                                                            options={props.statusJudge}/></div>
+                    <div><EditableSpanText value={jud.region}
+                                           changeValue={changeRegionJudge}/></div>
                     <div><EditableSpanSelect options={props.categoryJudge}
                                              value={jud.category}
                                              changeOptions={changeCategoryJudge}/></div>
-                    <div><EditableSpanText value={jud.region}
-                                           changeValue={changeRegionJudge}/></div>
                     <button className={styleR.removeButton} onClick={() => props.removeJudge(jud.id)}>X</button>
                 </div>
             )
         })
-
     return (
         <div className={styleR.registeredAthletes}>
                 <span className={styleR.registrationDescription}>
@@ -89,6 +98,7 @@ export const AthletesList = (props: AthletesListPropsType) => {
                 </span>
             {athletesJSX}
             {judgesJSX}
+            {/*<div className={styleR.block1} id={'circle'}></div>*/}
         </div>
     )
 }
