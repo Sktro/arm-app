@@ -18,19 +18,20 @@
 }
 
 .athletesM {
-    min-width: 500px;
+    text-align: start;
+    min-width: 560px;
     padding: 3px 10px;
     background-color: white;
     margin: 1px;
     color: #187eff;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     border: 1px solid #187eff;
     border-radius: 10px;
 }
 
 .judges {
-    min-width: 500px;
+    min-width: 550px;
     padding: 3px 10px;
     background-color: white;
     margin: 1px;
@@ -79,7 +80,7 @@
 
 .fullName {
     font-weight: bold;
-    width: 200px;
+    width: 180px;
     margin: 0 3px;
     overflow: hidden;
     white-space: nowrap;
@@ -87,33 +88,42 @@
 }
 
 .team {
-    min-width: 130px;
-    cursor: pointer;
+    width: 105px;
     margin: 0 3px;
-    text-align: center;
-}
-
-.rank {
-    min-width: 68px;
-    text-align: center;
-    margin: 0 3px;
-    cursor: pointer;
-}
-
-.weight {
-    min-width: 68px;
-    margin: 0 3px;
-    cursor: pointer;
-}
-
-.statusJudge {
-    border: 1px solid red;
-    width: 100px;
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
 }
 
+.rank {
+    margin-left: 19px;
+    min-width: 68px;
+    cursor: pointer;
+}
+
+.weight {
+    min-width: 70px;
+    margin: 0 3px;
+    cursor: pointer;
+}
+.regionJudge {
+    width: 87px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.statusJudge {
+    width: 105px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.categoryJudge{
+    min-width: 68px;
+    cursor: pointer;
+}
 .weightsCategories {
     margin-left: 10px;
 }
@@ -145,6 +155,7 @@
 .registrationDescription {
     margin-bottom: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .startTournamentButton {
@@ -213,16 +224,6 @@
     border-radius: 5px;
 }
 
-.teamList {
-    border: solid 1px red
-}
-
-.block1 {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    left: 50px;
-    top: 50px;
-    border-radius: 50%;
-    background: blue;
+.genderList {
+    text-align: start;
 }

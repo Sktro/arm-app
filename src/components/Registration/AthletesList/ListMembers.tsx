@@ -45,9 +45,11 @@ export const ListMembers = (props: AthletesListPropsType) => {
                 <div key={atl.id} className={atl.gender === 'жен'
                     ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
                     <div className={styleR.fullName}><EditableSpanText value={atl.fullName}
+                                                                       id={'fullName'}
                                                                        changeValue={changeFullNameAthlete}/>
                     </div>
                     <div className={styleR.team}><EditableSpanText value={atl.team}
+                                                                   id={'team'}
                                                                    changeValue={changeTeamAthlete}/></div>
                     <div className={styleR.weight}><EditableSpanNumber value={atl.weight}
                                                                        changeValue={changeWeightAthlete}/></div>
@@ -76,17 +78,21 @@ export const ListMembers = (props: AthletesListPropsType) => {
                 props.changeStatusJudge(jud.id, status as StatusJudgeType)
             }
             return (
+
                 <div key={jud.id} className={styleR.judges}>
                     <div className={styleR.fullName}><EditableSpanText value={jud.fullName}
+                                                                       id={'fullName'}
                                                                        changeValue={changeFullNameJudge}/></div>
                     <div className={styleR.statusJudge}><EditableSpanSelect value={jud.status}
                                                                             changeOptions={changeStatusJudge}
                                                                             options={props.statusJudge}/></div>
-                    <div><EditableSpanText value={jud.region}
-                                           changeValue={changeRegionJudge}/></div>
-                    <div><EditableSpanSelect options={props.categoryJudge}
-                                             value={jud.category}
-                                             changeOptions={changeCategoryJudge}/></div>
+                    <div className={styleR.regionJudge}><EditableSpanText value={jud.region}
+                                                                          id={'region'}
+                                                                          changeValue={changeRegionJudge}/></div>
+                    <div className={styleR.categoryJudge}><EditableSpanSelect options={props.categoryJudge}
+                                                                              value={jud.category}
+                                                                              changeOptions={changeCategoryJudge}/>
+                    </div>
                     <button className={styleR.removeButton} onClick={() => props.removeJudge(jud.id)}>X</button>
                 </div>
             )
@@ -98,7 +104,6 @@ export const ListMembers = (props: AthletesListPropsType) => {
                 </span>
             {athletesJSX}
             {judgesJSX}
-            {/*<div className={styleR.block1} id={'circle'}></div>*/}
         </div>
     )
 }

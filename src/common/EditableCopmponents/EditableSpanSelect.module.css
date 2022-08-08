@@ -1,0 +1,14 @@
+.editableDivSelectContain {
+    position: relative;
+    height: 100%;
+    max-width: 105px;
+}
+
+.editableDivSelectContain .editableDivSelectContent {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 105px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}

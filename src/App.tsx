@@ -28,7 +28,7 @@ export type StatusJudgeType =
     'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'судья'
 
 export type CategoryJudgeType =
-    'б/к' | '3 категория' | '2 категория' | '1 категория' | 'ВК' | 'МК'
+    'б/к' | '3 кат.' | '2 кат.' | '1 кат.' | 'ВК' | 'МК'
 
 export type AgeType =
     'Взрослые'
@@ -87,7 +87,7 @@ export type SettingsType = {
     final: boolean
 }
 export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
-export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 категория', '2 категория', '1 категория', 'ВК', 'МК']
+export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 кат.', '2 кат.', '1 кат.', 'ВК', 'МК']
 export const TableForArm: TableForArmType[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
 export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']

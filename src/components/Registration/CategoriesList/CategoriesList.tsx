@@ -32,8 +32,8 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
         return newArr
     }
 
-    const allTeam = props.athletes.map(t => t.team)
-    const sortTeam = allTeam.filter((item, index) => {
+    const allTeam = props.athletes.map(t => t.team).filter(t => t !== '----')
+    const sortRepeatedTeam = allTeam.filter((item, index) => {
         return allTeam.indexOf(item) === index;
     })
 
@@ -43,14 +43,14 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
                     Список весовых категорий({findQty('муж') > 0 ? <span>M:{findQty('муж')}</span> : ''}
                     {findQty('муж') > 0 && findQty('жен') > 0 ? ';' : ''}
                     {findQty('жен') > 0 ? <span>Ж:{findQty('жен')}</span> : ''}):
-                    {findQty('муж') ? <div>Мужчины:
+                    {findQty('муж') ? <div className={styleR.genderList}>Мужчины:
                         <div>{sortArrayGender(props.arrCategory, 'муж')
                             .map(c => <div key={c.id}><span
                                 className={styleR.listMale}>- {c.categoryAthlete}({c.age}):</span><span
                                 className={styleR.weightListM}>{props.sortCategory(c)
                                 .map((w, index) => (index ? '; ' : '') + w.value)}</span></div>)}</div>
                     </div> : ''}
-                    {findQty('жен') ? <div>Женщины:
+                    {findQty('жен') ? <div className={styleR.genderList}>Женщины:
                         <div>{sortArrayGender(props.arrCategory, 'жен')
                             .map(c => <div key={c.id}><span
                                 className={styleR.listFemale}>- {c.categoryAthlete}({c.age}):</span><span
@@ -58,7 +58,7 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
                                 .map((w, index) => (index ? '; ' : '') + w.value)}</span></div>)}</div>
                     </div> : ''}
                 </span>
-            <span className={styleR.registrationDescription}>Список команд({sortTeam.length}): {sortTeam
+            <span className={styleR.registrationDescription}>Список команд({sortRepeatedTeam.length}): {sortRepeatedTeam
                 .map((t, index) => (index ? '; ' : '') + t)}
             </span>
         </div>

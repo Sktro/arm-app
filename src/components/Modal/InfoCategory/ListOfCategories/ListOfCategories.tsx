@@ -2,6 +2,7 @@ import React from "react";
 import {AgeType, CategoryAthleteType, CategoryType, GenderType} from "../../../../App";
 import styleLOF from './ListOfCategories.module.css'
 import {Option} from "../../../../common/WeightsSelect/WeightsSelect";
+import ReactTooltip from "react-tooltip";
 
 
 type ListOfCategoriesType = {
@@ -28,7 +29,8 @@ export const ListOfCategories = (props: ListOfCategoriesType) => {
             props.setErrorCategory(false)
     }
         return <div key={cat.id} className={styleLOF.containCategory}>
-            <div title={"Редактировать категорию"} className={styleLOF.deleteCategories} onClick={()=>editCategory(cat)}> </div>
+            <div data-tip="Редактировать категорию" className={styleLOF.deleteCategories} onClick={()=>editCategory(cat)}></div>
+            <ReactTooltip place="left" type="error" effect="float"/>
             <span className={generalStyle}>{cat.gender} </span>
             <span className={generalStyle}>{cat.categoryAthlete} </span>
             <span className={generalStyle}>({cat.age}): </span>
