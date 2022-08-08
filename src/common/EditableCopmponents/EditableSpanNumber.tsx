@@ -8,15 +8,19 @@ type EditableSpanNumberPropsType = {
 
 
 export const EditableSpanNumber = (props: EditableSpanNumberPropsType) => {
-    const [value, setValue] = useState<number>(props.value)
+    const [value, setValue] = useState<number | string>(props.value)
     const [editModeSN, setEditModeSN] = useState<boolean>(false)
 
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.valueAsNumber)
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.currentTarget.value) < 250
+            || Number(e.currentTarget.value) === undefined)
+        setValue(e.currentTarget.value)
+    }
     const onEditMode = () => setEditModeSN(true)
     const offEditMode = () => {
-        if (value > 1){
+        if (value > 1) {
             setEditModeSN(false)
-            props.changeValue(value)
+            props.changeValue(Number(value))
         } else {
             setEditModeSN(true)
         }
@@ -31,13 +35,13 @@ export const EditableSpanNumber = (props: EditableSpanNumberPropsType) => {
     return (
         editModeSN
             ? <input
-            className={style.editableSpanNumber}
+                className={style.editableSpanNumber}
                 onKeyPress={onKeyPressAddItem}
-                type={'number'}
+                type={'text'}
                 value={value}
                 autoFocus={true}
                 onBlur={offEditMode}
                 onChange={changeTitle}/>
-            : <span onDoubleClick={onEditMode}>{value.toFixed(2) + " кг"}</span>
+            : <span onDoubleClick={onEditMode}>{Number(value).toFixed(2) + " кг"}</span>
     );
 };
