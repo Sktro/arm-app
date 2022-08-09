@@ -3,7 +3,7 @@ import styleR from './Registration.module.css'
 import {
     AthletesType,
     CategoryJudgeType,
-    CategoryType,
+    CategoryType, FilterType,
     GenderType, JudgeType,
     RankType,
     SettingsType,
@@ -47,6 +47,10 @@ type RegistrationPropsType = {
     changeRegionJudge: (judgeID: string, region: string) => void
     changeCategoryJudge: (judgeID: string, category: CategoryJudgeType) => void
     changeStatusJudge:  (judgeID: string, category: StatusJudgeType) => void
+    filteredAthletes: AthletesType[]
+    setFilter: (filter: FilterType) => void
+    setJudge:(value: JudgeType[]) => void
+    filter: FilterType
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -65,6 +69,10 @@ export const Registration = (props: RegistrationPropsType) => {
                                            categoryJudge={props.categoryJudge}
                                            addAthleteCallback={props.addAthleteCallback}/>
                     <ListMembers athletes={props.athletes}
+                                 filter={props.filter}
+                                 arrCategory={props.arrCategory}
+                                 setFilter={props.setFilter}
+                                 filteredAthletes={props.filteredAthletes}
                                  statusJudge={props.statusJudge}
                                  changeStatusJudge={props.changeStatusJudge}
                                  categoryJudge={props.categoryJudge}
@@ -87,6 +95,7 @@ export const Registration = (props: RegistrationPropsType) => {
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
             </div>}
             <ModalDeleteTournament setModalActive={props.setModalActive}
+                                   setJudge={props.setJudge}
                                    SetSettings={props.SetSettings}
                                    setArrCategory={props.setArrCategory}
                                    setAthletes={props.setAthletes}

@@ -24,6 +24,8 @@ export type GenderType =
     'муж'
     | 'жен'
 
+export type FilterType = GenderType | 'all' | 'judges'
+
 export type StatusJudgeType =
     'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'судья'
 
@@ -120,6 +122,7 @@ function App() {
     const [settings, SetSettings] = useState<SettingsType>(
         {tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, wrestlingSeparately: false}
     )
+    const [filter, setFilter] = useState<FilterType>('all')
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -141,6 +144,21 @@ function App() {
         let newCategory = {id: v1(), gender, age, categoryAthlete, weightsCategory}
         setArrCategory([newCategory, ...arrCategory])
     }
+    const changeFilter  = (allAthlete:AthletesType[],  filter: FilterType) => {
+        if (filter === 'муж') {
+            return allAthlete.filter(a => a.gender === 'муж')
+        }
+        if (filter === 'жен') {
+            return allAthlete.filter(a => a.gender === 'жен')
+        }
+        if (filter === 'all') {
+            return allAthlete
+        }
+        else {
+            return []
+        }
+    }
+    const filteredAthletes = changeFilter(athletes, filter)
     const removeAthlete = (AthleteID: string) => {
         setAthletes(athletes.filter(atl => atl.id !== AthleteID))
     }
@@ -232,6 +250,10 @@ function App() {
                         startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
+                              filter={filter}
+                              setJudge={setJudge}
+                              setFilter={setFilter}
+                              filteredAthletes={filteredAthletes}
                               changeStatusJudge={changeStatusJudge}
                               changeRegionJudge={changeRegionJudge}
                               changeFullNameJudge={changeFullNameJudge}

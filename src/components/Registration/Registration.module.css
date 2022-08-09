@@ -31,7 +31,7 @@
 }
 
 .judges {
-    min-width: 550px;
+    min-width: 560px;
     padding: 3px 10px;
     background-color: white;
     margin: 1px;
@@ -106,6 +106,7 @@
     margin: 0 3px;
     cursor: pointer;
 }
+
 .regionJudge {
     width: 87px;
     cursor: pointer;
@@ -120,10 +121,12 @@
     white-space: nowrap;
     cursor: pointer;
 }
-.categoryJudge{
+
+.categoryJudge {
     min-width: 68px;
     cursor: pointer;
 }
+
 .weightsCategories {
     margin-left: 10px;
 }
@@ -153,7 +156,7 @@
 }
 
 .registrationDescription {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
     text-align: center;
 }
@@ -226,4 +229,71 @@
 
 .genderList {
     text-align: start;
+}
+
+.containButtons {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterButton {
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0;
+    font-size: 12px;
+    font-weight: bold;
+    width: 75px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    color: inherit;
+    background-color: transparent;
+    -webkit-box-shadow: 0 6px 3px -4px rgba(34, 60, 80, 0.40);
+    -moz-box-shadow: 0 6px 3px -4px rgba(34, 60, 80, 0.40);
+    box-shadow: 0 6px 3px -4px rgba(34, 60, 80, 0.40);
+}
+
+.filterButtonMale {
+    border: solid 1px #187eff;
+    color: #187eff;
+}
+.filterButtonMale:hover {
+    border: solid 1px #0072ff;
+    color: white;
+    background-color: #187eff;
+}
+
+.filterButtonFemale{
+    border: solid 1px #e3006a;
+    color: #e3006a;
+}
+
+.filterButtonFemale:hover{
+    border: solid 1px #a80049;
+    color: white;
+    background-color: #e3006a;
+}
+
+.filterButtonJudges {
+    border: solid 1px #3f3f3f;
+    color: #3f3f3f;
+}
+
+.filterButtonJudges:hover {
+    border: solid 1px #232323;
+    color: white;
+    background-color: #3f3f3f;
+}
+
+.filterButtonAll {
+    border: solid 1px #05a200;
+    color: #05a200;
+}
+
+.filterButtonAll:hover {
+    border: solid 1px #047a00;
+    color: white;
+    background-color: #05a200;
 }

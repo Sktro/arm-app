@@ -1,6 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import styleR from "../Registration.module.css";
-import {AthletesType, CategoryJudgeType, JudgeType, RankType, StatusJudgeType} from "../../../App";
+import {
+    AthletesType,
+    CategoryJudgeType,
+    CategoryType,
+    FilterType,
+    JudgeType,
+    RankType,
+    StatusJudgeType
+} from "../../../App";
 import {EditableSpanText} from "../../../common/EditableCopmponents/EditableSpanText";
 import {EditableSpanNumber} from "../../../common/EditableCopmponents/EditableSpanNumber";
 import {EditableSpanSelect} from "../../../common/EditableCopmponents/EditableSpanSelect";
@@ -21,11 +29,36 @@ type AthletesListPropsType = {
     categoryJudge: CategoryJudgeType[]
     changeStatusJudge: (judgeID: string, category: StatusJudgeType) => void
     statusJudge: StatusJudgeType[]
+    filteredAthletes: AthletesType[]
+    setFilter: (filter: FilterType) => void
+    arrCategory: CategoryType[]
+    filter: FilterType
 }
 
 export const ListMembers = (props: AthletesListPropsType) => {
+    const [visibilityJudges, setVisibilityJudges] = useState(true)
 
-    const athletesJSX = props.athletes
+    const findQtyCategory = (str: string) => {
+        let count = 0
+        for (let i = 0; i < props.arrCategory.length; i++) {
+            if (props.arrCategory[i].gender === str) {
+                count++
+            }
+        }
+        return count
+    }
+
+    const findQtyAthletes = (str: string) => {
+        let count = 0
+        for (let i = 0; i < props.athletes.length; i++) {
+            if (props.athletes[i].gender === str) {
+                count++
+            }
+        }
+        return count
+    }
+
+    const athletesJSX = props.filteredAthletes
         .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
         .map(atl => {
             const changeFullNameAthlete = (fullName: string) => {
@@ -40,6 +73,19 @@ export const ListMembers = (props: AthletesListPropsType) => {
             const changeRankAthlete = (rankAthlete: string) => {
                 props.changeRankAthlete(atl.id, rankAthlete as RankType)
             }
+            const removeAthleteMale = () => {
+                props.removeAthlete(atl.id)
+                if(findQtyAthletes('муж') <= 1){
+                    props.setFilter('all')
+                }
+            }
+            const removeAthleteFemale = () => {
+                props.removeAthlete(atl.id)
+                if(findQtyAthletes('жен') <= 1){
+                    props.setFilter('all')
+                }
+            }
+
 
             return (
                 <div key={atl.id} className={atl.gender === 'жен'
@@ -56,7 +102,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
                     <div className={styleR.rank}><EditableSpanSelect options={props.ranks}
                                                                      value={atl.rank}
                                                                      changeOptions={changeRankAthlete}/></div>
-                    <button className={styleR.removeButton} onClick={() => props.removeAthlete(atl.id)}>X</button>
+                    <button className={styleR.removeButton} onClick={atl.gender === 'муж' ? removeAthleteMale : removeAthleteFemale}>X</button>
                 </div>
             )
         })
@@ -77,6 +123,12 @@ export const ListMembers = (props: AthletesListPropsType) => {
             const changeStatusJudge = (status: string) => {
                 props.changeStatusJudge(jud.id, status as StatusJudgeType)
             }
+            const removeJudge = () => {
+                props.removeJudge(jud.id)
+                if(props.judge.length <= 1){
+                    props.setFilter('all')
+                }
+            }
             return (
 
                 <div key={jud.id} className={styleR.judges}>
@@ -93,17 +145,58 @@ export const ListMembers = (props: AthletesListPropsType) => {
                                                                               value={jud.category}
                                                                               changeOptions={changeCategoryJudge}/>
                     </div>
-                    <button className={styleR.removeButton} onClick={() => props.removeJudge(jud.id)}>X</button>
+                    <button className={styleR.removeButton} onClick={removeJudge}>X</button>
                 </div>
             )
         })
+
+    const filterAll = () => {
+        props.setFilter('all')
+        setVisibilityJudges(true)
+    }
+    const filterMale = () => {
+        props.setFilter('муж')
+        setVisibilityJudges(false)
+    }
+    const filterFemale = () => {
+        props.setFilter('жен')
+        setVisibilityJudges(false)
+    }
+    const filterJudges = () => {
+        props.setFilter('judges')
+        setVisibilityJudges(true)
+    }
+
+    const openFilter = () => {
+        if (props.athletes.length > 0 && props.judge.length > 0) {
+            return true
+        }
+        if (props.athletes.find(g => g.gender === 'муж') && props.athletes.find(g => g.gender === 'жен')) {
+            return true
+        }
+    }
+
     return (
         <div className={styleR.registeredAthletes}>
                 <span className={styleR.registrationDescription}>
                     Список зарегестрированных спортсменов({props.athletes.length}), судей({props.judge.length}):
                 </span>
+            {openFilter() && <div className={styleR.containButtons}>
+                фильтр участников:
+                {findQtyCategory('муж') > 0 && props.athletes.find(g => g.gender === 'муж') &&
+                    <button className={`${styleR.filterButton} ${styleR.filterButtonMale}`}
+                            onClick={filterMale}>мужчины</button>}
+                {findQtyCategory('жен') > 0 && props.athletes.find(g => g.gender === 'жен') &&
+                    <button className={`${styleR.filterButton} ${styleR.filterButtonFemale}`}
+                            onClick={filterFemale}>женщины</button>}
+                {props.judge.length > 0 && <button className={`${styleR.filterButton} ${styleR.filterButtonJudges}`}
+                                                   onClick={filterJudges}>судьи</button>}
+                <button className={`${styleR.filterButton} ${styleR.filterButtonAll}`}
+                        onClick={filterAll}>все
+                </button>
+            </div>}
             {athletesJSX}
-            {judgesJSX}
+            {(visibilityJudges || props.athletes.length === 0 || props.filter === 'all') && judgesJSX}
         </div>
     )
 }
