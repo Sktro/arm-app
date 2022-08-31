@@ -4,7 +4,6 @@ import {SelectForRegAthl} from "../../common/SelectForRegAthl";
 import {CategoryJudgeType, GenderType, StatusJudgeType} from "../../../../App";
 import styleR from "../../Registration.module.css";
 import {SelectForModalGender} from "../../../../common/Select/SelectForModalGender";
-import styleRJ from "./RegistrationOfJudges.module.css"
 import {SelectForCategoryJudge} from "../../common/SelectForCategoryJudge";
 
 type RegistrationOfJudgesType = {
@@ -63,30 +62,34 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
 
     return (
         <div className={styleR.registration}>
-            <InputAnimationForRegistration type={"text"}
-                                           obligatoryField={true}
-                                           placeholder={"Судья"}
-                                           autofocus={true}
-                                           onChange={onChangeFullNameJudges}
-                                           value={fullNameJudges}/>
-            <InputAnimationForRegistration type={"text"}
-                                           placeholder={"Регион"}
-                                           obligatoryField={true}
-                                           onChange={onChangeRegion}
-                                           value={region}/>
-            <SelectForCategoryJudge placeholder={"Статус судьи"}
-                              options={props.statusJudge}
-                              value={status}
-                              onChangeOption={onChangeStatusJudge}/>
-            <div className={styleRJ.containCategoryAndGender}>
-                <SelectForRegAthl placeholder={"Категория"}
-                                  options={props.categoryJudge}
-                                  value={judgesCategory}
-                                  onChangeOption={onChangeCategory}/>
+            <div className={styleR.judgeAndRegionContain}>
+                <InputAnimationForRegistration type={"text"}
+                                               obligatoryField={true}
+                                               placeholder={"Судья"}
+                                               autofocus={true}
+                                               onChange={onChangeFullNameJudges}
+                                               value={fullNameJudges}/>
+                <InputAnimationForRegistration type={"text"}
+                                               placeholder={"Регион"}
+                                               obligatoryField={true}
+                                               onChange={onChangeRegion}
+                                               value={region}/>
+            </div>
+            <div className={styleR.regionAndCategoryContain}>
                 <SelectForModalGender options={props.gender}
                                       value={gender}
                                       onChangeOption={OnChangeGender}
                                       placeholder={'Пол'}/>
+                <SelectForRegAthl placeholder={"Категория"}
+                                  options={props.categoryJudge}
+                                  value={judgesCategory}
+                                  onChangeOption={onChangeCategory}/>
+            </div>
+            <div className={styleR.regionContain}>
+                <SelectForCategoryJudge placeholder={"Статус судьи"}
+                                        options={props.statusJudge}
+                                        value={status}
+                                        onChangeOption={onChangeStatusJudge}/>
             </div>
             {props.error && <span className={styleR.error}>Заполните обязательные поля ( * )</span>}
             <button onClick={addNewJudge} className={styleR.addAthleteButton}>Добавить</button>

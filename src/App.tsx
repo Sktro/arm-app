@@ -5,8 +5,9 @@ import {v1} from "uuid";
 import {Modal} from "./components/Modal/Modal";
 import {Header} from "./components/Header/Header";
 import {Option} from "./common/WeightsSelect/WeightsSelect";
+import {MultiValue} from "react-select";
 
-export type TableForArmType =  '1' | '2' | '3' | '4'| '5' | '6'
+export type TableForArmType = '1' | '2' | '3' | '4' | '5' | '6'
 export type RankType =
     'б/р'
     | '3ю.р.'
@@ -24,7 +25,7 @@ export type GenderType =
     'муж'
     | 'жен'
 
-export type FilterType = GenderType | 'all' | 'judges'
+export type FilterType = GenderType | 'all' | 'judges' | string
 
 export type StatusJudgeType =
     'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'судья'
@@ -34,7 +35,7 @@ export type CategoryJudgeType =
 
 export type AgeType =
     'Взрослые'
-    |'14-15'
+    | '14-15'
     | '16-18'
     | '19-21'
     | '22+'
@@ -44,13 +45,13 @@ export type AgeType =
 
 export type CategoryAthleteType =
     'Общая'
-    |'Любители'
-    | 'Профессионалы'
+    | 'Любители'
+    | 'Проф-лы'
     | 'Инвалиды'
-    | 'Инвалиды(HEAR)'
-    | 'Инвалиды(VIS)'
-    | 'Инвалиды(STAND)'
-    | 'Инвалиды(SIT)'
+    | 'Инв.(HEAR)'
+    | 'Инв.(VIS)'
+    | 'Инв.(STAND)'
+    | 'Инв.(SIT)'
 
 export type AthletesType = {
     id: string
@@ -59,6 +60,7 @@ export type AthletesType = {
     team: string
     rank: RankType
     gender: GenderType
+    categoryMember?: MultiValue<{ value: string, label: string }>
 }
 
 export type JudgeType = {
@@ -88,10 +90,17 @@ export type SettingsType = {
     semifinal: boolean
     final: boolean
 }
+
+export type AvailableCategoriesType = {
+    id: string
+    newAthlete: AthletesType
+    categoryMember: MultiValue<{ value: string, label: string }>
+}
+
 export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
 export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 кат.', '2 кат.', '1 кат.', 'ВК', 'МК']
 export const TableForArm: TableForArmType[] = ['1', '2', '3', '4', '5', '6']
-export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Профессионалы', 'Инвалиды', 'Инвалиды(VIS)', 'Инвалиды(STAND)', 'Инвалиды(SIT)']
+export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Проф-лы', 'Инвалиды', 'Инв.(VIS)', 'Инв.(STAND)', 'Инв.(SIT)']
 export const ageAthletes: AgeType[] = ['Взрослые', '14-15', '16-18', '19-21', '22+', '40+', '50+', '60+']
 export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р.', '3в.р.', '2в.р.', '1в.р.', 'КМС', 'МС', 'МСМК', 'ЗМС']
 export const genderAthletes: GenderType[] = ['муж', 'жен']
@@ -109,42 +118,57 @@ function App() {
     // settings for tournament
     const [weightNewCategory, setWeightNewCategory] = useState<readonly Option[]>([])
     // New athlete
-    const [athletes, setAthletes] = useState<Array<AthletesType>>([
-        {id: v1(), fullName: 'Петров Артем', weight: 89.6, team: 'ФАТО', rank: 'б/р', gender: 'муж'},
-        {id: v1(), fullName: 'Кервалидзе Игорь', weight: 87, team: 'ФАТО', rank: '1в.р.', gender: 'муж'}
-    ])
+    const [athletes, setAthletes] = useState<Array<AthletesType>>([])
+    const [categoryVisibility, setCategoryVisibility] = useState<boolean>(false)
     // New judge
     const [judge, setJudge] = useState<Array<JudgeType>>([])
     // New category
     const [arrCategory, setArrCategory] = useState<Array<CategoryType>>([])
-
     // Settings tournament
     const [settings, SetSettings] = useState<SettingsType>(
-        {tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, wrestlingSeparately: false}
+        {
+            tableNumb: '1',
+            place5_6: false,
+            semifinalAndFinal: false,
+            semifinal: false,
+            final: false,
+            leftHand: false,
+            rightHand: false,
+            wrestlingSeparately: false
+        }
     )
+    // filter
+    const [filterAthletes, setFilterAthletes] = useState<Array<AthletesType>>([])
     const [filter, setFilter] = useState<FilterType>('all')
+
+    const [activeCategory, setActiveCategory] = useState<{ value: string, label: string, gender: string }>()
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let year = newDate.getFullYear();
-        return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date < 10 ?`0${date}` : `${date}`}`
+        return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date < 10 ? `0${date}` : `${date}`}`
     }
 
-    const addAthlete = (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => {
-        let newAthlete = {id: v1(), fullName, weight, team, rank, gender}
+    const addAthlete = (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType, categoryMember: MultiValue<{ value: string, label: string }>) => {
+        let newAthlete = {id: v1(), fullName, weight, team, rank, gender, categoryMember}
+        //let newRegisteredAthlete = {id: v1(), newAthlete, categoryMember}
         setAthletes([newAthlete, ...athletes])
+        //setRegisteredAthlete([newRegisteredAthlete, ...registeredAthlete])
     }
+
     const addJudges = (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => {
         let newJudge = {id: v1(), fullName, gender, status, category, region}
         setJudge([newJudge, ...judge])
     }
+
     const addNewCategoryAthletes = (gender: GenderType, age: AgeType, categoryAthlete: CategoryAthleteType, weightsCategory: readonly Option[]) => {
         let newCategory = {id: v1(), gender, age, categoryAthlete, weightsCategory}
         setArrCategory([newCategory, ...arrCategory])
     }
-    const changeFilter  = (allAthlete:AthletesType[],  filter: FilterType) => {
+
+    const changeFilter = (allAthlete: AthletesType[], filter: FilterType) => {
         if (filter === 'муж') {
             return allAthlete.filter(a => a.gender === 'муж')
         }
@@ -153,21 +177,39 @@ function App() {
         }
         if (filter === 'all') {
             return allAthlete
-        }
-        else {
+        } else {
             return []
         }
     }
+
     const filteredAthletes = changeFilter(athletes, filter)
+
     const removeAthlete = (AthleteID: string) => {
         setAthletes(athletes.filter(atl => atl.id !== AthleteID))
     }
+
+    const removeRegisteredCategoryAtAthlete = (athleteID: string, category: { value: string, label: string }) => {
+            const athletesResult = athletes.map(at => {
+                if (at.id === athleteID) {
+                    if (at) {
+                        const arrCat = at.categoryMember?.filter(v => v.value !== category.value)
+                        return {...at, categoryMember: arrCat}
+                    }
+                }
+                return at
+            })
+            setAthletes([...athletesResult])
+            setFilterAthletes( [...athletesResult])
+    }
+
     const removeJudge = (JudgeID: string) => {
         setJudge(judge.filter(jud => jud.id !== JudgeID))
     }
+
     const deleteCategories = (CategoryID: string) => {
         setArrCategory(arrCategory.filter(c => c.id !== CategoryID))
     }
+
     const sortCategory = (arrayCategory: CategoryType) => {
         const foundValuePlus = arrayCategory.weightsCategory.find(el => el.value.slice(-1) === '+')
         const arrForSort = arrayCategory.weightsCategory.filter(el => el.value.slice(-1) !== '+')
@@ -182,31 +224,28 @@ function App() {
     }
     const changeFullNameAthlete = (athleteID: string, fullName: string) => {
         const athlete = athletes.find(at => at.id === athleteID)
-        if(athlete) {
+        if (athlete) {
             athlete.fullName = fullName
             setAthletes([...athletes])
         }
-       /* setAthletes(athletes.map(at => at.id === athleteID ? {...at, fullName} : at))*/
     }
     const changeTeamAthlete = (athleteID: string, team: string) => {
         const athlete = athletes.find(at => at.id === athleteID)
-        if(athlete) {
+        if (athlete) {
             athlete.team = team
             setAthletes([...athletes])
         }
-       /* setAthletes(athletes.map(at => at.id === athleteID ? {...at, team} : at))*/
     }
     const changeWeightAthlete = (athleteID: string, weight: number) => {
         const athlete = athletes.find(at => at.id === athleteID)
-        if(athlete) {
+        if (athlete) {
             athlete.weight = weight
             setAthletes([...athletes])
         }
-        //setAthletes(athletes.map(at => at.id === athleteID ? {...at, weight} : at))
     }
     const changeRankAthlete = (athleteID: string, rank: RankType) => {
         const athlete = athletes.find(at => at.id === athleteID)
-        if(athlete) {
+        if (athlete) {
             athlete.rank = rank
             setAthletes([...athletes])
         }
@@ -215,32 +254,31 @@ function App() {
 
     const changeFullNameJudge = (judgeID: string, fullName: string) => {
         const findJudge = judge.find(j => j.id === judgeID)
-        if(findJudge) {
+        if (findJudge) {
             findJudge.fullName = fullName
         }
     }
 
     const changeRegionJudge = (judgeID: string, region: string) => {
         const findJudge = judge.find(j => j.id === judgeID)
-        if(findJudge) {
+        if (findJudge) {
             findJudge.region = region
         }
     }
 
     const changeStatusJudge = (judgeID: string, status: StatusJudgeType) => {
         const findJudge = judge.find(j => j.id === judgeID)
-        if(findJudge) {
+        if (findJudge) {
             findJudge.status = status
         }
     }
 
     const changeCategoryJudge = (judgeID: string, category: CategoryJudgeType) => {
         const findJudge = judge.find(j => j.id === judgeID)
-        if(findJudge) {
+        if (findJudge) {
             findJudge.category = category
         }
     }
-
 
     return (
         <>
@@ -250,6 +288,14 @@ function App() {
                         startTournamentDate={startTournamentDate}
                         location={location}/>
                 <Registration athletes={athletes}
+                              activeCategory={activeCategory}
+                              setActiveCategory={setActiveCategory}
+                              removeRegisteredCategoryAtAthlete={removeRegisteredCategoryAtAthlete}
+                              changeFilter={changeFilter}
+                              categoryVisibility={categoryVisibility}
+                              setCategoryVisibility={setCategoryVisibility}
+                              filterAthletes={filterAthletes}
+                              setFilterAthletes={setFilterAthletes}
                               filter={filter}
                               setJudge={setJudge}
                               setFilter={setFilter}

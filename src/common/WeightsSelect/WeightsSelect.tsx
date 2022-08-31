@@ -33,7 +33,7 @@ export default class WeightsSelect extends Component<WeightSelectPropsType, {}> 
         this.props.onChange(this.props.inputValue, value)
     };
     handleInputChange = (inputValue: string) => {
-        if (Number(inputValue) < 1000
+        if (Number(inputValue) < 250
             || Number(inputValue) === undefined
             || inputValue.slice(-1) === '+') {
             this.props.onChange(inputValue.replace(/(\D)(?=.*\1)/g, ""), this.props.value)

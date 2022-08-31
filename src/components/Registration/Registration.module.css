@@ -6,7 +6,9 @@
 .registration {
     display: flex;
     flex-direction: column;
-    max-width: 237px;
+    justify-content: center;
+    align-items: center;
+    width: 310px;
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -14,12 +16,13 @@
 .registeredAthletes {
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100px;
 }
 
 .athletesM {
     text-align: start;
-    min-width: 560px;
+    width: 560px;
     padding: 3px 10px;
     background-color: white;
     margin: 1px;
@@ -56,7 +59,6 @@
 .addAthleteButton {
     align-self: center;
     padding: 3px;
-    margin-right: 15px;
     margin-bottom: 3px;
     border: 1px #187eff solid;
     font-weight: bold;
@@ -76,6 +78,24 @@
     color: red;
     background-color: transparent;
     cursor: pointer;
+}
+
+.deleteFromCategory {
+    padding: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 70px;
+    height: 25px;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+    background-color: white;
+    cursor: pointer;
+}
+
+.deleteFromCategory:hover {
+    background-color: red;
+    color: white;
 }
 
 .fullName {
@@ -196,7 +216,7 @@
 .sectionWeightAndSelect {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    width: 100%;
 }
 
 .listMale {
@@ -209,13 +229,38 @@
 }
 
 .weightListM {
+    cursor: pointer;
+    width: 38px;
+    padding-bottom: 1px;
+    border: solid 1px #187eff;
+    border-radius: 5px;
+    font: inherit;
+    background-color: transparent;
     color: rgba(24, 126, 255, 0.8);
     margin-left: 2px;
 }
 
+.weightListM:hover {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+}
+
+
 .weightListF {
+    cursor: pointer;
+    width: 38px;
+    padding-bottom: 1px;
+    border: solid 1px #e3006a;
+    border-radius: 5px;
+    font: inherit;
+    background-color: transparent;
     color: rgba(227, 0, 106, 0.8);
     margin-left: 2px;
+}
+
+.weightListF:hover {
+    background-color: rgba(227, 0, 106, 0.8);
+    color: white;
 }
 
 .listFemale {
@@ -259,18 +304,19 @@
     border: solid 1px #187eff;
     color: #187eff;
 }
+
 .filterButtonMale:hover {
     border: solid 1px #0072ff;
     color: white;
     background-color: #187eff;
 }
 
-.filterButtonFemale{
+.filterButtonFemale {
     border: solid 1px #e3006a;
     color: #e3006a;
 }
 
-.filterButtonFemale:hover{
+.filterButtonFemale:hover {
     border: solid 1px #a80049;
     color: white;
     background-color: #e3006a;
@@ -296,4 +342,113 @@
     border: solid 1px #047a00;
     color: white;
     background-color: #05a200;
+}
+
+.centerContain {
+    display: flex;
+    justify-content: center;
+}
+
+.judgeAndRegionContain {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.regionAndCategoryContain {
+    display: flex;
+    justify-content: space-between;
+    width: 225px;
+}
+
+.regionContain {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.nameOfCategory {
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.emptyOfCategory {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.backToMembers {
+    padding: 1px;
+    margin-top: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: blue;
+    width: 275px;
+}
+
+.backToMembers:hover {
+    font-weight: bold;
+}
+
+.removalOfAthlete {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid red;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    color: red;
+    -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.38);
+    -moz-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.38);
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.38);
+}
+
+.buttonsModalDelete {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.buttonsModalDelete button {
+    padding: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.delete {
+    color: red;
+    border: solid 1px red;
+}
+
+.cancel{
+    border: solid 1px grey;
+    color: grey;
+}
+
+.cancel:hover {
+    background-color: grey;
+    color: white;
+    border: 1px solid #626262;
+}
+
+.delete:hover {
+    background-color: red;
+    color: white;
+    border: 1px solid #da0000;
 }

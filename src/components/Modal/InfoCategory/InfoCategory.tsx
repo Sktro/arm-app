@@ -29,6 +29,7 @@ export const InfoCategory = (props: InfoCategoryType) => {
     const [gender, setGender] = useState<GenderType>(props.gender[0])
     const [age, setAge] = useState<AgeType>(props.ageAthletes[0])
     const [categoryAthletes, setCategoryAthletes] = useState<CategoryAthleteType>(props.categoryAthlete[0])
+    const [errorWeight, setErrorWeight] = useState<string>('')
 
     const onChangeNewCategory = (inputValue: string, value: readonly Option[]) => {
         setInputValueNewCategory(inputValue)
@@ -58,14 +59,22 @@ export const InfoCategory = (props: InfoCategoryType) => {
         }
     }
 
+        const foundWeightPlus = props.weightNewCategory.find(v=> v.value.includes('+'))
+
         const addCategories = () => {
-            if (props.weightNewCategory.length > 0 && !coincidence(gender, age, categoryAthletes)) {
+            if (props.weightNewCategory.length > 0 && !coincidence(gender, age, categoryAthletes) && foundWeightPlus) {
                 props.addNewCategoryAthletes(gender, age, categoryAthletes, props.weightNewCategory)
                 setGender(props.gender[0])
                 setAge(props.ageAthletes[0])
                 setCategoryAthletes(props.categoryAthlete[0])
                 props.setWeightNewCategory([])
+                setErrorWeight('')
+            } else if (!foundWeightPlus) {
+                setErrorWeight('Не введена максимальная категория')
+                props.setErrorCategory(true)
+                props.setError(false)
             } else {
+                setErrorWeight('Данная категория уже существует')
                 props.setErrorCategory(true)
                 props.setError(false)
             }
@@ -106,7 +115,8 @@ export const InfoCategory = (props: InfoCategoryType) => {
                                                                setWeightNewCategory={props.setWeightNewCategory}
 
                                                                deleteCategories={props.deleteCategories}/>}
-            {props.errorCategory && <span className={styleM.errorCategory}>Данная категория уже существует</span>}
+            {props.errorCategory && <span className={styleM.errorCategory}>{errorWeight}</span>}
+
         </>
     )
 }

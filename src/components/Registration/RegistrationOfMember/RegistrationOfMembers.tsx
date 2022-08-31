@@ -3,15 +3,18 @@ import {RegistrationAthlete} from "./RegistrationAthlete/RegistrationAthlete";
 import {CategoryJudgeType, CategoryType, GenderType, RankType, StatusJudgeType} from "../../../App";
 import {RegistrationOfJudges} from "./RegistrationOfJudges/RegistrationOfJudges";
 import styleROM from "./RegistrationOfMembers.module.css"
+import {Option} from "../../../common/WeightsSelect/WeightsSelect";
+import {MultiValue} from "react-select";
 
 type RegistrationOfMembersType = {
-    addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => void
+    addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType, categoryMember: MultiValue<{value: string, label: string}>) => void
     addJudges: (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => void
     arrCategory: CategoryType[]
     gender: GenderType[]
     ranks: RankType[]
     categoryJudge: CategoryJudgeType[]
     statusJudge: StatusJudgeType[]
+    sortCategory: (value: CategoryType) => Option[]
 }
 
 export const RegistrationOfMembers = (props: RegistrationOfMembersType) => {
@@ -22,7 +25,7 @@ export const RegistrationOfMembers = (props: RegistrationOfMembersType) => {
         setError(value2)
     }
     return (
-        <div>
+        <div className={styleROM.regContain}>
             <div className={styleROM.buttonsContain}>
                 <button onClick={()=> buttonEffect(true, false)} className={button ? styleROM.buttonOn : styleROM.button}>Участник</button>
                 <button onClick={()=> buttonEffect(false, false)} className={!button ? styleROM.buttonOn : styleROM.button}>Судья</button>
@@ -30,6 +33,7 @@ export const RegistrationOfMembers = (props: RegistrationOfMembersType) => {
             <div className={styleROM.formContain}>
                 {button && <RegistrationAthlete addAthleteCallback={props.addAthleteCallback}
                                                 error={error}
+                                                sortCategory={props.sortCategory}
                                                 setError={setError}
                                                 arrCategory={props.arrCategory}
                                                 gender={props.gender}

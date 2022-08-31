@@ -15,6 +15,7 @@ import {CategoriesList} from "./CategoriesList/CategoriesList";
 import {ModalDeleteTournament} from "./ModalDelete/ModalDeleteTournament";
 import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDeleteTournament";
 import {RegistrationOfMembers} from "./RegistrationOfMember/RegistrationOfMembers";
+import {MultiValue} from "react-select";
 
 type RegistrationPropsType = {
     addJudges: (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => void
@@ -30,7 +31,7 @@ type RegistrationPropsType = {
     changeTeamAthlete: (AthleteID: string, teamAthlete: string) => void
     weightNewCategory: readonly Option[]
     athletes: AthletesType[]
-    addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType) => void
+    addAthleteCallback: (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType, categoryMember: MultiValue<{value: string, label: string}>) => void
     changeFullNameAthlete: (fullName: string, AthleteID: string) => void
     changeWeightAthlete: (AthleteID: string, weightAthlete: number) => void
     changeRankAthlete: (AthleteID: string, rankAthlete: RankType) => void
@@ -51,12 +52,20 @@ type RegistrationPropsType = {
     setFilter: (filter: FilterType) => void
     setJudge:(value: JudgeType[]) => void
     filter: FilterType
+    setFilterAthletes: (value: AthletesType[]) => void
+    filterAthletes: AthletesType[]
+    setCategoryVisibility: (value: boolean) => void
+    categoryVisibility: boolean
+    changeFilter: (allAthlete: AthletesType[], filter: FilterType) => void
+    removeRegisteredCategoryAtAthlete: (athleteID: string, category: {value: string, label: string}) => void
+    setActiveCategory: (value: {value: string, label: string, gender: string}) => void
+    activeCategory: {value: string, label: string, gender: string} | undefined
 }
 
 export const Registration = (props: RegistrationPropsType) => {
 
     const [modalDelete, setModalDelete] = useState<boolean>(false)
-
+    const [modalDeleteAthlete, setModalDeleteAthlete] = useState(false)
     return (
         <div>
             {!modalDelete && <div>
@@ -67,8 +76,16 @@ export const Registration = (props: RegistrationPropsType) => {
                                            gender={props.gender}
                                            ranks={props.ranks}
                                            categoryJudge={props.categoryJudge}
+                                           sortCategory={props.sortCategory}
                                            addAthleteCallback={props.addAthleteCallback}/>
                     <ListMembers athletes={props.athletes}
+                                 modalDeleteAthlete={modalDeleteAthlete}
+                                 setModalDeleteAthlete={setModalDeleteAthlete}
+                                 activeCategory={props.activeCategory}
+                                 removeRegisteredCategoryAtAthlete={props.removeRegisteredCategoryAtAthlete}
+                                 setCategoryVisibility={props.setCategoryVisibility}
+                                 categoryVisibility={props.categoryVisibility}
+                                 filterAthletes={props.filterAthletes}
                                  filter={props.filter}
                                  arrCategory={props.arrCategory}
                                  setFilter={props.setFilter}
@@ -88,9 +105,14 @@ export const Registration = (props: RegistrationPropsType) => {
                                  ranks={props.ranks}
                                  removeAthlete={props.removeAthlete}/>
                     <CategoriesList arrCategory={props.arrCategory}
+                                    setModalDeleteAthlete={setModalDeleteAthlete}
+                                    setActiveCategory={props.setActiveCategory}
+                                    changeFilter={props.changeFilter}
+                                    setCategoryVisibility={props.setCategoryVisibility}
+                                    setFilterAthletes={props.setFilterAthletes}
+                                    setFilter={props.setFilter}
                                     athletes={props.athletes}
                                     sortCategory={props.sortCategory}/>
-                    {/*<button onClick={()=> console.log(props.athletes)}>LOG</button>*/}
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
             </div>}

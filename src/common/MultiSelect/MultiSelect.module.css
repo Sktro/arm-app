@@ -1,0 +1,15 @@
+.select {
+    width: 310px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.requiredField {
+    width: 9px;
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    left: 313px;
+    bottom: 23px;
+}

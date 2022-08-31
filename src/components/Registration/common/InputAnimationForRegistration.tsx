@@ -12,7 +12,7 @@ type  InputAnimationPropsType = {
 }
 
 
-export const InputAnimationForRegistration = (props: InputAnimationPropsType) => {
+export const InputAnimationForRegistration =(props: InputAnimationPropsType) => {
 
     return (
         <div className={style.form}>
@@ -30,5 +30,4 @@ export const InputAnimationForRegistration = (props: InputAnimationPropsType) =>
             {props.obligatoryField && <div className={style.obligatory}>*</div>}
         </div>
     )
-
 }
