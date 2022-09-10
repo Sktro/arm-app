@@ -13,9 +13,12 @@ type CategoriesListPropsType = {
     changeFilter: (allAthlete: AthletesType[], filter: FilterType) => void
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void
     setModalDeleteAthlete: (value: boolean) => void
+    activeCategory: { value: string; label: string; gender: string; } | undefined
 }
 
 export const CategoriesList = (props: CategoriesListPropsType) => {
+
+    //const [activeCategory, setActiveCategory] = useState<{value: string, gender: string}>({value: '', gender: ''})
 
     const findQty = (str: string) => {
         let count = 0
@@ -76,35 +79,43 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
         props.setModalDeleteAthlete(false)
         props.setActiveCategory({value: str, label: str, gender: 'муж'})
     }
-
     const activateButtonMale = (str: string, value: boolean) => {
         changeFilterCategoryMale(str)
         props.setCategoryVisibility(value)
     }
 
+    const femaleCategory = <div>
+        {sortArrayGender(props.arrCategory, 'жен')
+            .map(c => <div key={c.id}><span
+                className={styleR.listFemale}>- {c.categoryAthlete}({c.age}):</span><span>{props.sortCategory(c)
+                .map((w, index) => <button key={index} className={`${c.categoryAthlete}(${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
+                    ? `${styleR.weightListF} ${styleR.weightListFActive}` : styleR.weightListF}
+                                           onClick={() => activateButtonFemale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}</span>
+            </div>)}</div>
+
+    const maleCategory = <div>{sortArrayGender(props.arrCategory, 'муж')
+        .map(c => <div key={c.id}><span
+            className={styleR.listMale}>- {c.categoryAthlete}({c.age}):</span>
+            <span>{props.sortCategory(c)
+                .map((w, index) => <button  key={index} className={`${c.categoryAthlete}(${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
+                    ?`${styleR.weightListM} ${styleR.weightListMActive}` :styleR.weightListM}
+                                           onClick={() => activateButtonMale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}
+                                </span>
+        </div>)}</div>
+
+    const numberOfMaleCategories = findQty('муж') > 0 ? <span>M:{findQty('муж')}</span> : ''
+    const numberOfFemaleCategories = findQty('жен') > 0 ? <span>Ж:{findQty('жен')}</span> : ''
+    const separator = findQty('муж') > 0 && findQty('жен') > 0 ? ';' : ''
+
     return (
         <div className={styleR.weightsCategories}>
                 <span className={styleR.registrationDescription}>
-                    Список весовых категорий({findQty('муж') > 0 ? <span>M:{findQty('муж')}</span> : ''}
-                    {findQty('муж') > 0 && findQty('жен') > 0 ? ';' : ''}
-                    {findQty('жен') > 0 ? <span>Ж:{findQty('жен')}</span> : ''}):
+                    Список весовых категорий({numberOfMaleCategories}{separator}{numberOfFemaleCategories}):
                     {findQty('муж') ? <div className={styleR.genderList}>Мужчины:
-                        <div>{sortArrayGender(props.arrCategory, 'муж')
-                            .map(c => <div key={c.id}><span
-                                className={styleR.listMale}>- {c.categoryAthlete}({c.age}):</span>
-                                <span>{props.sortCategory(c)
-                                    .map((w, index) => <button key={index} className={styleR.weightListM}
-                                                               onClick={() => activateButtonMale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}
-                                </span>
-                            </div>)}</div>
+                        {maleCategory}
                     </div> : ''}
                     {findQty('жен') ? <div className={styleR.genderList}>Женщины:
-                        <div>{sortArrayGender(props.arrCategory, 'жен')
-                            .map(c => <div key={c.id}><span
-                                className={styleR.listFemale}>- {c.categoryAthlete}({c.age}):</span><span>{props.sortCategory(c)
-                                .map((w, index) => <button key={index} className={styleR.weightListF}
-                                                           onClick={() => activateButtonFemale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}</span>
-                            </div>)}</div>
+                        {femaleCategory}
                     </div> : ''}
                 </span>
             <span className={styleR.registrationDescription}>Список команд({sortRepeatedTeam.length}): {sortRepeatedTeam
@@ -112,5 +123,4 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
             </span>
         </div>
     )
-
 }

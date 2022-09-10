@@ -60,6 +60,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
 
     const onChangeGender = (value: string) => {
         setGenderAthlete(value as GenderType)
+        setAvailableCategories([])
     }
 
     const addNewAthlete = () => {

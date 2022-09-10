@@ -331,6 +331,7 @@ function App() {
                               changeRankAthlete={changeRankAthlete}/>
             </div>}
             <Modal modalActive={modalActive}
+                   setActiveCategory={setActiveCategory}
                    sortCategory={sortCategory}
                    settings={settings}
                    tableForArm={TableForArm}

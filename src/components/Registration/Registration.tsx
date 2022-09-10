@@ -66,6 +66,7 @@ export const Registration = (props: RegistrationPropsType) => {
 
     const [modalDelete, setModalDelete] = useState<boolean>(false)
     const [modalDeleteAthlete, setModalDeleteAthlete] = useState(false)
+
     return (
         <div>
             {!modalDelete && <div>
@@ -98,6 +99,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                  changeFullNameJudge={props.changeFullNameJudge}
                                  removeJudge={props.removeJudge}
                                  judge={props.judge}
+                                 setActiveCategory={props.setActiveCategory}
                                  changeFullNameAthlete={props.changeFullNameAthlete}
                                  changeWeightAthlete={props.changeWeightAthlete}
                                  changeTeamAthlete={props.changeTeamAthlete}
@@ -105,6 +107,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                  ranks={props.ranks}
                                  removeAthlete={props.removeAthlete}/>
                     <CategoriesList arrCategory={props.arrCategory}
+                                    activeCategory={props.activeCategory}
                                     setModalDeleteAthlete={setModalDeleteAthlete}
                                     setActiveCategory={props.setActiveCategory}
                                     changeFilter={props.changeFilter}

@@ -13,6 +13,7 @@ import {EditableSpanText} from "../../../common/EditableCopmponents/EditableSpan
 import {EditableSpanNumber} from "../../../common/EditableCopmponents/EditableSpanNumber";
 import {EditableSpanSelect} from "../../../common/EditableCopmponents/EditableSpanSelect";
 import {ToolTip} from "../common/Tooltip";
+import {ModalDeleteMember} from "./ModalDeleteMember";
 
 type AthletesListPropsType = {
     athletes: AthletesType[]
@@ -41,13 +42,16 @@ type AthletesListPropsType = {
     activeCategory: { value: string, label: string, gender: string } | undefined
     modalDeleteAthlete: boolean
     setModalDeleteAthlete: (value: boolean) => void
+    setActiveCategory: (value: { value: string, label: string, gender: string }) => void
 }
 
 export const ListMembers = (props: AthletesListPropsType) => {
+
     const [visibilityJudges, setVisibilityJudges] = useState(true)
     const [nameAthlete, setNameAthlete] = useState('')
     const [idAthlete, setIdAthlete] = useState('')
     const [numberOfCategoriesForAthlete, setNumberOfCategoriesForAthlete] = useState(0)
+    const [active, setActive] = useState('4');
 
     const findQtyCategory = (str: string) => {
         let count = 0
@@ -88,12 +92,14 @@ export const ListMembers = (props: AthletesListPropsType) => {
                 props.removeAthlete(atl.id)
                 if (findQtyAthletes('муж') <= 1) {
                     props.setFilter('all')
+                    setActive('4')
                 }
             }
             const removeAthleteFemale = () => {
                 props.removeAthlete(atl.id)
                 if (findQtyAthletes('жен') <= 1) {
                     props.setFilter('all')
+                    setActive('4')
                 }
             }
 
@@ -113,7 +119,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
                                                                      value={atl.rank}
                                                                      changeOptions={changeRankAthlete}/></div>
                     <button className={styleR.removeButton}
-                            onClick={atl.gender === 'муж' ? removeAthleteMale : removeAthleteFemale}>X
+                            onClick={atl.gender === 'муж' ? removeAthleteMale : removeAthleteFemale}>Удалить
                     </button>
                 </div>
             )
@@ -138,10 +144,11 @@ export const ListMembers = (props: AthletesListPropsType) => {
                 props.removeJudge(jud.id)
                 if (props.judge.length <= 1) {
                     props.setFilter('all')
+                    setActive('4')
                 }
             }
-            return (
 
+            return (
                 <div key={jud.id} className={styleR.judges}>
                     <div className={styleR.fullName}><EditableSpanText value={jud.fullName}
                                                                        id={'fullName'}
@@ -172,7 +179,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
         })
         .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
         .map(atl => {
-            const modalDelete = (fullNameAthlete:string, athleteID: string, numberOfCategories: number) => {
+            const modalDeleteFromCategory = (fullNameAthlete: string, athleteID: string, numberOfCategories: number) => {
                 props.setModalDeleteAthlete(true)
                 setNameAthlete(fullNameAthlete)
                 setIdAthlete(athleteID)
@@ -187,7 +194,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
                         <div className={styleR.regionJudge}>{atl.weight}</div>
                         <div className={styleR.regionJudge}>{atl.rank}</div>
                         <button className={styleR.deleteFromCategory}
-                                onClick={()=>modalDelete(atl.fullName, atl.id, atl.categoryMember!.length)}>Удалить
+                                onClick={() => modalDeleteFromCategory(atl.fullName, atl.id, atl.categoryMember!.length)}>Удалить
                         </button>
                     </div>}
                 </div>
@@ -195,25 +202,29 @@ export const ListMembers = (props: AthletesListPropsType) => {
             )
         })
 
-    const filterAll = () => {
+    const filterAll = (id: string) => {
         props.setFilter('all')
         setVisibilityJudges(true)
         props.setCategoryVisibility(false)
+        setActive(id)
     }
-    const filterMale = () => {
+    const filterMale = (id: string) => {
         props.setFilter('муж')
         setVisibilityJudges(false)
         props.setCategoryVisibility(false)
+        setActive(id)
     }
-    const filterFemale = () => {
+    const filterFemale = (id: string) => {
         props.setFilter('жен')
         setVisibilityJudges(false)
         props.setCategoryVisibility(false)
+        setActive(id)
     }
-    const filterJudges = () => {
+    const filterJudges = (id: string) => {
         props.setFilter('judges')
         setVisibilityJudges(true)
         props.setCategoryVisibility(false)
+        setActive(id)
     }
 
     const openFilter = () => {
@@ -225,15 +236,21 @@ export const ListMembers = (props: AthletesListPropsType) => {
         }
     }
 
-    const deleteAthlete = (athleteId: string, modal: boolean, count: number) => {
-        if (count === 1) {
-            props.removeAthlete(athleteId)
-            props.setModalDeleteAthlete(modal)
-        } else {
-            props.removeRegisteredCategoryAtAthlete(athleteId, props.activeCategory!)
-            props.setModalDeleteAthlete(modal)
-        }
-    }
+    const buttonMale = findQtyCategory('муж') > 0 && props.athletes.find(g => g.gender === 'муж') &&
+        <button
+            className={active === '1' ? `${styleR.filterButton} ${styleR.filterButtonMale} ${styleR.activeMale}` : `${styleR.filterButton} ${styleR.filterButtonMale}`}
+            onClick={() => filterMale('1')}>мужчины</button>
+    const buttonFemale = findQtyCategory('жен') > 0 && props.athletes.find(g => g.gender === 'жен') &&
+        <button
+            className={active === '2' ? `${styleR.filterButton} ${styleR.filterButtonFemale} ${styleR.activeFemale}` : `${styleR.filterButton} ${styleR.filterButtonFemale}`}
+            onClick={() => filterFemale('2')}>женщины</button>
+    const buttonJudges = props.judge.length > 0 &&
+        <button
+            className={active === '3' ? `${styleR.filterButton} ${styleR.filterButtonJudges} ${styleR.activeJudges}` : `${styleR.filterButton} ${styleR.filterButtonJudges}`}
+            onClick={() => filterJudges('3')}>судьи</button>
+    const buttonAll = <button
+        className={active === '4' ? `${styleR.filterButton} ${styleR.filterButtonAll} ${styleR.activeAll}` : `${styleR.filterButton} ${styleR.filterButtonAll}`}
+        onClick={() => filterAll('4')}>все</button>
 
     return (
         <div className={styleR.registeredAthletes}>
@@ -242,24 +259,15 @@ export const ListMembers = (props: AthletesListPropsType) => {
                     props.setCategoryVisibility(false)
                     props.setModalDeleteAthlete(false)
                     props.setFilter('all')
-                }}>Вернуться к
-                    общему списку участников</button>}
+                    props.setActiveCategory({value: '', label: '', gender: ''})
+                    setActive('4')
+                }}>Вернуться к общему списку участников</button>}
             {!props.categoryVisibility && <span className={styleR.registrationDescription}>
                     Список зарегестрированных спортсменов({props.athletes.length}), судей({props.judge.length}):
                 </span>}
             {openFilter() && !props.categoryVisibility && <div className={styleR.containButtons}>
                 фильтр участников:
-                {findQtyCategory('муж') > 0 && props.athletes.find(g => g.gender === 'муж') &&
-                    <button className={`${styleR.filterButton} ${styleR.filterButtonMale}`}
-                            onClick={filterMale}>мужчины</button>}
-                {findQtyCategory('жен') > 0 && props.athletes.find(g => g.gender === 'жен') &&
-                    <button className={`${styleR.filterButton} ${styleR.filterButtonFemale}`}
-                            onClick={filterFemale}>женщины</button>}
-                {props.judge.length > 0 && <button className={`${styleR.filterButton} ${styleR.filterButtonJudges}`}
-                                                   onClick={filterJudges}>судьи</button>}
-                <button className={`${styleR.filterButton} ${styleR.filterButtonAll}`}
-                        onClick={filterAll}>все
-                </button>
+                {buttonMale}{buttonFemale}{buttonJudges}{buttonAll}
             </div>}
             {!props.categoryVisibility && <div>
                 {athletesJSX}
@@ -273,20 +281,15 @@ export const ListMembers = (props: AthletesListPropsType) => {
                     : <div className={styleR.emptyOfCategory}>В категории: "{props.activeCategory?.value}кг" нет
                         зарегестрированных участников</div>}
                 <div>{filteredAthletesJSX}</div>
-            </div>
-            }
-            {props.modalDeleteAthlete &&
-                <div className={styleR.removalOfAthlete}>
-                    {numberOfCategoriesForAthlete > 1 && <div >
-                        Вы действительно хотите удалить спортсмена: {nameAthlete} из данной категории?</div>}
-                    {numberOfCategoriesForAthlete === 1 && <div>
-                        Вы действительно хотите удалить спортсмена: {nameAthlete} ?
-                        </div>}
-                    <div className={styleR.buttonsModalDelete}>
-                        <button className={styleR.delete} onClick={()=> deleteAthlete(idAthlete, false, numberOfCategoriesForAthlete)}>удалить</button>
-                        <button className={styleR.cancel} onClick={()=> props.setModalDeleteAthlete(false)}>отмена</button>
-                    </div>
-                    </div>}
+            </div>}
+            {props.modalDeleteAthlete && <ModalDeleteMember numberOfCategoriesForAthlete={numberOfCategoriesForAthlete}
+                                                            activeCategory={props.activeCategory}
+                                                            removeRegisteredCategoryAtAthlete={props.removeRegisteredCategoryAtAthlete}
+                                                            removeAthlete={props.removeAthlete}
+                                                            idAthlete={idAthlete}
+                                                            setModalDeleteAthlete={props.setModalDeleteAthlete}
+                                                            modalDeleteAthlete={props.modalDeleteAthlete}
+                                                            nameAthlete={nameAthlete}/>}
         </div>
     )
 }

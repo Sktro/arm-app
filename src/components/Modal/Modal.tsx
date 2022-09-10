@@ -40,6 +40,7 @@ type ModalPropsType = {
     gender: GenderType[]
     ageAthletes: AgeType[]
     categoryAthlete: CategoryAthleteType[]
+    setActiveCategory: (value: {value: string, label: string, gender: string}) => void
 }
 
 export const Modal = (props: ModalPropsType) => {
@@ -54,6 +55,7 @@ export const Modal = (props: ModalPropsType) => {
             && props.arrCategory.length > 0
             && props.location !== '') {
             setCreateNewTournament(true)
+            props.setActiveCategory({value:'', label: '', gender: ''})
         } else {
             setError(true)
             setErrorCategory(false)

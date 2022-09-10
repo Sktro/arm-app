@@ -71,13 +71,32 @@
 
 .removeButton {
     padding: 2px;
-    width: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 70px;
     height: 25px;
     border: 1px solid red;
-    border-radius: 50%;
+    border-radius: 5px;
     color: red;
-    background-color: transparent;
+    background-color: white;
     cursor: pointer;
+}
+
+/*.removeButton {
+    display: inline-block;
+    padding: 5px 15px;
+    border: 5px solid #B17461;
+    color: #B17461;
+    font-size: 12px;
+    font-family: arial;
+    background-image: linear-gradient(#B17461, #B17461);
+    background-repeat: no-repeat;
+    transition: background-size .5s, color .5s;
+}*/
+
+.removeButton:hover {
+    background-color: red;
+    color: white;
 }
 
 .deleteFromCategory {
@@ -245,6 +264,11 @@
     color: white;
 }
 
+.weightListMActive {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+}
+
 
 .weightListF {
     cursor: pointer;
@@ -256,6 +280,11 @@
     background-color: transparent;
     color: rgba(227, 0, 106, 0.8);
     margin-left: 2px;
+}
+
+.weightListFActive {
+    background-color: rgba(227, 0, 106, 0.8);
+    color: white;
 }
 
 .weightListF:hover {
@@ -311,12 +340,24 @@
     background-color: #187eff;
 }
 
+.activeMale {
+    border: solid 1px #0072ff;
+    color: white;
+    background-color: #187eff;
+}
+
 .filterButtonFemale {
     border: solid 1px #e3006a;
     color: #e3006a;
 }
 
 .filterButtonFemale:hover {
+    border: solid 1px #a80049;
+    color: white;
+    background-color: #e3006a;
+}
+
+.activeFemale {
     border: solid 1px #a80049;
     color: white;
     background-color: #e3006a;
@@ -333,12 +374,24 @@
     background-color: #3f3f3f;
 }
 
+.activeJudges {
+    border: solid 1px #232323;
+    color: white;
+    background-color: #3f3f3f;
+}
+
 .filterButtonAll {
     border: solid 1px #05a200;
     color: #05a200;
 }
 
 .filterButtonAll:hover {
+    border: solid 1px #047a00;
+    color: white;
+    background-color: #05a200;
+}
+
+.activeAll {
     border: solid 1px #047a00;
     color: white;
     background-color: #05a200;
