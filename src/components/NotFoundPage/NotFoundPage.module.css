@@ -1,0 +1,75 @@
+.contain {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 80px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.containInfo {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textContain {
+    display: flex;
+    flex-direction: column;
+}
+.textError1 {
+    margin-top: 80px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 50px;
+    text-align: center;
+}
+.textError2 {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    text-align: center;
+}
+
+.buttonBack {
+    font-family: 'Open Sans', sans-serif;
+    background: #000000;
+    border-radius: 48px;
+    color: white;
+    padding: 8px 40px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 80px;
+}
+
+.buttonBack:active {
+    color: #000000;
+    background: white;
+    border: 2px solid #000000;
+}
+
+.footer{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    text-align: center;
+}

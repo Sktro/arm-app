@@ -2,6 +2,7 @@ import React from "react";
 import styleCIW from "./CheckInfoWindow.module.css";
 import {CategoryType, SettingsType} from "../../../App";
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
+import {Link} from "react-router-dom";
 
 type CheckInfoWindowType = {
     settings: SettingsType
@@ -55,7 +56,7 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
                 изменений турнира будет невозможна.
             </div>
             <div className={styleCIW.buttonAcceptCancel}>
-                <button className={styleCIW.creatableTournament} onClick={addNewTournament}>Создать турнир</button>
+                <Link to={'/registrationMembers'} className={styleCIW.creatableTournament} onClick={addNewTournament}>Создать турнир</Link>
                 <button className={styleCIW.cancel} onClick={() => props.setCreateNewTournament(false)}>Отмена</button>
             </div>
         </div>

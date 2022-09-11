@@ -16,6 +16,8 @@ import {ModalDeleteTournament} from "./ModalDelete/ModalDeleteTournament";
 import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDeleteTournament";
 import {RegistrationOfMembers} from "./RegistrationOfMember/RegistrationOfMembers";
 import {MultiValue} from "react-select";
+import {Header} from "../Header/Header";
+import {Navigate} from "react-router-dom";
 
 type RegistrationPropsType = {
     addJudges: (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => void
@@ -60,6 +62,10 @@ type RegistrationPropsType = {
     removeRegisteredCategoryAtAthlete: (athleteID: string, category: {value: string, label: string}) => void
     setActiveCategory: (value: {value: string, label: string, gender: string}) => void
     activeCategory: {value: string, label: string, gender: string} | undefined
+    tournament: string
+    endTournamentDate: string
+    startTournamentDate: string
+    location:string
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -67,9 +73,17 @@ export const Registration = (props: RegistrationPropsType) => {
     const [modalDelete, setModalDelete] = useState<boolean>(false)
     const [modalDeleteAthlete, setModalDeleteAthlete] = useState(false)
 
+    if(props.location === '' && props.arrCategory.length === 0 && props.tournament === '') {
+        return <Navigate to={'/arm-app'}/>
+    }
+
     return (
         <div>
             {!modalDelete && <div>
+                <Header tournament={props.tournament}
+                        endTournamentDate={props.endTournamentDate}
+                        startTournamentDate={props.startTournamentDate}
+                        location={props.location}/>
                 <div className={styleR.containRegistration}>
                     <RegistrationOfMembers arrCategory={props.arrCategory}
                                            addJudges={props.addJudges}

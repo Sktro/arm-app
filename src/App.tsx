@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import styleA from './App.module.css'
 import {Registration} from "./components/Registration/Registration";
 import {v1} from "uuid";
 import {Modal} from "./components/Modal/Modal";
-import {Header} from "./components/Header/Header";
 import {Option} from "./common/WeightsSelect/WeightsSelect";
 import {MultiValue} from "react-select";
+import {Route, Routes} from "react-router-dom";
+import {NotFoundPage} from "./components/NotFoundPage/NotFoundPage";
 
 export type TableForArmType = '1' | '2' | '3' | '4' | '5' | '6'
 export type RankType =
@@ -189,17 +189,17 @@ function App() {
     }
 
     const removeRegisteredCategoryAtAthlete = (athleteID: string, category: { value: string, label: string }) => {
-            const athletesResult = athletes.map(at => {
-                if (at.id === athleteID) {
-                    if (at) {
-                        const arrCat = at.categoryMember?.filter(v => v.value !== category.value)
-                        return {...at, categoryMember: arrCat}
-                    }
+        const athletesResult = athletes.map(at => {
+            if (at.id === athleteID) {
+                if (at) {
+                    const arrCat = at.categoryMember?.filter(v => v.value !== category.value)
+                    return {...at, categoryMember: arrCat}
                 }
-                return at
-            })
-            setAthletes([...athletesResult])
-            setFilterAthletes( [...athletesResult])
+            }
+            return at
+        })
+        setAthletes([...athletesResult])
+        setFilterAthletes([...athletesResult])
     }
 
     const removeJudge = (JudgeID: string) => {
@@ -282,81 +282,81 @@ function App() {
 
     return (
         <>
-            {!modalActive && <div className={styleA.containTournament}>
-                <Header tournament={tournament}
-                        endTournamentDate={endTournamentDate}
-                        startTournamentDate={startTournamentDate}
-                        location={location}/>
-                <Registration athletes={athletes}
-                              activeCategory={activeCategory}
-                              setActiveCategory={setActiveCategory}
-                              removeRegisteredCategoryAtAthlete={removeRegisteredCategoryAtAthlete}
-                              changeFilter={changeFilter}
-                              categoryVisibility={categoryVisibility}
-                              setCategoryVisibility={setCategoryVisibility}
-                              filterAthletes={filterAthletes}
-                              setFilterAthletes={setFilterAthletes}
-                              filter={filter}
-                              setJudge={setJudge}
-                              setFilter={setFilter}
-                              filteredAthletes={filteredAthletes}
-                              changeStatusJudge={changeStatusJudge}
-                              changeRegionJudge={changeRegionJudge}
-                              changeFullNameJudge={changeFullNameJudge}
-                              changeCategoryJudge={changeCategoryJudge}
-                              removeJudge={removeJudge}
-                              judge={judge}
-                              statusJudge={statusJudge}
-                              addJudges={addJudges}
-                              categoryJudge={categoryJudge}
-                              SetSettings={SetSettings}
-                              setArrCategory={setArrCategory}
-                              sortCategory={sortCategory}
-                              gender={genderAthletes}
-                              arrCategory={arrCategory}
-                              setAthletes={setAthletes}
-                              setModalActive={setModalActive}
-                              removeAthlete={removeAthlete}
-                              ranks={ranksAthletes}
-                              addAthleteCallback={addAthlete}
-                              changeTeamAthlete={changeTeamAthlete}
-                              changeFullNameAthlete={changeFullNameAthlete}
-                              changeWeightAthlete={changeWeightAthlete}
-                              weightNewCategory={weightNewCategory}
-                              setTournament={setTournament}
-                              setLocation={setLocation}
-                              setMainReferee={setMainReferee}
-                              setMainSecretary={setMainSecretary}
-                              setWeightNewCategory={setWeightNewCategory}
-                              changeRankAthlete={changeRankAthlete}/>
-            </div>}
-            <Modal modalActive={modalActive}
-                   setActiveCategory={setActiveCategory}
-                   sortCategory={sortCategory}
-                   settings={settings}
-                   tableForArm={TableForArm}
-                   arrCategory={arrCategory}
-                   deleteCategories={deleteCategories}
-                   addNewCategoryAthletes={addNewCategoryAthletes}
-                   categoryAthlete={categoryAthlete}
-                   location={location}
-                   ageAthletes={ageAthletes}
-                   gender={genderAthletes}
-                   setLocation={setLocation}
-                   setTournament={setTournament}
-                   setModalActive={setModalActive}
-                   setWeightNewCategory={setWeightNewCategory}
-                   weightNewCategory={weightNewCategory}
-                   tournament={tournament}
-                   startTournamentDate={startTournamentDate}
-                   endTournamentDate={endTournamentDate}
-                   setMainSecretary={setMainSecretary}
-                   setMainReferee={setMainReferee}
-                   mainReferee={mainReferee}
-                   mainSecretary={mainSecretary}
-                   setStartTournamentDate={setStartTournamentDate}
-                   setEndTournamentDate={setEndTournamentDate}
-            />
+            <Routes>
+                <Route path="/arm-app" element={<Modal modalActive={modalActive}
+                                                       setActiveCategory={setActiveCategory}
+                                                       sortCategory={sortCategory}
+                                                       settings={settings}
+                                                       tableForArm={TableForArm}
+                                                       arrCategory={arrCategory}
+                                                       deleteCategories={deleteCategories}
+                                                       addNewCategoryAthletes={addNewCategoryAthletes}
+                                                       categoryAthlete={categoryAthlete}
+                                                       location={location}
+                                                       ageAthletes={ageAthletes}
+                                                       gender={genderAthletes}
+                                                       setLocation={setLocation}
+                                                       setTournament={setTournament}
+                                                       setModalActive={setModalActive}
+                                                       setWeightNewCategory={setWeightNewCategory}
+                                                       weightNewCategory={weightNewCategory}
+                                                       tournament={tournament}
+                                                       startTournamentDate={startTournamentDate}
+                                                       endTournamentDate={endTournamentDate}
+                                                       setMainSecretary={setMainSecretary}
+                                                       setMainReferee={setMainReferee}
+                                                       mainReferee={mainReferee}
+                                                       mainSecretary={mainSecretary}
+                                                       setStartTournamentDate={setStartTournamentDate}
+                                                       setEndTournamentDate={setEndTournamentDate}/>}/>
+                <Route path="/registrationMembers" element={<Registration athletes={athletes}
+                                                                          location={location}
+                                                                          endTournamentDate={endTournamentDate}
+                                                                          startTournamentDate={startTournamentDate}
+                                                                          tournament={tournament}
+                                                                          activeCategory={activeCategory}
+                                                                          setActiveCategory={setActiveCategory}
+                                                                          removeRegisteredCategoryAtAthlete={removeRegisteredCategoryAtAthlete}
+                                                                          changeFilter={changeFilter}
+                                                                          categoryVisibility={categoryVisibility}
+                                                                          setCategoryVisibility={setCategoryVisibility}
+                                                                          filterAthletes={filterAthletes}
+                                                                          setFilterAthletes={setFilterAthletes}
+                                                                          filter={filter}
+                                                                          setJudge={setJudge}
+                                                                          setFilter={setFilter}
+                                                                          filteredAthletes={filteredAthletes}
+                                                                          changeStatusJudge={changeStatusJudge}
+                                                                          changeRegionJudge={changeRegionJudge}
+                                                                          changeFullNameJudge={changeFullNameJudge}
+                                                                          changeCategoryJudge={changeCategoryJudge}
+                                                                          removeJudge={removeJudge}
+                                                                          judge={judge}
+                                                                          statusJudge={statusJudge}
+                                                                          addJudges={addJudges}
+                                                                          categoryJudge={categoryJudge}
+                                                                          SetSettings={SetSettings}
+                                                                          setArrCategory={setArrCategory}
+                                                                          sortCategory={sortCategory}
+                                                                          gender={genderAthletes}
+                                                                          arrCategory={arrCategory}
+                                                                          setAthletes={setAthletes}
+                                                                          setModalActive={setModalActive}
+                                                                          removeAthlete={removeAthlete}
+                                                                          ranks={ranksAthletes}
+                                                                          addAthleteCallback={addAthlete}
+                                                                          changeTeamAthlete={changeTeamAthlete}
+                                                                          changeFullNameAthlete={changeFullNameAthlete}
+                                                                          changeWeightAthlete={changeWeightAthlete}
+                                                                          weightNewCategory={weightNewCategory}
+                                                                          setTournament={setTournament}
+                                                                          setLocation={setLocation}
+                                                                          setMainReferee={setMainReferee}
+                                                                          setMainSecretary={setMainSecretary}
+                                                                          setWeightNewCategory={setWeightNewCategory}
+                                                                          changeRankAthlete={changeRankAthlete}/>}/>
+                <Route path={'*'} element={<NotFoundPage/>}/>
+            </Routes>
         </>
     );
 }

@@ -74,14 +74,17 @@
 }
 
 .creatableTournament{
+    text-decoration: none;
     padding: 5px;
     border: 1px rgba(18, 87, 173, 0.6) solid;
     font-weight: bold;
     color: #187eff;
+    font-size: 14px;
     border-radius: 5px;
     width: 145px;
     background-color: white;
     cursor: pointer;
+    height: 29px;
 }
 
 .creatableTournament:hover {
@@ -95,6 +98,7 @@
     border: 1px rgba(175, 0, 0, 0.6) solid;
     font-weight: bold;
     color: red;
+    font-size: 14px;
     border-radius: 5px;
     width: 145px;
     background-color: white;
