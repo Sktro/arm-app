@@ -1,5 +1,6 @@
 .containRegistration {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -18,6 +19,12 @@
     flex-direction: column;
     align-items: center;
     min-height: 100px;
+}
+
+@media screen and (max-width: 1190px) {
+    .registeredAthletes {
+        order: 3;
+    }
 }
 
 .athletesM {
@@ -168,6 +175,7 @@
 
 .weightsCategories {
     margin-left: 10px;
+    width: 265px;
 }
 
 .weightFemale {
@@ -243,13 +251,14 @@
     color: white;
     display: inline-block;
     padding: 0 3px 2px 3px;
-    margin: 1px;
+    margin-left: 1px;
     border-radius: 5px;
 }
 
 .weightListM {
     cursor: pointer;
-    width: 38px;
+    margin-top: 2px;
+    width: 40px;
     padding-bottom: 1px;
     border: solid 1px #187eff;
     border-radius: 5px;
@@ -272,7 +281,7 @@
 
 .weightListF {
     cursor: pointer;
-    width: 38px;
+    width: 40px;
     padding-bottom: 1px;
     border: solid 1px #e3006a;
     border-radius: 5px;
@@ -297,7 +306,7 @@
     color: white;
     display: inline-block;
     padding: 0 3px 2px 3px;
-    margin: 1px;
+    margin-left: 1px;
     border-radius: 5px;
 }
 
@@ -504,4 +513,28 @@
     background-color: red;
     color: white;
     border: 1px solid #da0000;
+}
+
+.membersContain {
+    display: flex;
+    flex-direction: column;
+    max-height: 355px;
+    align-items: center;
+    z-index: 1;
+    overflow: auto;
+}
+
+.membersContain::-webkit-scrollbar-track {
+    background-color: #e0e0e0; /*Цвет скролла*/
+    border-radius: 80px;
+    z-index: 0;
+}
+
+.membersContain::-webkit-scrollbar-thumb {
+    border-radius: 80px; /*Закругление ползунка*/
+    background-color: #818080; /*Цвет ползунка*/
+}
+
+.membersContain::-webkit-scrollbar {
+    width: 4px; /*Толщина скролла*/
 }

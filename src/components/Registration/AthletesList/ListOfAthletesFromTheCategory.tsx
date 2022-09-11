@@ -56,7 +56,7 @@ export const ListOfAthletesFromTheCategory = (props: ListOfAthletesFromTheCatego
                 </div>
                 : <div className={styleR.emptyOfCategory}>В категории: "{props.activeCategory?.value}кг" нет
                     зарегестрированных участников</div>}
-            <div>{filteredAthletesJSX}</div>
+            <div className={styleR.membersContain}>{filteredAthletesJSX}</div>
         </>
     )
 }

@@ -90,7 +90,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
                                    setVisibilityJudges={setVisibilityJudges}
                                    athletes={props.athletes}/>}
 
-                    {!props.categoryVisibility && <>
+                    {!props.categoryVisibility && <div className={styleR.membersContain}>
                         <ListAthletes setModalDeleteAthlete={props.setModalDeleteAthlete}
                                       setGender={setGender}
                                       ranks={props.ranks}
@@ -114,7 +114,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
                                         changeFullNameJudge={props.changeFullNameAthlete}
                                         setIdMember={setIdMember}
                                         setNameMember={setNameMember}/>}
-                    </>}
+                    </div>}
                     {props.categoryVisibility &&
                         <ListOfAthletesFromTheCategory setIdMember={setIdMember}
                                                        setMember={setMember}
