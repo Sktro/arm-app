@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/arm-app/static/css/main.5769620b.css",
-    "main.js": "/arm-app/static/js/main.b1145169.js",
+    "main.css": "/arm-app/static/css/main.ef49b18b.css",
+    "main.js": "/arm-app/static/js/main.fc0240ab.js",
     "static/js/787.73bf5750.chunk.js": "/arm-app/static/js/787.73bf5750.chunk.js",
     "index.html": "/arm-app/index.html",
-    "main.5769620b.css.map": "/arm-app/static/css/main.5769620b.css.map",
-    "main.b1145169.js.map": "/arm-app/static/js/main.b1145169.js.map",
+    "main.ef49b18b.css.map": "/arm-app/static/css/main.ef49b18b.css.map",
+    "main.fc0240ab.js.map": "/arm-app/static/js/main.fc0240ab.js.map",
     "787.73bf5750.chunk.js.map": "/arm-app/static/js/787.73bf5750.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5769620b.css",
-    "static/js/main.b1145169.js"
+    "static/css/main.ef49b18b.css",
+    "static/js/main.fc0240ab.js"
   ]
 }
