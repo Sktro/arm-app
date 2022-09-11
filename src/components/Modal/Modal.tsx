@@ -61,6 +61,8 @@ export const Modal = (props: ModalPropsType) => {
             setErrorCategory(false)
         }
     }
+    const newClassButton = props.tournament !== '' && props.location !== '' && props.arrCategory.length > 0
+        ? `${styleM.creatableTournamentButton} ${styleM.creatableTournamentButtonActive}` : styleM.creatableTournamentButton
     return (
         <div className={props.modalActive ? `${styleM.modal} ${styleM.active}` : styleM.modal}>
             {createNewTournament && <CheckInfoWindow settings={props.settings}
@@ -110,7 +112,7 @@ export const Modal = (props: ModalPropsType) => {
                 {error && (props.tournament === "" || props.location === ''
                     ? <span className={styleM.error}>заполните обязательные поля( * )</span>
                     : <span className={styleM.error}>Не добалено ни одной весовой категории</span>)}
-                <button className={styleM.creatableTournamentButton} onClick={addTournament}>Создать турнир</button>
+                <button className={newClassButton} onClick={addTournament}>Создать турнир</button>
             </div>
         </div>
     )

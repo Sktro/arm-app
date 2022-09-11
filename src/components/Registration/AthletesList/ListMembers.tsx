@@ -9,11 +9,11 @@ import {
     RankType,
     StatusJudgeType
 } from "../../../App";
-import {EditableSpanText} from "../../../common/EditableCopmponents/EditableSpanText";
-import {EditableSpanNumber} from "../../../common/EditableCopmponents/EditableSpanNumber";
-import {EditableSpanSelect} from "../../../common/EditableCopmponents/EditableSpanSelect";
-import {ToolTip} from "../common/Tooltip";
 import {ModalDeleteMember} from "./ModalDeleteMember";
+import {ListAthletes} from "./ListAthletes";
+import {ListJudges} from "./ListJudges";
+import {ListOfAthletesFromTheCategory} from "./ListOfAthletesFromTheCategory";
+import {FilterMembers} from "./FilterMembers";
 
 type AthletesListPropsType = {
     athletes: AthletesType[]
@@ -22,7 +22,7 @@ type AthletesListPropsType = {
     changeRankAthlete: (AthleteID: string, rankAthlete: RankType) => void
     changeTeamAthlete: (teamAthlete: string, AthleteID: string) => void
     ranks: RankType[]
-    removeJudge: (JudgeID: string) => void
+    removeJudge: (judgeID: string) => void
     judge: JudgeType[]
     removeAthlete: (AthleteID: string) => void
     changeFullNameJudge: (judgeID: string, fullName: string) => void
@@ -48,184 +48,12 @@ type AthletesListPropsType = {
 export const ListMembers = (props: AthletesListPropsType) => {
 
     const [visibilityJudges, setVisibilityJudges] = useState(true)
-    const [nameAthlete, setNameAthlete] = useState('')
-    const [idAthlete, setIdAthlete] = useState('')
+    const [nameMember, setNameMember] = useState('')
+    const [idMember, setIdMember] = useState('')
     const [numberOfCategoriesForAthlete, setNumberOfCategoriesForAthlete] = useState(0)
     const [active, setActive] = useState('4');
-
-    const findQtyCategory = (str: string) => {
-        let count = 0
-        for (let i = 0; i < props.arrCategory.length; i++) {
-            if (props.arrCategory[i].gender === str) {
-                count++
-            }
-        }
-        return count
-    }
-
-    const findQtyAthletes = (str: string) => {
-        let count = 0
-        for (let i = 0; i < props.athletes.length; i++) {
-            if (props.athletes[i].gender === str) {
-                count++
-            }
-        }
-        return count
-    }
-
-    const athletesJSX = props.filteredAthletes
-        .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
-        .map(atl => {
-            const changeFullNameAthlete = (fullName: string) => {
-                props.changeFullNameAthlete(atl.id, fullName)
-            }
-            const changeTeamAthlete = (team: string) => {
-                props.changeTeamAthlete(atl.id, team)
-            }
-            const changeWeightAthlete = (weightAthlete: number) => {
-                props.changeWeightAthlete(atl.id, weightAthlete)
-            }
-            const changeRankAthlete = (rankAthlete: string) => {
-                props.changeRankAthlete(atl.id, rankAthlete as RankType)
-            }
-            const removeAthleteMale = () => {
-                props.removeAthlete(atl.id)
-                if (findQtyAthletes('муж') <= 1) {
-                    props.setFilter('all')
-                    setActive('4')
-                }
-            }
-            const removeAthleteFemale = () => {
-                props.removeAthlete(atl.id)
-                if (findQtyAthletes('жен') <= 1) {
-                    props.setFilter('all')
-                    setActive('4')
-                }
-            }
-
-            return (
-                <div key={atl.id} className={atl.gender === 'жен'
-                    ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
-                    <div className={styleR.fullName}><EditableSpanText value={atl.fullName}
-                                                                       id={'fullName'}
-                                                                       changeValue={changeFullNameAthlete}/>
-                    </div>
-                    <div className={styleR.team}><EditableSpanText value={atl.team}
-                                                                   id={'team'}
-                                                                   changeValue={changeTeamAthlete}/></div>
-                    <div className={styleR.weight}><EditableSpanNumber value={atl.weight}
-                                                                       changeValue={changeWeightAthlete}/></div>
-                    <div className={styleR.rank}><EditableSpanSelect options={props.ranks}
-                                                                     value={atl.rank}
-                                                                     changeOptions={changeRankAthlete}/></div>
-                    <button className={styleR.removeButton}
-                            onClick={atl.gender === 'муж' ? removeAthleteMale : removeAthleteFemale}>Удалить
-                    </button>
-                </div>
-            )
-        })
-
-    const judgesJSX = props.judge
-        .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
-        .map(jud => {
-            const changeFullNameJudge = (fullName: string) => {
-                props.changeFullNameJudge(jud.id, fullName)
-            }
-            const changeRegionJudge = (region: string) => {
-                props.changeRegionJudge(jud.id, region)
-            }
-            const changeCategoryJudge = (category: string) => {
-                props.changeCategoryJudge(jud.id, category as CategoryJudgeType)
-            }
-            const changeStatusJudge = (status: string) => {
-                props.changeStatusJudge(jud.id, status as StatusJudgeType)
-            }
-            const removeJudge = () => {
-                props.removeJudge(jud.id)
-                if (props.judge.length <= 1) {
-                    props.setFilter('all')
-                    setActive('4')
-                }
-            }
-
-            return (
-                <div key={jud.id} className={styleR.judges}>
-                    <div className={styleR.fullName}><EditableSpanText value={jud.fullName}
-                                                                       id={'fullName'}
-                                                                       changeValue={changeFullNameJudge}/></div>
-                    <div className={styleR.statusJudge}><EditableSpanSelect value={jud.status}
-                                                                            changeOptions={changeStatusJudge}
-                                                                            options={props.statusJudge}/></div>
-                    <div className={styleR.regionJudge}><EditableSpanText value={jud.region}
-                                                                          id={'region'}
-                                                                          changeValue={changeRegionJudge}/></div>
-                    <div className={styleR.categoryJudge}><EditableSpanSelect options={props.categoryJudge}
-                                                                              value={jud.category}
-                                                                              changeOptions={changeCategoryJudge}/>
-                    </div>
-                    <button className={styleR.removeButton} onClick={removeJudge}>X</button>
-                </div>
-            )
-        })
-
-    const filteredAthletesJSX = props.athletes
-        .filter(at => {
-            for (let j = 0; j < at.categoryMember!.length; j++) {
-                if (at.categoryMember![j].value === props.activeCategory?.value && at.gender === props.activeCategory.gender) {
-                    return true
-                }
-            }
-            return false
-        })
-        .sort((a, b) => a.fullName < b.fullName ? -1 : 0)
-        .map(atl => {
-            const modalDeleteFromCategory = (fullNameAthlete: string, athleteID: string, numberOfCategories: number) => {
-                props.setModalDeleteAthlete(true)
-                setNameAthlete(fullNameAthlete)
-                setIdAthlete(athleteID)
-                setNumberOfCategoriesForAthlete(numberOfCategories)
-            }
-            return (
-                <div key={atl.id}>
-                    {!props.modalDeleteAthlete && <div className={atl.gender === 'жен'
-                        ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
-                        <div className={styleR.fullName}><ToolTip id={'fullName'} value={atl.fullName}/></div>
-                        <div className={styleR.team}><ToolTip id={'team'} value={atl.team}/></div>
-                        <div className={styleR.regionJudge}>{atl.weight}</div>
-                        <div className={styleR.regionJudge}>{atl.rank}</div>
-                        <button className={styleR.deleteFromCategory}
-                                onClick={() => modalDeleteFromCategory(atl.fullName, atl.id, atl.categoryMember!.length)}>Удалить
-                        </button>
-                    </div>}
-                </div>
-
-            )
-        })
-
-    const filterAll = (id: string) => {
-        props.setFilter('all')
-        setVisibilityJudges(true)
-        props.setCategoryVisibility(false)
-        setActive(id)
-    }
-    const filterMale = (id: string) => {
-        props.setFilter('муж')
-        setVisibilityJudges(false)
-        props.setCategoryVisibility(false)
-        setActive(id)
-    }
-    const filterFemale = (id: string) => {
-        props.setFilter('жен')
-        setVisibilityJudges(false)
-        props.setCategoryVisibility(false)
-        setActive(id)
-    }
-    const filterJudges = (id: string) => {
-        props.setFilter('judges')
-        setVisibilityJudges(true)
-        props.setCategoryVisibility(false)
-        setActive(id)
-    }
+    const [member, setMember] = useState('')
+    const [gender, setGender] = useState('')
 
     const openFilter = () => {
         if (props.athletes.length > 0 && props.judge.length > 0) {
@@ -235,22 +63,6 @@ export const ListMembers = (props: AthletesListPropsType) => {
             return true
         }
     }
-
-    const buttonMale = findQtyCategory('муж') > 0 && props.athletes.find(g => g.gender === 'муж') &&
-        <button
-            className={active === '1' ? `${styleR.filterButton} ${styleR.filterButtonMale} ${styleR.activeMale}` : `${styleR.filterButton} ${styleR.filterButtonMale}`}
-            onClick={() => filterMale('1')}>мужчины</button>
-    const buttonFemale = findQtyCategory('жен') > 0 && props.athletes.find(g => g.gender === 'жен') &&
-        <button
-            className={active === '2' ? `${styleR.filterButton} ${styleR.filterButtonFemale} ${styleR.activeFemale}` : `${styleR.filterButton} ${styleR.filterButtonFemale}`}
-            onClick={() => filterFemale('2')}>женщины</button>
-    const buttonJudges = props.judge.length > 0 &&
-        <button
-            className={active === '3' ? `${styleR.filterButton} ${styleR.filterButtonJudges} ${styleR.activeJudges}` : `${styleR.filterButton} ${styleR.filterButtonJudges}`}
-            onClick={() => filterJudges('3')}>судьи</button>
-    const buttonAll = <button
-        className={active === '4' ? `${styleR.filterButton} ${styleR.filterButtonAll} ${styleR.activeAll}` : `${styleR.filterButton} ${styleR.filterButtonAll}`}
-        onClick={() => filterAll('4')}>все</button>
 
     return (
         <div className={styleR.registeredAthletes}>
@@ -265,31 +77,71 @@ export const ListMembers = (props: AthletesListPropsType) => {
             {!props.categoryVisibility && <span className={styleR.registrationDescription}>
                     Список зарегестрированных спортсменов({props.athletes.length}), судей({props.judge.length}):
                 </span>}
-            {openFilter() && !props.categoryVisibility && <div className={styleR.containButtons}>
-                фильтр участников:
-                {buttonMale}{buttonFemale}{buttonJudges}{buttonAll}
-            </div>}
-            {!props.categoryVisibility && <div>
-                {athletesJSX}
-                {(visibilityJudges || props.athletes.length === 0 || props.filter === 'all') && judgesJSX}
-            </div>}
-            {props.categoryVisibility && <div>
-                {filteredAthletesJSX.length >= 1 ? <div className={styleR.nameOfCategory}>
-                        <div>Категория спортсменов: {props.activeCategory?.value}кг</div>
-                        <div>Зарегистрированно спортсменов: {filteredAthletesJSX.length}</div>
-                    </div>
-                    : <div className={styleR.emptyOfCategory}>В категории: "{props.activeCategory?.value}кг" нет
-                        зарегестрированных участников</div>}
-                <div>{filteredAthletesJSX}</div>
-            </div>}
-            {props.modalDeleteAthlete && <ModalDeleteMember numberOfCategoriesForAthlete={numberOfCategoriesForAthlete}
-                                                            activeCategory={props.activeCategory}
-                                                            removeRegisteredCategoryAtAthlete={props.removeRegisteredCategoryAtAthlete}
-                                                            removeAthlete={props.removeAthlete}
-                                                            idAthlete={idAthlete}
-                                                            setModalDeleteAthlete={props.setModalDeleteAthlete}
-                                                            modalDeleteAthlete={props.modalDeleteAthlete}
-                                                            nameAthlete={nameAthlete}/>}
+
+            {!props.modalDeleteAthlete &&
+                <div>{openFilter() && !props.categoryVisibility &&
+                    <FilterMembers setFilter={props.setFilter}
+                                   setModalDeleteAthlete={props.setModalDeleteAthlete}
+                                   judge={props.judge}
+                                   active={active}
+                                   setActive={setActive}
+                                   arrCategory={props.arrCategory}
+                                   setCategoryVisibility={props.setCategoryVisibility}
+                                   setVisibilityJudges={setVisibilityJudges}
+                                   athletes={props.athletes}/>}
+
+                    {!props.categoryVisibility && <>
+                        <ListAthletes setModalDeleteAthlete={props.setModalDeleteAthlete}
+                                      setGender={setGender}
+                                      ranks={props.ranks}
+                                      changeFullNameAthlete={props.changeFullNameAthlete}
+                                      changeWeightAthlete={props.changeWeightAthlete}
+                                      changeTeamAthlete={props.changeTeamAthlete}
+                                      changeRankAthlete={props.changeRankAthlete}
+                                      filteredAthletes={props.filteredAthletes}
+                                      setIdMember={setIdMember}
+                                      setMember={setMember}
+                                      setNameMember={setNameMember}/>
+                        {(visibilityJudges || props.athletes.length === 0 || props.filter === 'all') &&
+                            <ListJudges setMember={setMember}
+                                        setModalDeleteAthlete={props.setModalDeleteAthlete}
+                                        judge={props.judge}
+                                        statusJudge={props.statusJudge}
+                                        changeStatusJudge={props.changeStatusJudge}
+                                        categoryJudge={props.categoryJudge}
+                                        changeCategoryJudge={props.changeCategoryJudge}
+                                        changeRegionJudge={props.changeRegionJudge}
+                                        changeFullNameJudge={props.changeFullNameAthlete}
+                                        setIdMember={setIdMember}
+                                        setNameMember={setNameMember}/>}
+                    </>}
+                    {props.categoryVisibility &&
+                        <ListOfAthletesFromTheCategory setIdMember={setIdMember}
+                                                       setMember={setMember}
+                                                       setModalDeleteAthlete={props.setModalDeleteAthlete}
+                                                       activeCategory={props.activeCategory}
+                                                       athletes={props.athletes}
+                                                       modalDeleteAthlete={props.modalDeleteAthlete}
+                                                       setNumberOfCategoriesForAthlete={setNumberOfCategoriesForAthlete}
+                                                       setNameMember={setNameMember}/>}
+                </div>}
+
+            {props.modalDeleteAthlete &&
+                <ModalDeleteMember numberOfCategoriesForAthlete={numberOfCategoriesForAthlete}
+                                   removeJudge={props.removeJudge}
+                                   gender={gender}
+                                   judge={props.judge}
+                                   athletes={props.athletes}
+                                   setFilter={props.setFilter}
+                                   member={member}
+                                   setActive={setActive}
+                                   activeCategory={props.activeCategory}
+                                   removeRegisteredCategoryAtAthlete={props.removeRegisteredCategoryAtAthlete}
+                                   removeAthlete={props.removeAthlete}
+                                   idAthlete={idMember}
+                                   setModalDeleteAthlete={props.setModalDeleteAthlete}
+                                   modalDeleteAthlete={props.modalDeleteAthlete}
+                                   nameMember={nameMember}/>}
         </div>
     )
 }

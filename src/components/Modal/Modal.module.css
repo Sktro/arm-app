@@ -111,6 +111,12 @@
     background-color: #eef3ff;
 }
 
+.creatableTournamentButtonActive {
+    border: 1px #187eff solid;
+    color: #187eff;
+    background-color: #eef3ff;
+}
+
 .s {
     text-align: end;
     color: red;
