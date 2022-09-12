@@ -1,0 +1,77 @@
+.weightsCategories {
+    margin-left: 10px;
+    width: 265px;
+}
+
+.registrationDescription {
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.genderList {
+    text-align: start;
+}
+
+.listFemale {
+    background-color: rgba(227, 0, 106, 0.8);
+    color: white;
+    display: inline-block;
+    padding: 0 3px 2px 3px;
+    margin-left: 1px;
+    border-radius: 5px;
+}
+
+.weightListF {
+    cursor: pointer;
+    width: 40px;
+    padding-bottom: 1px;
+    border: solid 1px #e3006a;
+    border-radius: 5px;
+    font: inherit;
+    background-color: transparent;
+    color: rgba(227, 0, 106, 0.8);
+    margin-left: 2px;
+}
+
+.weightListF:hover {
+    background-color: rgba(227, 0, 106, 0.8);
+    color: white;
+}
+
+.weightListFActive {
+    background-color: rgba(227, 0, 106, 0.8);
+    color: white;
+}
+
+.listMale {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+    display: inline-block;
+    padding: 0 3px 2px 3px;
+    margin-left: 1px;
+    border-radius: 5px;
+}
+
+.weightListM {
+    cursor: pointer;
+    margin-top: 2px;
+    width: 40px;
+    padding-bottom: 1px;
+    border: solid 1px #187eff;
+    border-radius: 5px;
+    font: inherit;
+    background-color: transparent;
+    color: rgba(24, 126, 255, 0.8);
+    margin-left: 2px;
+}
+
+.weightListM:hover {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+}
+
+.weightListMActive {
+    background-color: rgba(24, 126, 255, 0.8);
+    color: white;
+}

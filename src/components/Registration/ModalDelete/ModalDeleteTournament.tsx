@@ -7,7 +7,6 @@ type ModalDeleteTournamentPropsType = {
     setArrCategory:(value: CategoryType[]) => void
     setModalDelete: (value: boolean) => void
     modalDelete: boolean
-    setModalActive: (value: boolean) => void
     setMainReferee: (value: string) => void
     setMainSecretary: (value: string) => void
     setWeightNewCategory: (value: readonly Option[]) => void
@@ -33,7 +32,6 @@ export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => 
         props.setMainReferee('')
         props.setMainSecretary('')
         props.setWeightNewCategory([])
-        props.setModalActive(true)
     }
 
     return (

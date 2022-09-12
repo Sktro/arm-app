@@ -1,0 +1,56 @@
+.removalOfAthlete {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid red;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    color: red;
+    -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.38);
+    -moz-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.38);
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.38);
+}
+
+.buttonsModalDelete {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.buttonsModalDelete button {
+    padding: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.delete {
+    color: red;
+    border: solid 1px red;
+}
+
+.delete:hover {
+    background-color: red;
+    color: white;
+    border: 1px solid #da0000;
+}
+
+.cancel{
+    border: solid 1px grey;
+    color: grey;
+}
+
+.cancel:hover {
+    background-color: grey;
+    color: white;
+    border: 1px solid #626262;
+}

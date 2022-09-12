@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styleR from './Registration.module.css'
+import styleRegistration from './Registration.module.css'
 import {
     AthletesType,
     CategoryJudgeType,
@@ -10,7 +10,7 @@ import {
     StatusJudgeType
 } from "../../App";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
-import {ListMembers} from "./AthletesList/ListMembers";
+import {ListMembers} from "./ListMembers/ListMembers";
 import {CategoriesList} from "./CategoriesList/CategoriesList";
 import {ModalDeleteTournament} from "./ModalDelete/ModalDeleteTournament";
 import {StartAndDeleteTournament} from "./StartAndDeleteTournament/StartAndDeleteTournament";
@@ -38,7 +38,6 @@ type RegistrationPropsType = {
     changeWeightAthlete: (AthleteID: string, weightAthlete: number) => void
     changeRankAthlete: (AthleteID: string, rankAthlete: RankType) => void
     removeAthlete: (AthleteID: string) => void
-    setModalActive: (value: boolean) => void
     setTournament: (value: string) => void
     setLocation: (value: string) => void
     setWeightNewCategory: (value: readonly Option[]) => void
@@ -84,7 +83,7 @@ export const Registration = (props: RegistrationPropsType) => {
                         endTournamentDate={props.endTournamentDate}
                         startTournamentDate={props.startTournamentDate}
                         location={props.location}/>
-                <div className={styleR.containRegistration}>
+                <div className={styleRegistration.containRegistration}>
                     <RegistrationOfMembers arrCategory={props.arrCategory}
                                            addJudges={props.addJudges}
                                            statusJudge={props.statusJudge}
@@ -133,8 +132,7 @@ export const Registration = (props: RegistrationPropsType) => {
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
             </div>}
-            <ModalDeleteTournament setModalActive={props.setModalActive}
-                                   setJudge={props.setJudge}
+            <ModalDeleteTournament setJudge={props.setJudge}
                                    SetSettings={props.SetSettings}
                                    setArrCategory={props.setArrCategory}
                                    setAthletes={props.setAthletes}

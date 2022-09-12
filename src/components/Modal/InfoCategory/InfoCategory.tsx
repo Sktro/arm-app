@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import styleM from "../Modal.module.css";
 import {SelectForModalGender} from "../../../common/Select/SelectForModalGender";
 import {SelectForModalAge} from "../../../common/Select/SelectForModalAge";
 import {SelectForModalCategoryAthl} from "../../../common/Select/SelectForModalCategoryAthl";
 import WeightsSelect, {Option} from "../../../common/WeightsSelect/WeightsSelect";
 import {ListOfCategories} from "./ListOfCategories/ListOfCategories";
 import {AgeType, CategoryAthleteType, CategoryType, GenderType} from "../../../App";
+import styleInfoCategory from './InfoCategory.module.css'
 
 type InfoCategoryType = {
     sortCategory: (value: CategoryType) => Option[]
@@ -22,7 +22,6 @@ type InfoCategoryType = {
     setErrorCategory: (value: boolean) => void
     errorCategory: boolean
 }
-
 
 export const InfoCategory = (props: InfoCategoryType) => {
     const [inputValueNewCategory, setInputValueNewCategory] = useState('')
@@ -82,7 +81,7 @@ export const InfoCategory = (props: InfoCategoryType) => {
 
     return (
         <>
-            <div className={styleM.selects}>
+            <div className={styleInfoCategory.selects}>
                 <div><SelectForModalGender options={props.gender}
                                            onChangeOption={onChangeGender}
                                            value={gender}
@@ -101,7 +100,7 @@ export const InfoCategory = (props: InfoCategoryType) => {
                                     onChange={onChangeNewCategory}/></div>
 
             </div>
-            <button className={styleM.addCategoryClose} disabled={props.weightNewCategory.length === 0}
+            <button className={styleInfoCategory.addCategoryClose} disabled={props.weightNewCategory.length === 0}
                  onClick={addCategories}>
                 добавить категории
             </button>
@@ -115,7 +114,7 @@ export const InfoCategory = (props: InfoCategoryType) => {
                                                                setWeightNewCategory={props.setWeightNewCategory}
 
                                                                deleteCategories={props.deleteCategories}/>}
-            {props.errorCategory && <span className={styleM.errorCategory}>{errorWeight}</span>}
+            {props.errorCategory && <span className={styleInfoCategory.errorCategory}>{errorWeight}</span>}
 
         </>
     )

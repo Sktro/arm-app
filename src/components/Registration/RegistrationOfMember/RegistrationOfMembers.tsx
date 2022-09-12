@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {RegistrationAthlete} from "./RegistrationAthlete/RegistrationAthlete";
 import {CategoryJudgeType, CategoryType, GenderType, RankType, StatusJudgeType} from "../../../App";
 import {RegistrationOfJudges} from "./RegistrationOfJudges/RegistrationOfJudges";
-import styleROM from "./RegistrationOfMembers.module.css"
+import styleRegistrationOfMembers from "./RegistrationOfMembers.module.css"
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
 import {MultiValue} from "react-select";
 
@@ -25,12 +25,14 @@ export const RegistrationOfMembers = (props: RegistrationOfMembersType) => {
         setError(value2)
     }
     return (
-        <div className={styleROM.regContain}>
-            <div className={styleROM.buttonsContain}>
-                <button onClick={()=> buttonEffect(true, false)} className={button ? styleROM.buttonOn : styleROM.button}>Участник</button>
-                <button onClick={()=> buttonEffect(false, false)} className={!button ? styleROM.buttonOn : styleROM.button}>Судья</button>
+        <div className={styleRegistrationOfMembers.regContain}>
+            <div className={styleRegistrationOfMembers.buttonsContain}>
+                <button onClick={()=> buttonEffect(true, false)} className={button ? styleRegistrationOfMembers.buttonOn
+                    : styleRegistrationOfMembers.button}>Участник</button>
+                <button onClick={()=> buttonEffect(false, false)} className={!button ? styleRegistrationOfMembers.buttonOn
+                    : styleRegistrationOfMembers.button}>Судья</button>
             </div>
-            <div className={styleROM.formContain}>
+            <div className={styleRegistrationOfMembers.formContain}>
                 {button && <RegistrationAthlete addAthleteCallback={props.addAthleteCallback}
                                                 error={error}
                                                 sortCategory={props.sortCategory}

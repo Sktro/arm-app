@@ -1,9 +1,10 @@
 import React, {ChangeEvent, useState} from "react";
-import styleR from "../../Registration.module.css";
-import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration";
-import {SelectForRegAthl} from "../../common/SelectForRegAthl";
+import styleRegistrationAthlete from "./RegistrationAthlete.module.css";
+import styleRegistrationOfMembers from "../RegistrationOfMembers.module.css"
+import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration/InputAnimationForRegistration";
+import {SelectForRegAthl} from "../../common/SelectForRefAthl/SelectForRegAthl";
 import {CategoryType, GenderType, RankType} from "../../../../App";
-import {InputWeight} from "../../common/InputWeight";
+import {InputWeight} from "../../common/InputWeight/InputWeight";
 import {SelectForModalGender} from "../../../../common/Select/SelectForModalGender";
 import {MultiSelect} from "../../../../common/MultiSelect/MultiSelect";
 import {Option} from "../../../../common/WeightsSelect/WeightsSelect";
@@ -129,8 +130,8 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
 
 
     return (
-        <div className={styleR.registration}>
-            <div className={styleR.centerContain}>
+        <div className={styleRegistrationOfMembers.registration}>
+            <div className={styleRegistrationAthlete.centerContain}>
                 <InputAnimationForRegistration type={"text"}
                                                obligatoryField={true}
                                                placeholder={"Участник"}
@@ -138,7 +139,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                                                onChange={onChangeFullName}
                                                value={fullName}/>
             </div>
-            <div className={styleR.sectionWeightAndSelect}>
+            <div className={styleRegistrationAthlete.sectionWeightAndSelect}>
                 <InputWeight type={"text"}
                              obligatoryField={true}
                              placeholder={"Вес"}
@@ -155,7 +156,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                                   value={rank}
                                   onChangeOption={onChangeRank}/>
             </div>
-            <div className={styleR.centerContain}>
+            <div className={styleRegistrationAthlete.centerContain}>
                 <InputAnimationForRegistration type={"text"}
                                                placeholder={"Команда"}
                                                onChange={onChangeTeam}
@@ -165,8 +166,8 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                          options={genderAthlete === 'муж' ? optionsMale : optionsFemale}
                          value={availableCategories}
                          disable={weight === ''}/>
-            {props.error && <span className={styleR.error}>Заполните обязательные поля ( * )</span>}
-            <button className={styleR.addAthleteButton} onClick={addNewAthlete}>Добавить</button>
+            {props.error && <span className={styleRegistrationOfMembers.error}>Заполните обязательные поля ( * )</span>}
+            <button className={styleRegistrationOfMembers.addMemberButton} onClick={addNewAthlete}>Добавить</button>
         </div>
     )
 }

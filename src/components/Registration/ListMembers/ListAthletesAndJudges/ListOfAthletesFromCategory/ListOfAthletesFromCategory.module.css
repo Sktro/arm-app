@@ -1,0 +1,14 @@
+.nameOfCategory {
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.emptyOfCategory {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}

@@ -25,7 +25,7 @@ export type GenderType =
     'муж'
     | 'жен'
 
-export type FilterType = GenderType | 'all' | 'judges' | string
+export type FilterType = GenderType | 'all' | 'judges'
 
 export type StatusJudgeType =
     'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'судья'
@@ -106,8 +106,6 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
-    // Starting modal window
-    const [modalActive, setModalActive] = useState<boolean>(true)
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
     const [location, setLocation] = useState<string>('')
@@ -153,9 +151,7 @@ function App() {
 
     const addAthlete = (fullName: string, weight: number, team: string, rank: RankType, gender: GenderType, categoryMember: MultiValue<{ value: string, label: string }>) => {
         let newAthlete = {id: v1(), fullName, weight, team, rank, gender, categoryMember}
-        //let newRegisteredAthlete = {id: v1(), newAthlete, categoryMember}
         setAthletes([newAthlete, ...athletes])
-        //setRegisteredAthlete([newRegisteredAthlete, ...registeredAthlete])
     }
 
     const addJudges = (fullName: string, gender: GenderType, status: StatusJudgeType, category: CategoryJudgeType, region: string) => {
@@ -283,8 +279,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/arm-app" element={<Modal modalActive={modalActive}
-                                                       setActiveCategory={setActiveCategory}
+                <Route path="/arm-app" element={<Modal setActiveCategory={setActiveCategory}
                                                        sortCategory={sortCategory}
                                                        settings={settings}
                                                        tableForArm={TableForArm}
@@ -297,7 +292,6 @@ function App() {
                                                        gender={genderAthletes}
                                                        setLocation={setLocation}
                                                        setTournament={setTournament}
-                                                       setModalActive={setModalActive}
                                                        setWeightNewCategory={setWeightNewCategory}
                                                        weightNewCategory={weightNewCategory}
                                                        tournament={tournament}
@@ -341,7 +335,6 @@ function App() {
                                                                           gender={genderAthletes}
                                                                           arrCategory={arrCategory}
                                                                           setAthletes={setAthletes}
-                                                                          setModalActive={setModalActive}
                                                                           removeAthlete={removeAthlete}
                                                                           ranks={ranksAthletes}
                                                                           addAthleteCallback={addAthlete}

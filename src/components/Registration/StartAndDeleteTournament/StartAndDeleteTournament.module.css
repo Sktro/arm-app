@@ -1,0 +1,32 @@
+.startAndDeleteTournamentButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.startTournamentButton {
+    padding: 3px;
+    margin-right: 15px;
+    margin-bottom: 3px;
+    border: 1px #05a200 solid;
+    font-weight: bold;
+    color: #05a200;
+    border-radius: 5px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.deleteTournamentButton {
+    padding: 3px;
+    margin-right: 15px;
+    margin-bottom: 3px;
+    border: 1px #af0000 solid;
+    font-weight: bold;
+    color: #af0000;
+    border-radius: 5px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+}

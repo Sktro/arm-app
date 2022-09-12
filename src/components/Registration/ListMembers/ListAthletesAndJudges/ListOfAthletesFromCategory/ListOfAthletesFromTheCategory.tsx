@@ -1,7 +1,10 @@
 import React from "react";
-import styleR from "../Registration.module.css";
-import {ToolTip} from "../common/Tooltip";
-import {AthletesType} from "../../../App";
+import styleListAthletes from "../ListAthletesAndJudges.module.css";
+import styleListOfAthletesFromTheCategory from './ListOfAthletesFromCategory.module.css'
+import styleListMembers from "../../ListMembers.module.css";
+import {ToolTip} from "../../../common/Tooltip";
+import {AthletesType} from "../../../../../App";
+
 
 type ListOfAthletesFromTheCategoryType = {
     athletes: AthletesType[]
@@ -36,12 +39,12 @@ export const ListOfAthletesFromTheCategory = (props: ListOfAthletesFromTheCatego
             return (
                 <div key={atl.id}>
                     {!props.modalDeleteAthlete && <div className={atl.gender === 'жен'
-                        ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
-                        <div className={styleR.fullName}><ToolTip id={'fullName'} value={atl.fullName}/></div>
-                        <div className={styleR.team}><ToolTip id={'team'} value={atl.team}/></div>
-                        <div className={styleR.regionJudge}>{atl.weight} кг</div>
-                        <div className={styleR.regionJudge}>{atl.rank}</div>
-                        <button className={styleR.deleteFromCategory}
+                        ? `${styleListAthletes.athletesM} ${styleListAthletes.athletesF}` : styleListAthletes.athletesM}>
+                        <div className={styleListAthletes.fullName}><ToolTip id={'fullName'} value={atl.fullName}/></div>
+                        <div className={styleListAthletes.team}><ToolTip id={'team'} value={atl.team}/></div>
+                        <div className={styleListAthletes.regionJudge}>{atl.weight} кг</div>
+                        <div className={styleListAthletes.regionJudge}>{atl.rank}</div>
+                        <button className={styleListAthletes.removeButton}
                                 onClick={() => deleteAthleteFromCategory(atl.fullName, atl.id, atl.categoryMember!.length)}>Удалить
                         </button>
                     </div>}
@@ -50,13 +53,13 @@ export const ListOfAthletesFromTheCategory = (props: ListOfAthletesFromTheCatego
         })
     return (
         <>
-            {filteredAthletesJSX.length >= 1 ? <div className={styleR.nameOfCategory}>
+            {filteredAthletesJSX.length >= 1 ? <div className={styleListOfAthletesFromTheCategory.nameOfCategory}>
                     <div>Категория спортсменов: {props.activeCategory?.value}кг</div>
                     <div>Зарегистрированно спортсменов: {filteredAthletesJSX.length}</div>
                 </div>
-                : <div className={styleR.emptyOfCategory}>В категории: "{props.activeCategory?.value}кг" нет
+                : <div className={styleListOfAthletesFromTheCategory.emptyOfCategory}>В категории: "{props.activeCategory?.value}кг" нет
                     зарегестрированных участников</div>}
-            <div className={styleR.membersContain}>{filteredAthletesJSX}</div>
+            <div className={styleListMembers.membersContain}>{filteredAthletesJSX}</div>
         </>
     )
 }

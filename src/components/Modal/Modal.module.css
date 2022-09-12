@@ -1,4 +1,3 @@
-
 .modal {
     display: flex;
     align-items: center;
@@ -9,17 +8,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.5s;
 }
-
-
-.modal.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
 
 .modalContent {
     border: 1px solid black;
@@ -39,126 +28,4 @@
 
 .modalContent input {
     margin: 3px;
-}
-
-.modalButtonContain {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 3px;
-}
-
-.modalButton {
-    border: solid 2px rgba(58, 58, 58, 0.13);
-    padding: 0 6px 1px 6px;
-    border-radius: 20px;
-    font-weight: bold;
-    background-color: rgba(128, 128, 128, 0.59);
-    color: white;
-    user-select: none;
-    cursor: pointer;
-}
-
-.modalButton:hover{
-    border: solid 2px rgba(58, 58, 58, 0.18);
-    background-color: rgba(128, 128, 128, 0.71);
-}
-
-.modalButtonOn {
-    border: solid 2px #079643;
-    padding: 0 6px 1px 6px;
-    border-radius: 20px;
-    font-weight: bold;
-    background-color: #00a92f;
-    color: white;
-    user-select: none;
-    cursor: pointer;
-}
-
-.infoText {
-    display: inline-block;
-    font-weight: bold;
-    padding-bottom: 6px;
-}
-
-.error {
-    color: red;
-    font-size:14px;
-    text-align: center;
-}
-.errorCategory{
-    display: block;
-    color: red;
-    font-size:14px;
-    text-align: center;
-}
-
-.creatableTournamentButton {
-    align-self: center;
-    padding: 3px;
-    border: 1px #93c2ff solid;
-    font-weight: bold;
-    color: #93c2ff;
-    border-radius: 5px;
-    width: 200px;
-    background-color: white;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.creatableTournamentButton:hover {
-    border: 1px #187eff solid;
-    color: #187eff;
-    background-color: #eef3ff;
-}
-
-.creatableTournamentButtonActive {
-    border: 1px #187eff solid;
-    color: #187eff;
-    background-color: #eef3ff;
-}
-
-.s {
-    text-align: end;
-    color: red;
-    font-weight: bold;
-    width: 10px;
-    height: 15px;
-    display: flex;
-    position: relative;
-    bottom: -10px;
-    right: -322px;
-}
-
-.addCategoryClose {
-    user-select: none;
-    border-radius: 5px;
-    text-align: center;
-    width: 328px;
-    padding: 3px 0 3px 0;
-    background-color: white;
-    color: #187eff;
-    font-size: 14px;
-    font-weight: bold;
-    border: 1px #187eff solid;
-    margin-bottom: 15px;
-    z-index: 1;
-    cursor: pointer;
-}
-
-.addCategoryClose:disabled {
-    border: 1px solid rgba(128, 128, 128, 0.56);
-    color: rgba(128, 128, 128, 0.56);
-    pointer-events: none;
-}
-
-.addCategoryClose:hover{
-    background-color: #187eff;
-    color: white;
-}
-
-.selects {
-    display: flex;
-    padding-top: 9px;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }

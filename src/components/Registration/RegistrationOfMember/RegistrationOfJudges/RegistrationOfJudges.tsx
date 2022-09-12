@@ -1,10 +1,11 @@
 import React, {ChangeEvent, useState} from "react";
-import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration";
-import {SelectForRegAthl} from "../../common/SelectForRegAthl";
+import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration/InputAnimationForRegistration";
+import {SelectForRegAthl} from "../../common/SelectForRefAthl/SelectForRegAthl";
 import {CategoryJudgeType, GenderType, StatusJudgeType} from "../../../../App";
-import styleR from "../../Registration.module.css";
+import styleRegistrationOfJudges from "./RegistrationOfJudges.module.css";
+import styleRegistrationOfMembers from "../RegistrationOfMembers.module.css"
 import {SelectForModalGender} from "../../../../common/Select/SelectForModalGender";
-import {SelectForCategoryJudge} from "../../common/SelectForCategoryJudge";
+import {SelectForCategoryJudge} from "../../common/SelectForCategoryJudge/SelectForCategoryJudge";
 
 type RegistrationOfJudgesType = {
     categoryJudge: CategoryJudgeType[]
@@ -61,8 +62,8 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
 
 
     return (
-        <div className={styleR.registration}>
-            <div className={styleR.judgeAndRegionContain}>
+        <div className={styleRegistrationOfMembers.registration}>
+            <div className={styleRegistrationOfJudges.judgeAndRegionContain}>
                 <InputAnimationForRegistration type={"text"}
                                                obligatoryField={true}
                                                placeholder={"Судья"}
@@ -75,7 +76,7 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
                                                onChange={onChangeRegion}
                                                value={region}/>
             </div>
-            <div className={styleR.regionAndCategoryContain}>
+            <div className={styleRegistrationOfJudges.regionAndCategoryContain}>
                 <SelectForModalGender options={props.gender}
                                       value={gender}
                                       onChangeOption={OnChangeGender}
@@ -85,14 +86,14 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
                                   value={judgesCategory}
                                   onChangeOption={onChangeCategory}/>
             </div>
-            <div className={styleR.regionContain}>
+            <div className={styleRegistrationOfJudges.regionContain}>
                 <SelectForCategoryJudge placeholder={"Статус судьи"}
                                         options={props.statusJudge}
                                         value={status}
                                         onChangeOption={onChangeStatusJudge}/>
             </div>
-            {props.error && <span className={styleR.error}>Заполните обязательные поля ( * )</span>}
-            <button onClick={addNewJudge} className={styleR.addAthleteButton}>Добавить</button>
+            {props.error && <span className={styleRegistrationOfMembers.error}>Заполните обязательные поля ( * )</span>}
+            <button onClick={addNewJudge} className={styleRegistrationOfMembers.addMemberButton}>Добавить</button>
         </div>
     )
 }

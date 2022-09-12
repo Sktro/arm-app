@@ -1,6 +1,6 @@
 import React from "react";
-import styleR from "../Registration.module.css";
-import {AthletesType, FilterType, JudgeType} from "../../../App";
+import styleModalDeleteMember from "./ModalDeleteMember.module.css";
+import {AthletesType, FilterType, JudgeType} from "../../../../App";
 
 type ModalDeleteMemberType = {
     numberOfCategoriesForAthlete: number
@@ -74,17 +74,17 @@ export const ModalDeleteMember = (props: ModalDeleteMemberType) => {
         категории?</div>
 
     return <>
-            <div className={styleR.removalOfAthlete}>
+            <div className={styleModalDeleteMember.removalOfAthlete}>
                 {props.member === 'athleteInCategory' && props.numberOfCategoriesForAthlete > 1 && deleteAthleteFromCategory}
                 {props.member === 'athleteInCategory' && props.numberOfCategoriesForAthlete === 1 && deleteAthleteFromTournament}
                 {props.member === 'athlete' && deleteAthleteFromTournament}
                 {props.member === 'judge' && deleteJudgeFromTournament}
-                <div className={styleR.buttonsModalDelete}>
-                    <button className={styleR.delete}
+                <div className={styleModalDeleteMember.buttonsModalDelete}>
+                    <button className={styleModalDeleteMember.delete}
 
                             onClick={() => deleteAthlete(props.idAthlete, false, props.numberOfCategoriesForAthlete, props.gender, props.member)}>удалить
                     </button>
-                    <button className={styleR.cancel}
+                    <button className={styleModalDeleteMember.cancel}
                             onClick={() => props.setModalDeleteAthlete(false)}>отмена
                     </button>
                 </div>

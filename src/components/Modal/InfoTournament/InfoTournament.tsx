@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
-import styleM from "../Modal.module.css";
 import {InputAnimationForModal} from "../../../common/InputAnimation/InputAnimationForModal";
+import styleInfoTournament from './InfoTournament.module.css'
 
 type InfoTournamentType = {
     setTournament: (value: string) => void
@@ -45,7 +45,7 @@ export const InfoTournament = (props: InfoTournamentType) => {
 
     return (
         <div>
-            <span className={styleM.infoText}>Информация о турнире:</span>
+            <span className={styleInfoTournament.infoText}>Информация о турнире:</span>
             <InputAnimationForModal type={'text'}
                                     handleFocusEvent={trimmedTournament}
                                     placeholder={"Название"}

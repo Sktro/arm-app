@@ -1,0 +1,40 @@
+.selects {
+    display: flex;
+    padding-top: 9px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.addCategoryClose {
+    user-select: none;
+    border-radius: 5px;
+    text-align: center;
+    width: 328px;
+    padding: 3px 0 3px 0;
+    background-color: white;
+    color: #187eff;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px #187eff solid;
+    margin-bottom: 15px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.addCategoryClose:disabled {
+    border: 1px solid rgba(128, 128, 128, 0.56);
+    color: rgba(128, 128, 128, 0.56);
+    pointer-events: none;
+}
+
+.addCategoryClose:hover{
+    background-color: #187eff;
+    color: white;
+}
+
+.errorCategory{
+    display: block;
+    color: red;
+    font-size:14px;
+    text-align: center;
+}

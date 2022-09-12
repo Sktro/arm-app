@@ -1,0 +1,10 @@
+.centerContain {
+    display: flex;
+    justify-content: center;
+}
+
+.sectionWeightAndSelect {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

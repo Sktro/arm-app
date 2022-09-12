@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styleR from "../Registration.module.css";
+import styleListMembers from "./ListMembers.module.css";
 import {
     AthletesType,
     CategoryJudgeType,
@@ -9,11 +9,11 @@ import {
     RankType,
     StatusJudgeType
 } from "../../../App";
-import {ModalDeleteMember} from "./ModalDeleteMember";
-import {ListAthletes} from "./ListAthletes";
-import {ListJudges} from "./ListJudges";
-import {ListOfAthletesFromTheCategory} from "./ListOfAthletesFromTheCategory";
-import {FilterMembers} from "./FilterMembers";
+import {ModalDeleteMember} from "./ModalDeleteMember/ModalDeleteMember";
+import {ListAthletes} from "./ListAthletesAndJudges/ListAthletes";
+import {ListJudges} from "./ListAthletesAndJudges/ListJudges";
+import {ListOfAthletesFromTheCategory} from "./ListAthletesAndJudges/ListOfAthletesFromCategory/ListOfAthletesFromTheCategory";
+import {FilterMembers} from "./FilterMembers/FilterMembers";
 
 type AthletesListPropsType = {
     athletes: AthletesType[]
@@ -65,16 +65,16 @@ export const ListMembers = (props: AthletesListPropsType) => {
     }
 
     return (
-        <div className={styleR.registeredAthletes}>
+        <div className={styleListMembers.registeredAthletes}>
             {props.categoryVisibility &&
-                <button className={styleR.backToMembers} onClick={() => {
+                <button className={styleListMembers.backToMembers} onClick={() => {
                     props.setCategoryVisibility(false)
                     props.setModalDeleteAthlete(false)
                     props.setFilter('all')
                     props.setActiveCategory({value: '', label: '', gender: ''})
                     setActive('4')
                 }}>Вернуться к общему списку участников</button>}
-            {!props.categoryVisibility && <span className={styleR.registrationDescription}>
+            {!props.categoryVisibility && <span className={styleListMembers.description}>
                     Список зарегестрированных спортсменов({props.athletes.length}), судей({props.judge.length}):
                 </span>}
 
@@ -90,7 +90,7 @@ export const ListMembers = (props: AthletesListPropsType) => {
                                    setVisibilityJudges={setVisibilityJudges}
                                    athletes={props.athletes}/>}
 
-                    {!props.categoryVisibility && <div className={styleR.membersContain}>
+                    {!props.categoryVisibility && <div className={styleListMembers.membersContain}>
                         <ListAthletes setModalDeleteAthlete={props.setModalDeleteAthlete}
                                       setGender={setGender}
                                       ranks={props.ranks}

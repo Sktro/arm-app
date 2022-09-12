@@ -1,5 +1,5 @@
 import React from "react";
-import styleR from "../Registration.module.css";
+import styleCategoryList from "./CategoryList.module.css";
 import {AthletesType, CategoryType, FilterType} from "../../../App";
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
 
@@ -17,8 +17,6 @@ type CategoriesListPropsType = {
 }
 
 export const CategoriesList = (props: CategoriesListPropsType) => {
-
-    //const [activeCategory, setActiveCategory] = useState<{value: string, gender: string}>({value: '', gender: ''})
 
     const findQty = (str: string) => {
         let count = 0
@@ -87,18 +85,18 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
     const femaleCategory = <div>
         {sortArrayGender(props.arrCategory, 'жен')
             .map(c => <div key={c.id}><span
-                className={styleR.listFemale}>- {c.categoryAthlete}({c.age}):</span><span>{props.sortCategory(c)
+                className={styleCategoryList.listFemale}>- {c.categoryAthlete}({c.age}):</span><span>{props.sortCategory(c)
                 .map((w, index) => <button key={index} className={`${c.categoryAthlete}(${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
-                    ? `${styleR.weightListF} ${styleR.weightListFActive}` : styleR.weightListF}
+                    ? `${styleCategoryList.weightListF} ${styleCategoryList.weightListFActive}` : styleCategoryList.weightListF}
                                            onClick={() => activateButtonFemale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}</span>
             </div>)}</div>
 
     const maleCategory = <div>{sortArrayGender(props.arrCategory, 'муж')
         .map(c => <div key={c.id}><span
-            className={styleR.listMale}>- {c.categoryAthlete}({c.age}):</span>
+            className={styleCategoryList.listMale}>- {c.categoryAthlete}({c.age}):</span>
             <span>{props.sortCategory(c)
                 .map((w, index) => <button  key={index} className={`${c.categoryAthlete}(${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
-                    ?`${styleR.weightListM} ${styleR.weightListMActive}` :styleR.weightListM}
+                    ?`${styleCategoryList.weightListM} ${styleCategoryList.weightListMActive}` :styleCategoryList.weightListM}
                                            onClick={() => activateButtonMale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}
                                 </span>
         </div>)}</div>
@@ -108,17 +106,17 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
     const separator = findQty('муж') > 0 && findQty('жен') > 0 ? ';' : ''
 
     return (
-        <div className={styleR.weightsCategories}>
-                <span className={styleR.registrationDescription}>
+        <div className={styleCategoryList.weightsCategories}>
+                <span className={styleCategoryList.registrationDescription}>
                     Список весовых категорий({numberOfMaleCategories}{separator}{numberOfFemaleCategories}):
-                    {findQty('муж') ? <div className={styleR.genderList}>Мужчины:
+                    {findQty('муж') ? <div className={styleCategoryList.genderList}>Мужчины:
                         {maleCategory}
                     </div> : ''}
-                    {findQty('жен') ? <div className={styleR.genderList}>Женщины:
+                    {findQty('жен') ? <div className={styleCategoryList.genderList}>Женщины:
                         {femaleCategory}
                     </div> : ''}
                 </span>
-            <span className={styleR.registrationDescription}>Список команд({sortRepeatedTeam.length}): {sortRepeatedTeam
+            <span className={styleCategoryList.registrationDescription}>Список команд({sortRepeatedTeam.length}): {sortRepeatedTeam
                 .map((t, index) => (index ? '; ' : '') + t)}
             </span>
         </div>

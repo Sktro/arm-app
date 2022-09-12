@@ -1,5 +1,5 @@
 import React from "react";
-import styleR from "../Registration.module.css";
+import styleStartAndDeleteTournament from "./StartAndDeleteTournament.module.css";
 
 type StartAndDeleteTournamentPropsType = {
     setModalDelete: (value: boolean) => void
@@ -7,9 +7,9 @@ type StartAndDeleteTournamentPropsType = {
 
 export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsType) => {
     return (
-        <div className={styleR.startAndDeleteTournamentButton}>
-            <button className={styleR.startTournamentButton}>СТАРТ СОРЕВНОВАНИЯ</button>
-            <button className={styleR.deleteTournamentButton}
+        <div className={styleStartAndDeleteTournament.startAndDeleteTournamentButton}>
+            <button className={styleStartAndDeleteTournament.startTournamentButton}>СТАРТ СОРЕВНОВАНИЯ</button>
+            <button className={styleStartAndDeleteTournament.deleteTournamentButton}
                     onClick={()=>props.setModalDelete(true)}>УДАЛИТЬ ТУРНИР</button>
         </div>
     )

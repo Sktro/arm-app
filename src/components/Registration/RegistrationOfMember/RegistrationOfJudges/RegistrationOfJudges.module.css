@@ -1,5 +1,17 @@
-.containCategoryAndGender {
+.judgeAndRegionContain {
     display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.regionAndCategoryContain {
+    display: flex;
+    justify-content: space-between;
+    width: 225px;
+}
+
+.regionContain {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }

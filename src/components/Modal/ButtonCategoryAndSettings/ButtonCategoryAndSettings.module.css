@@ -1,0 +1,32 @@
+.modalButtonContain {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3px;
+}
+
+.modalButtonOn {
+    border: solid 2px #079643;
+    padding: 0 6px 1px 6px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #00a92f;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+}
+
+.modalButton {
+    border: solid 2px rgba(58, 58, 58, 0.13);
+    padding: 0 6px 1px 6px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: rgba(128, 128, 128, 0.59);
+    color: white;
+    user-select: none;
+    cursor: pointer;
+}
+
+.modalButton:hover{
+    border: solid 2px rgba(58, 58, 58, 0.18);
+    background-color: rgba(128, 128, 128, 0.71);
+}

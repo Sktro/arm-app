@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import styleMS from './SettingsTournament.module.css'
+import styleSettingsTournament from './SettingsTournament.module.css'
 import {SettingsType, TableForArmType} from "../../../App";
 import {SelectNumberTable} from "../../../common/Select/SelectNumberTable";
 
@@ -77,37 +77,37 @@ export const SettingsTournament = (props: SettingsTournamentType) => {
     }
 
     return (
-        <div className={styleMS.containSettings}>
-            <div className={styleMS.settingsOn}>Кол-во столов:<SelectNumberTable options={props.tableForArm}
+        <div className={styleSettingsTournament.containSettings}>
+            <div className={styleSettingsTournament.settingsOn}>Кол-во столов:<SelectNumberTable options={props.tableForArm}
                                                                                placeholder={''}
                                                                                value={table}
                                                                                onChangeOption={onChangeTable}/></div>
-            <div className={place ? styleMS.settingsOn : styleMS.settingsOff}>Поединок за 5-6 место: <input type={"checkbox"}
+            <div className={place ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Поединок за 5-6 место: <input type={"checkbox"}
                                                                             checked={place}
                                                                             onChange={onChangePlace}/></div>
-            <div className={wrestlingSeparately ? styleMS.settingsOn : styleMS.settingsOff}>Двоеборье не проводится <input type={"checkbox"}
+            <div className={wrestlingSeparately ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Двоеборье не проводится <input type={"checkbox"}
                                                                              onChange={onChangeWrestlingSeparately}
                                                                              checked={wrestlingSeparately}/></div>
-            {wrestlingSeparately && <div className={styleMS.settingsOn}>
-                <div className={leftHand ? styleMS.additionalSettingsOn : styleMS.additionalSettingsOff}>Левая рука: <input type="checkbox"
+            {wrestlingSeparately && <div className={styleSettingsTournament.settingsOn}>
+                <div className={leftHand ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Левая рука: <input type="checkbox"
                                                                  onChange={onChangeLeftHand}
                                                                  checked={leftHand}/></div>
                 |
-                <div className={rightHand ? styleMS.additionalSettingsOn : styleMS.additionalSettingsOff}>Правая рука: <input type="checkbox"
+                <div className={rightHand ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Правая рука: <input type="checkbox"
                                                                   onChange={onChangeRightHand}
                                                                   checked={rightHand}/></div>
             </div>}
 
-            <div className={semifinalFinal ? styleMS.settingsOn : styleMS.settingsOff}>Проводятся отдельно(полуфиналы, финалы): <input type={"checkbox"}
+            <div className={semifinalFinal ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Проводятся отдельно(полуфиналы, финалы): <input type={"checkbox"}
                                                                                               checked={semifinalFinal}
                                                                                               onChange={onChangeSemifinalFinal}/>
             </div>
-            {semifinalFinal && <div className={styleMS.settingsOn}>
-                <div className={semifinal ? styleMS.additionalSettingsOn : styleMS.additionalSettingsOff}>Полуфиналы: <input type="checkbox"
+            {semifinalFinal && <div className={styleSettingsTournament.settingsOn}>
+                <div className={semifinal ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Полуфиналы: <input type="checkbox"
                                                                  onChange={onChangeSemifinal}
                                                                  checked={semifinal}/></div>
                 |
-                <div className={final ? styleMS.additionalSettingsOn : styleMS.additionalSettingsOff}>Финалы: <input type="checkbox"
+                <div className={final ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Финалы: <input type="checkbox"
                                                              onChange={onChangeFinal}
                                                              checked={final}/></div>
             </div>}

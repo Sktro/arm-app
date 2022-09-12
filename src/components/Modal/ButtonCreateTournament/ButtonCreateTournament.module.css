@@ -1,0 +1,24 @@
+.creatableTournamentButton {
+    align-self: center;
+    padding: 3px;
+    border: 1px #93c2ff solid;
+    font-weight: bold;
+    color: #93c2ff;
+    border-radius: 5px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.creatableTournamentButton:hover {
+    border: 1px #187eff solid;
+    color: #187eff;
+    background-color: #eef3ff;
+}
+
+.creatableTournamentButtonActive {
+    border: 1px #187eff solid;
+    color: #187eff;
+    background-color: #eef3ff;
+}

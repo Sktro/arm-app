@@ -1,0 +1,96 @@
+.athletesM {
+    text-align: start;
+    width: 560px;
+    padding: 3px 10px;
+    background-color: white;
+    margin: 1px;
+    color: #187eff;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #187eff;
+    border-radius: 10px;
+}
+
+.athletesF {
+    color: rgba(227, 0, 106, 0.8);
+    border: 1px solid rgba(227, 0, 106, 0.8);
+}
+
+.fullName {
+    font-weight: bold;
+    width: 180px;
+    margin: 0 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.team {
+    width: 105px;
+    margin: 0 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.weight {
+    min-width: 70px;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+.rank {
+    margin-left: 19px;
+    min-width: 68px;
+    cursor: pointer;
+}
+
+.removeButton {
+    padding: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 70px;
+    height: 25px;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+    background-color: white;
+    cursor: pointer;
+}
+
+.removeButton:hover {
+    background-color: red;
+    color: white;
+}
+
+.judges {
+    min-width: 560px;
+    padding: 3px 10px;
+    background-color: white;
+    margin: 1px;
+    color: #3f3f3f;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #3f3f3f;
+    border-radius: 10px;
+}
+
+.statusJudge {
+    width: 105px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.regionJudge {
+    width: 87px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.categoryJudge {
+    min-width: 68px;
+    cursor: pointer;
+}

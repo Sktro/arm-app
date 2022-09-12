@@ -1,8 +1,8 @@
 import React from "react";
-import {CategoryJudgeType, JudgeType, StatusJudgeType} from "../../../App";
-import styleR from "../Registration.module.css";
-import {EditableSpanText} from "../../../common/EditableCopmponents/EditableSpanText";
-import {EditableSpanSelect} from "../../../common/EditableCopmponents/EditableSpanSelect";
+import {CategoryJudgeType, JudgeType, StatusJudgeType} from "../../../../App";
+import styleListAthletesAndJudges from "./ListAthletesAndJudges.module.css";
+import {EditableSpanText} from "../../../../common/EditableCopmponents/EditableSpanText";
+import {EditableSpanSelect} from "../../../../common/EditableCopmponents/EditableSpanSelect";
 
 type ListJudgesType = {
     judge: JudgeType[]
@@ -44,21 +44,21 @@ export const ListJudges = (props: ListJudgesType) => {
             }
 
             return (
-                <div key={jud.id} className={styleR.judges}>
-                    <div className={styleR.fullName}><EditableSpanText value={jud.fullName}
+                <div key={jud.id} className={styleListAthletesAndJudges.judges}>
+                    <div className={styleListAthletesAndJudges.fullName}><EditableSpanText value={jud.fullName}
                                                                        id={'fullName'}
                                                                        changeValue={changeFullNameJudge}/></div>
-                    <div className={styleR.statusJudge}><EditableSpanSelect value={jud.status}
+                    <div className={styleListAthletesAndJudges.statusJudge}><EditableSpanSelect value={jud.status}
                                                                             changeOptions={changeStatusJudge}
                                                                             options={props.statusJudge}/></div>
-                    <div className={styleR.regionJudge}><EditableSpanText value={jud.region}
+                    <div className={styleListAthletesAndJudges.regionJudge}><EditableSpanText value={jud.region}
                                                                           id={'region'}
                                                                           changeValue={changeRegionJudge}/></div>
-                    <div className={styleR.categoryJudge}><EditableSpanSelect options={props.categoryJudge}
+                    <div className={styleListAthletesAndJudges.categoryJudge}><EditableSpanSelect options={props.categoryJudge}
                                                                               value={jud.category}
                                                                               changeOptions={changeCategoryJudge}/>
                     </div>
-                    <button className={styleR.removeButton} onClick={() => removeJudge(jud.id, jud.fullName)}>Удалить
+                    <button className={styleListAthletesAndJudges.removeButton} onClick={() => removeJudge(jud.id, jud.fullName)}>Удалить
                     </button>
                 </div>
             )

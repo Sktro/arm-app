@@ -1,9 +1,9 @@
 import React from "react";
-import {AthletesType, RankType} from "../../../App";
-import styleR from "../Registration.module.css";
-import {EditableSpanText} from "../../../common/EditableCopmponents/EditableSpanText";
-import {EditableSpanNumber} from "../../../common/EditableCopmponents/EditableSpanNumber";
-import {EditableSpanSelect} from "../../../common/EditableCopmponents/EditableSpanSelect";
+import {AthletesType, RankType} from "../../../../App";
+import styleListAthletesAndJudges from "./ListAthletesAndJudges.module.css";
+import {EditableSpanText} from "../../../../common/EditableCopmponents/EditableSpanText";
+import {EditableSpanNumber} from "../../../../common/EditableCopmponents/EditableSpanNumber";
+import {EditableSpanSelect} from "../../../../common/EditableCopmponents/EditableSpanSelect";
 
 type ListAthletesType = {
     filteredAthletes: AthletesType[]
@@ -47,20 +47,20 @@ export const ListAthletes = (props: ListAthletesType) => {
 
             return (
                 <div key={atl.id} className={atl.gender === 'жен'
-                    ? `${styleR.athletesM} ${styleR.athletesF}` : styleR.athletesM}>
-                    <div className={styleR.fullName}><EditableSpanText value={atl.fullName}
-                                                                       id={'fullName'}
-                                                                       changeValue={changeFullNameAthlete}/>
+                    ? `${styleListAthletesAndJudges.athletesM} ${styleListAthletesAndJudges.athletesF}` : styleListAthletesAndJudges.athletesM}>
+                    <div className={styleListAthletesAndJudges.fullName}><EditableSpanText value={atl.fullName}
+                                                                                           id={'fullName'}
+                                                                                           changeValue={changeFullNameAthlete}/>
                     </div>
-                    <div className={styleR.team}><EditableSpanText value={atl.team}
-                                                                   id={'team'}
-                                                                   changeValue={changeTeamAthlete}/></div>
-                    <div className={styleR.weight}><EditableSpanNumber value={atl.weight}
-                                                                       changeValue={changeWeightAthlete}/></div>
-                    <div className={styleR.rank}><EditableSpanSelect options={props.ranks}
-                                                                     value={atl.rank}
-                                                                     changeOptions={changeRankAthlete}/></div>
-                    <button className={styleR.removeButton}
+                    <div className={styleListAthletesAndJudges.team}><EditableSpanText value={atl.team}
+                                                                                       id={'team'}
+                                                                                       changeValue={changeTeamAthlete}/></div>
+                    <div className={styleListAthletesAndJudges.weight}><EditableSpanNumber value={atl.weight}
+                                                                                           changeValue={changeWeightAthlete}/></div>
+                    <div className={styleListAthletesAndJudges.rank}><EditableSpanSelect options={props.ranks}
+                                                                                         value={atl.rank}
+                                                                                         changeOptions={changeRankAthlete}/></div>
+                    <button className={styleListAthletesAndJudges.removeButton}
                             onClick={()=> removeAthlete(atl.id, atl.gender, atl.fullName)}>Удалить
                     </button>
                 </div>
