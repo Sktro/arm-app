@@ -6,6 +6,7 @@ import {Option} from "./common/WeightsSelect/WeightsSelect";
 import {MultiValue} from "react-select";
 import {Route, Routes} from "react-router-dom";
 import {NotFoundPage} from "./components/NotFoundPage/NotFoundPage";
+import {Leaderboard} from "./components/ Leaderboard/Leaderboard";
 
 export type TableForArmType = '1' | '2' | '3' | '4' | '5' | '6'
 export type RankType =
@@ -348,6 +349,13 @@ function App() {
                                                                           setMainSecretary={setMainSecretary}
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
+                <Route path={'/Leaderboard'} element={<Leaderboard athletes={athletes}
+                                                                   sortCategory={sortCategory}
+                                                                   arrCategory={arrCategory}
+                                                                   startTournamentDate={startTournamentDate}
+                                                                   endTournamentDate={endTournamentDate}
+                                                                   tournament={tournament}
+                                                                   location={location}/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Routes>
         </>

@@ -1,0 +1,179 @@
+.contain {
+    display: flex;
+}
+
+.controlPanelContain {
+    background-color: #9344e5;
+    color: white;
+    padding: 10px;
+    min-width: 260px;
+    max-width: 260px;
+    font-weight: bold;
+    border-bottom-right-radius: 10px;
+}
+
+.nameControlPanel {
+    text-align: center;
+}
+
+.leaderboardContain {
+    display: flex;
+
+}
+
+.firstRoundContain {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    min-height: 721px;
+}
+
+.RoundName {
+    text-align: center;
+    font-weight: bold;
+}
+
+.firstRound {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 721px;
+    text-align: center;
+}
+
+.groupAAndBContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.groupAContainer {
+    display: flex;
+}
+
+.groupBContainer {
+    display: flex;
+}
+
+.groupContain {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    min-height: 371px;
+}
+
+/*secondRound ------------------------------------------------*/
+/*group A ---------------------------------------------------*/
+.secondRoundGroupA {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 350px;
+    text-align: center;
+}
+
+/*group B ---------------------------------------------------*/
+.secondRoundGroupB {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 350px;
+    text-align: center;
+}
+
+/*thirdRound ------------------------------------------------*/
+/*group A ---------------------------------------------------*/
+.thirdRoundGroupA {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 280px;
+    text-align: center;
+}
+
+/*group B ---------------------------------------------------*/
+.thirdRoundGroupB {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 350px;
+    text-align: center;
+}
+
+/*fourthRound ------------------------------------------------*/
+/*group A ---------------------------------------------------*/
+.fourthRoundGroupA {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 220px;
+    text-align: center;
+}
+
+/*group B ---------------------------------------------------*/
+.fourthRoundGroupB {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 320px;
+    text-align: center;
+}
+
+/*fifthRound ------------------------------------------------*/
+/*group A ---------------------------------------------------*/
+.fifthRoundGroupA {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 120px;
+    text-align: center;
+}
+
+/*group B ---------------------------------------------------*/
+.fifthRoundGroupB {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 280px;
+    text-align: center;
+}
+
+/*sixthRound ------------------------------------------------*/
+/*group B ---------------------------------------------------*/
+.sixthRoundGroupB {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 220px;
+    text-align: center;
+}
+
+/*seventhRound ------------------------------------------------*/
+/*group B ---------------------------------------------------*/
+.seventhRoundGroupB {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 120px;
+    text-align: center;
+}
+
+/*semiFinalRound ------------------------------------------------*/
+.semiFinalRound {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 60px;
+    text-align: center;
+}
+
+/*finalRound ------------------------------------------------*/
+.finalRound {
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 60px;
+    text-align: center;
+}
