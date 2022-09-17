@@ -350,6 +350,7 @@ function App() {
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
                 <Route path={'/Leaderboard'} element={<Leaderboard athletes={athletes}
+                                                                   settings={settings}
                                                                    sortCategory={sortCategory}
                                                                    arrCategory={arrCategory}
                                                                    startTournamentDate={startTournamentDate}

@@ -131,6 +131,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                     sortCategory={props.sortCategory}/>
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
+                <button onClick={()=>console.log('')}>LOG</button>
             </div>}
             <ModalDeleteTournament setJudge={props.setJudge}
                                    SetSettings={props.SetSettings}

@@ -49,6 +49,7 @@
 
 .groupAContainer {
     display: flex;
+    position: relative;
 }
 
 .groupBContainer {
@@ -62,6 +63,17 @@
     justify-content: center;
     width: 150px;
     min-height: 371px;
+}
+.groupContainPlace5_6{
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    min-height: 371px;
+    position: absolute;
+    left: 620px;
+    top: 130px
 }
 
 /*secondRound ------------------------------------------------*/
@@ -157,6 +169,15 @@
     border-radius: 10px;
     width: 150px;
     min-height: 120px;
+    text-align: center;
+}
+
+/*place5_6Round ------------------------------------------------*/
+.place5_6{
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 60px;
     text-align: center;
 }
 
