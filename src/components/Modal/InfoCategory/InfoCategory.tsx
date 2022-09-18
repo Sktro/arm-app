@@ -49,7 +49,7 @@ export const InfoCategory = (props: InfoCategoryType) => {
         props.setErrorCategory(false)
     }
 
-    const coincidence = (genderA: GenderType, ageA:AgeType, categoryA: CategoryAthleteType) => {
+    const coincidence = (genderA: GenderType, ageA: AgeType, categoryA: CategoryAthleteType) => {
         let newString = genderA + ageA + categoryA
         for (let i = 0; i < props.arrCategory.length; i++) {
             if (newString === (props.arrCategory[i].gender + props.arrCategory[i].age + props.arrCategory[i].categoryAthlete)) {
@@ -58,25 +58,25 @@ export const InfoCategory = (props: InfoCategoryType) => {
         }
     }
 
-        const foundWeightPlus = props.weightNewCategory.find(v=> v.value.includes('+'))
+    const foundWeightPlus = props.weightNewCategory.find(v => v.value.includes('+'))
 
-        const addCategories = () => {
-            if (props.weightNewCategory.length > 0 && !coincidence(gender, age, categoryAthletes) && foundWeightPlus) {
-                props.addNewCategoryAthletes(gender, age, categoryAthletes, props.weightNewCategory)
-                setGender(props.gender[0])
-                setAge(props.ageAthletes[0])
-                setCategoryAthletes(props.categoryAthlete[0])
-                props.setWeightNewCategory([])
-                setErrorWeight('')
-            } else if (!foundWeightPlus) {
-                setErrorWeight('Не введена максимальная категория')
-                props.setErrorCategory(true)
-                props.setError(false)
-            } else {
-                setErrorWeight('Данная категория уже существует')
-                props.setErrorCategory(true)
-                props.setError(false)
-            }
+    const addCategories = () => {
+        if (props.weightNewCategory.length > 0 && !coincidence(gender, age, categoryAthletes) && foundWeightPlus) {
+            props.addNewCategoryAthletes(gender, age, categoryAthletes, props.weightNewCategory)
+            setGender(props.gender[0])
+            setAge(props.ageAthletes[0])
+            setCategoryAthletes(props.categoryAthlete[0])
+            props.setWeightNewCategory([])
+            setErrorWeight('')
+        } else if (!foundWeightPlus) {
+            setErrorWeight('Не введена максимальная категория')
+            props.setErrorCategory(true)
+            props.setError(false)
+        } else {
+            setErrorWeight('Данная категория уже существует')
+            props.setErrorCategory(true)
+            props.setError(false)
+        }
     }
 
     return (
@@ -100,9 +100,9 @@ export const InfoCategory = (props: InfoCategoryType) => {
                                     onChange={onChangeNewCategory}/></div>
 
             </div>
-            <button className={styleInfoCategory.addCategoryClose} disabled={props.weightNewCategory.length === 0}
-                 onClick={addCategories}>
-                добавить категории
+            <button className={styleInfoCategory.addCategoryClose}
+                    disabled={props.weightNewCategory.length === 0}
+                    onClick={addCategories}>добавить категории
             </button>
 
             {props.arrCategory.length > 0 && <ListOfCategories listOfCategories={props.arrCategory}

@@ -6,7 +6,7 @@ import {Option} from "./common/WeightsSelect/WeightsSelect";
 import {MultiValue} from "react-select";
 import {Route, Routes} from "react-router-dom";
 import {NotFoundPage} from "./components/NotFoundPage/NotFoundPage";
-import {Leaderboard} from "./components/ Leaderboard/Leaderboard";
+import {HoldingATournament} from "./components/HoldingATournament/HoldingATournament";
 
 export type TableForArmType = '1' | '2' | '3' | '4' | '5' | '6'
 export type RankType =
@@ -141,6 +141,8 @@ function App() {
     const [filter, setFilter] = useState<FilterType>('all')
 
     const [activeCategory, setActiveCategory] = useState<{ value: string, label: string, gender: string }>()
+
+    const [newTournament, setNewTournament] = useState<{athleteID: string, category: string, indexNumber: number}>()
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -349,7 +351,7 @@ function App() {
                                                                           setMainSecretary={setMainSecretary}
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
-                <Route path={'/Leaderboard'} element={<Leaderboard athletes={athletes}
+                <Route path={'/holdingATournament'} element={<HoldingATournament athletes={athletes}
                                                                    settings={settings}
                                                                    sortCategory={sortCategory}
                                                                    arrCategory={arrCategory}

@@ -1,21 +1,3 @@
-.contain {
-    display: flex;
-}
-
-.controlPanelContain {
-    background-color: #9344e5;
-    color: white;
-    padding: 10px;
-    min-width: 260px;
-    max-width: 260px;
-    font-weight: bold;
-    border-bottom-right-radius: 10px;
-}
-
-.nameControlPanel {
-    text-align: center;
-}
-
 .leaderboardContain {
     display: flex;
 

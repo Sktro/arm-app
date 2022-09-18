@@ -127,6 +127,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
 
     const optionsMale = newArrayCategoryMale(arrWeightMale).map(options => ({value: options, label: options}))
     const optionsFemale = newArrayCategoryFemale(arrWeightFemale).map(options => ({value: options, label: options}))
+    //const numberOfCategories = optionsMale.length + optionsFemale.length
 
 
     return (
