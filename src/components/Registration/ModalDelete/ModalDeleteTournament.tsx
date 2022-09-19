@@ -1,7 +1,7 @@
 import React from "react";
 import styleMD from './ModalDeleteTournament.module.css'
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
-import {AthletesType, CategoryType, JudgeType, SettingsType} from "../../../App";
+import {AthletesType, CategoryType, CreatedCategoryType, JudgeType, SettingsType} from "../../../App";
 
 type ModalDeleteTournamentPropsType = {
     setArrCategory:(value: CategoryType[]) => void
@@ -15,6 +15,7 @@ type ModalDeleteTournamentPropsType = {
     setAthletes: (value: AthletesType[])=> void
     SetSettings: (value: SettingsType) => void
     setJudge: (value: JudgeType[]) => void
+    createdCategories: CreatedCategoryType[]
 }
 
 
@@ -25,6 +26,7 @@ export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => 
     const deleteTournament = () => {
         props.SetSettings({tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, wrestlingSeparately: false})
         props.setArrCategory([])
+        props.createdCategories.length = 0
         props.setJudge([])
         props.setAthletes([])
         props.setTournament('')

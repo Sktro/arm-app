@@ -98,6 +98,12 @@ export type AvailableCategoriesType = {
     categoryMember: MultiValue<{ value: string, label: string }>
 }
 
+export type CreatedCategoryType = {
+    id: string
+    title: string
+    gender: string
+}
+export const createdCategories: CreatedCategoryType[] = []
 export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
 export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 кат.', '2 кат.', '1 кат.', 'ВК', 'МК']
 export const TableForArm: TableForArmType[] = ['1', '2', '3', '4', '5', '6']
@@ -139,10 +145,10 @@ function App() {
     // filter
     const [filterAthletes, setFilterAthletes] = useState<Array<AthletesType>>([])
     const [filter, setFilter] = useState<FilterType>('all')
-
+    //
     const [activeCategory, setActiveCategory] = useState<{ value: string, label: string, gender: string }>()
 
-    const [newTournament, setNewTournament] = useState<{athleteID: string, category: string, indexNumber: number}>()
+    //
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -307,6 +313,7 @@ function App() {
                                                        setStartTournamentDate={setStartTournamentDate}
                                                        setEndTournamentDate={setEndTournamentDate}/>}/>
                 <Route path="/registrationMembers" element={<Registration athletes={athletes}
+                                                                          createdCategories={createdCategories}
                                                                           location={location}
                                                                           endTournamentDate={endTournamentDate}
                                                                           startTournamentDate={startTournamentDate}
@@ -351,14 +358,16 @@ function App() {
                                                                           setMainSecretary={setMainSecretary}
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
-                <Route path={'/holdingATournament'} element={<HoldingATournament athletes={athletes}
-                                                                   settings={settings}
-                                                                   sortCategory={sortCategory}
-                                                                   arrCategory={arrCategory}
-                                                                   startTournamentDate={startTournamentDate}
-                                                                   endTournamentDate={endTournamentDate}
-                                                                   tournament={tournament}
-                                                                   location={location}/>}/>
+                <Route path={'holdingATournament/*'} element={<HoldingATournament athletes={athletes}
+                                                                                 createdCategories={createdCategories}
+                                                                                 settings={settings}
+                                                                                 sortCategory={sortCategory}
+                                                                                 arrCategory={arrCategory}
+                                                                                 startTournamentDate={startTournamentDate}
+                                                                                 endTournamentDate={endTournamentDate}
+                                                                                 tournament={tournament}
+                                                                                 location={location}/>}/>
+
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Routes>
         </>

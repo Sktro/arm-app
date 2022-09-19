@@ -11,3 +11,18 @@
 .nameControlPanel {
     text-align: center;
 }
+
+.buttonCategory {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+.buttonCategoryOn {
+    color: darkorange;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.buttonCategory:hover {
+    color: darkorange;
+}

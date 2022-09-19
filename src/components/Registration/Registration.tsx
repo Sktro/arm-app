@@ -3,7 +3,7 @@ import styleRegistration from './Registration.module.css'
 import {
     AthletesType,
     CategoryJudgeType,
-    CategoryType, FilterType,
+    CategoryType, CreatedCategoryType, FilterType,
     GenderType, JudgeType,
     RankType,
     SettingsType,
@@ -65,6 +65,7 @@ type RegistrationPropsType = {
     endTournamentDate: string
     startTournamentDate: string
     location:string
+    createdCategories: CreatedCategoryType[]
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -131,9 +132,10 @@ export const Registration = (props: RegistrationPropsType) => {
                                     sortCategory={props.sortCategory}/>
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}/>
-                <button onClick={()=>console.log('')}>LOG</button>
+                <button onClick={()=>console.log(props.createdCategories)}>LOG</button>
             </div>}
             <ModalDeleteTournament setJudge={props.setJudge}
+                                   createdCategories={props.createdCategories}
                                    SetSettings={props.SetSettings}
                                    setArrCategory={props.setArrCategory}
                                    setAthletes={props.setAthletes}

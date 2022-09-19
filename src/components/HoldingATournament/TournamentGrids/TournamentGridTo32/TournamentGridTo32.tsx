@@ -1,16 +1,22 @@
 import React from "react";
 import styleTournamentGridTo32 from "./TournamentGridTo32.module.css";
-import {SettingsType} from "../../../../App";
+import {CreatedCategoryType, SettingsType} from "../../../../App";
+import {useParams} from "react-router-dom";
 
 type TournamentGridTo32Type = {
     settings: SettingsType
+    createdCategories: CreatedCategoryType[]
 }
 
 
 export const TournamentGridTo32 = (props: TournamentGridTo32Type) => {
-    return (
-        <>
-            <div className={styleTournamentGridTo32.leaderboardContain}>
+    const {id} = useParams<{id: string}>()
+
+    const tournamentGridTo32JSX = props.createdCategories
+        .filter(t => `:${t.id}` === id)
+        .map(t => {
+        return (
+            <div key={t.id} className={styleTournamentGridTo32.leaderboardContain}>
                 <div className={styleTournamentGridTo32.firstRoundContain}>
                     <div className={styleTournamentGridTo32.RoundName}>1-й тур</div>
                     <div className={styleTournamentGridTo32.firstRound}>
@@ -239,6 +245,12 @@ export const TournamentGridTo32 = (props: TournamentGridTo32Type) => {
                     </div>
                 </div>
             </div>
+        )
+    })
+
+    return (
+        <>
+            {tournamentGridTo32JSX}
         </>
     )
 }

@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import styleHoldingATournament from './HoldingATournament.module.css'
-import {AthletesType, CategoryType, SettingsType} from "../../App";
+import {AthletesType, CategoryType, CreatedCategoryType, SettingsType} from "../../App";
 import {Header} from "../Header/Header";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
 import {TournamentGridTo32} from "./TournamentGrids/TournamentGridTo32/TournamentGridTo32";
 import {ControlPanel} from "./ControlPanel/ControlPanel";
+import {Route, Routes} from "react-router-dom";
 
 type LeaderboardType = {
     athletes: AthletesType[]
@@ -15,6 +16,7 @@ type LeaderboardType = {
     arrCategory: CategoryType[]
     sortCategory: (value: CategoryType) => Option[]
     settings: SettingsType
+    createdCategories: CreatedCategoryType[]
 }
 
 
@@ -27,9 +29,13 @@ export const HoldingATournament = (props: LeaderboardType) => {
                     location={props.location}/>
             <div className={styleHoldingATournament.contain}>
                 <ControlPanel athletes={props.athletes}
+                              createdCategories={props.createdCategories}
                               arrCategory={props.arrCategory}
                               sortCategory={props.sortCategory}/>
-                <TournamentGridTo32 settings={props.settings}/>
+                <Routes>
+                    <Route path={`table/:id`} element={<TournamentGridTo32 settings={props.settings}
+                                                                      createdCategories={props.createdCategories}/>}/>
+                </Routes>
             </div>
         </>
 
