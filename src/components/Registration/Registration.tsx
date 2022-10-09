@@ -4,7 +4,7 @@ import {
     AthletesType,
     CategoryJudgeType,
     CategoryType, CreatedCategoryType, FilterType,
-    GenderType, JudgeType,
+    GenderType, GSType, JudgeType,
     RankType,
     SettingsType,
     StatusJudgeType
@@ -66,6 +66,8 @@ type RegistrationPropsType = {
     startTournamentDate: string
     location:string
     createdCategories: CreatedCategoryType[]
+    setGS: (value: GSType[]) => void
+    GS: GSType[] | null
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -131,8 +133,12 @@ export const Registration = (props: RegistrationPropsType) => {
                                     athletes={props.athletes}
                                     sortCategory={props.sortCategory}/>
                 </div>
-                <StartAndDeleteTournament setModalDelete={setModalDelete}/>
-                <button onClick={()=>console.log(props.createdCategories)}>LOG</button>
+                <StartAndDeleteTournament setModalDelete={setModalDelete}
+                                          setGS={props.setGS}
+                                          GS={props.GS}
+                                          athletes={props.athletes}
+                                          arrCategory={props.arrCategory}/>
+                {/*<button onClick={()=>console.log(props.createdCategories)}>LOG</button>*/}
             </div>}
             <ModalDeleteTournament setJudge={props.setJudge}
                                    createdCategories={props.createdCategories}

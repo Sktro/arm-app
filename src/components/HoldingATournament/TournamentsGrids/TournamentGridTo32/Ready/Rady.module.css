@@ -1,0 +1,13 @@
+.readyContain {
+    display: flex;
+    margin: 12px 10px 0 10px;
+}
+
+.text {
+    font-weight: bold;
+}
+
+.readyAthlete {
+    font-weight: bold;
+    margin-left: 10px;
+}

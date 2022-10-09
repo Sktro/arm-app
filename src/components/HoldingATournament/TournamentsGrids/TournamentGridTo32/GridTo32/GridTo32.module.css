@@ -3,6 +3,10 @@
 
 }
 
+.but {
+    border: solid 1px red;
+}
+
 .firstRoundContain {
     margin-left: 5px;
     display: flex;
@@ -57,6 +61,7 @@
     left: 620px;
     top: 130px
 }
+
 
 /*secondRound ------------------------------------------------*/
 /*group A ---------------------------------------------------*/

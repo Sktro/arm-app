@@ -103,6 +103,19 @@ export type CreatedCategoryType = {
     title: string
     gender: string
 }
+
+export type GSType = {
+    id: string // id весовой категории
+    gs: (number | null)[] // массив генеральной последовательности
+    app: (number | null)[] // Указатель на возможность апелляции (1 - возможна; 0 - невозможна)
+    winCount: number[] // Колличество побед участника
+    N: number // номер поединка
+    LLos: number[] // Массив тех, кому последнему проиграл участник
+    lLosS: number[][] // Массив тех, кому последнему проиграл участник (Сохранение)
+    title: string // наименование весовой категории
+    gender: string // пол весовой категории
+}
+
 export const createdCategories: CreatedCategoryType[] = []
 export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
 export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 кат.', '2 кат.', '1 кат.', 'ВК', 'МК']
@@ -113,6 +126,7 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
+    const [GS, setGS] = useState<GSType[] | null>(null)
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
     const [location, setLocation] = useState<string>('')
@@ -291,6 +305,7 @@ function App() {
                 <Route path="/arm-app" element={<Modal setActiveCategory={setActiveCategory}
                                                        sortCategory={sortCategory}
                                                        settings={settings}
+                                                       setGS={setGS}
                                                        tableForArm={TableForArm}
                                                        arrCategory={arrCategory}
                                                        deleteCategories={deleteCategories}
@@ -313,6 +328,8 @@ function App() {
                                                        setStartTournamentDate={setStartTournamentDate}
                                                        setEndTournamentDate={setEndTournamentDate}/>}/>
                 <Route path="/registrationMembers" element={<Registration athletes={athletes}
+                                                                          setGS={setGS}
+                                                                          GS={GS}
                                                                           createdCategories={createdCategories}
                                                                           location={location}
                                                                           endTournamentDate={endTournamentDate}
@@ -359,14 +376,15 @@ function App() {
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
                 <Route path={'holdingATournament/*'} element={<HoldingATournament athletes={athletes}
-                                                                                 createdCategories={createdCategories}
-                                                                                 settings={settings}
-                                                                                 sortCategory={sortCategory}
-                                                                                 arrCategory={arrCategory}
-                                                                                 startTournamentDate={startTournamentDate}
-                                                                                 endTournamentDate={endTournamentDate}
-                                                                                 tournament={tournament}
-                                                                                 location={location}/>}/>
+                                                                                  GS={GS}
+                                                                                  setGS={setGS}
+                                                                                  settings={settings}
+                                                                                  sortCategory={sortCategory}
+                                                                                  arrCategory={arrCategory}
+                                                                                  startTournamentDate={startTournamentDate}
+                                                                                  endTournamentDate={endTournamentDate}
+                                                                                  tournament={tournament}
+                                                                                  location={location}/>}/>
 
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Routes>

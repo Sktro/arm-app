@@ -5,7 +5,7 @@ import {
     AgeType,
     CategoryAthleteType,
     CategoryType,
-    GenderType,
+    GenderType, GSType,
     SettingsType,
     TableForArmType
 } from "../../App";
@@ -42,6 +42,7 @@ type ModalPropsType = {
     ageAthletes: AgeType[]
     categoryAthlete: CategoryAthleteType[]
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void
+    setGS: (value: GSType[]) => void
 }
 
 export const Modal = (props: ModalPropsType) => {
@@ -53,6 +54,7 @@ export const Modal = (props: ModalPropsType) => {
     return (
         <div className={styleM.modal}>
             {createNewTournament && <CheckInfoWindow settings={props.settings}
+                                                     setGS={props.setGS}
                                                      location={props.location}
                                                      sortCategory={props.sortCategory}
                                                      startTournamentDate={props.startTournamentDate}

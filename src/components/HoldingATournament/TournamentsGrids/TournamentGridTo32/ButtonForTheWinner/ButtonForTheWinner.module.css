@@ -1,0 +1,72 @@
+.contain {
+    display: flex;
+}
+
+.text{
+    text-align: center;
+    margin: 12px 10px 0 10px;
+    font-weight: bold;
+}
+
+.buttonContain {
+    display: flex;
+}
+
+.buttonAthleteWinner button {
+    position: relative;
+    width: 180px;
+    margin: 10px 10px 0 0;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #6c757d;
+    background-color: #fff;
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    touch-action: manipulation;
+}
+.buttonAthleteWinner button:focus {
+    box-shadow: 0 0 0 3px rgb(108 117 125 / 50%);
+}
+.buttonAthleteWinner button:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.buttonAthleteWinner button:active {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.buttonAthleteWinner button:disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+.circleRed {
+    position: absolute;
+    background: red;
+    clip-path: circle(50%);
+    height: 8px;
+    width: 8px;
+    top: 2px;
+   left: 2px;
+}
+
+.circleBlue{
+    position: absolute;
+    background: blue;
+    clip-path: circle(50%);
+    height: 8px;
+    width: 8px;
+    top: 2px;
+    left: 2px;
+}

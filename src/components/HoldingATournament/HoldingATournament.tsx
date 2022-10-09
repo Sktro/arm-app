@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import styleHoldingATournament from './HoldingATournament.module.css'
-import {AthletesType, CategoryType, CreatedCategoryType, SettingsType} from "../../App";
+import {AthletesType, CategoryType, GSType, SettingsType} from "../../App";
 import {Header} from "../Header/Header";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
-import {TournamentGridTo32} from "./TournamentGrids/TournamentGridTo32/TournamentGridTo32";
+import {TournamentsGrids} from "./TournamentsGrids/TournamentGridTo32/TournamentGridTo32";
 import {ControlPanel} from "./ControlPanel/ControlPanel";
 import {Route, Routes} from "react-router-dom";
 
@@ -16,11 +16,13 @@ type LeaderboardType = {
     arrCategory: CategoryType[]
     sortCategory: (value: CategoryType) => Option[]
     settings: SettingsType
-    createdCategories: CreatedCategoryType[]
+    GS: GSType[] | null
+    setGS: (value: GSType[]) => void
 }
 
 
 export const HoldingATournament = (props: LeaderboardType) => {
+
     return (
         <>
             <Header tournament={props.tournament}
@@ -29,12 +31,12 @@ export const HoldingATournament = (props: LeaderboardType) => {
                     location={props.location}/>
             <div className={styleHoldingATournament.contain}>
                 <ControlPanel athletes={props.athletes}
-                              createdCategories={props.createdCategories}
-                              arrCategory={props.arrCategory}
-                              sortCategory={props.sortCategory}/>
+                              GS={props.GS}/>
                 <Routes>
-                    <Route path={`table/:id`} element={<TournamentGridTo32 settings={props.settings}
-                                                                      createdCategories={props.createdCategories}/>}/>
+                    <Route path={`table/:id`} element={<TournamentsGrids settings={props.settings}
+                                                                           GS={props.GS}
+                                                                           setGS={props.setGS}
+                                                                           athletes={props.athletes}/>}/>
                 </Routes>
             </div>
         </>
