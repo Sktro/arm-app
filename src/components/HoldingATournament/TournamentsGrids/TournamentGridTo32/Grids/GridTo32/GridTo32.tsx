@@ -1,17 +1,21 @@
 import React from "react";
 import styleGridTo32 from "./GridTo32.module.css";
-import {visibility32} from "../../../../../twoDimensionalArray/visibility32";
-import {SettingsType} from "../../../../../App";
+import {visibility32} from "../../../../../../twoDimensionalArray/visibility32";
+import {biathlonType, GSType, SettingsType} from "../../../../../../App";
 
 type GridTo32Type = {
     GSAthletes: (number | null)[]
     count: number
     arrAthletes: { idAthletes: string, athlete: string }[]
     settings: SettingsType
+    ourObj: GSType | null | undefined
+    countAthletes: number
+    GS: biathlonType[] | null
+    id: string | undefined
+    setGS: (value: biathlonType[]) => void
 }
 
 export const GridTo32 = (props: GridTo32Type) => {
-
     const athlete = (num: number) => {
         if (!props.GSAthletes) return
         let name = <div></div>
@@ -24,6 +28,9 @@ export const GridTo32 = (props: GridTo32Type) => {
         }
         return name
     }
+
+   const superFinal = props.countAthletes < 6 ? (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
+       : (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 3
 
     return (
         <>
@@ -149,13 +156,13 @@ export const GridTo32 = (props: GridTo32Type) => {
                                         {athlete(126)}
                                     </div>
                                 </div>
-                                <div className={styleGridTo32.secondFightContain}>
+                                {superFinal && <div className={styleGridTo32.secondFightContain}>
                                     <div className={styleGridTo32.RoundName}>2-й Поединок</div>
                                     <div className={styleGridTo32.finalRound}>
                                         {athlete(127)}
                                         {athlete(128)}
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </div>

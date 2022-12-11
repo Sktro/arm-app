@@ -1,5 +1,5 @@
 import React from "react";
-import {GSType} from "../../../../../App";
+import {GSType} from "../../../../../../App";
 import styleReady from './Rady.module.css'
 
 type ReadyType = {

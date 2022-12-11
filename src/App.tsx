@@ -104,8 +104,9 @@ export type CreatedCategoryType = {
     gender: string
 }
 
+
 export type GSType = {
-    id: string // id весовой категории
+    hand: string // рука, на которой проходит турнирная сетка
     gs: (number | null)[] // массив генеральной последовательности
     app: (number | null)[] // Указатель на возможность апелляции (1 - возможна; 0 - невозможна)
     winCount: number[] // Колличество побед участника
@@ -114,7 +115,16 @@ export type GSType = {
     lLosS: number[][] // Массив тех, кому последнему проиграл участник (Сохранение)
     title: string // наименование весовой категории
     gender: string // пол весовой категории
+    theWrestlingIsOver: boolean // окончание борьбы
+    superFinal: 0 | 1 | 2 // 0 - суперфинала не было, 1 - в супер финале победил первый, 2 - в суперфинале победил второй
 }
+
+export type biathlonType = {
+    id: string
+    leftHand: GSType
+    rightHand: GSType
+}
+
 
 export const createdCategories: CreatedCategoryType[] = []
 export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
@@ -126,7 +136,7 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
-    const [GS, setGS] = useState<GSType[] | null>(null)
+    const [GS, setGS] = useState<biathlonType[] | null>(null)
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
     const [location, setLocation] = useState<string>('')
@@ -298,6 +308,8 @@ function App() {
             findJudge.category = category
         }
     }
+
+    console.log(GS)
 
     return (
         <>

@@ -1,6 +1,6 @@
 import React from "react";
 import styleHoldingATournament from './HoldingATournament.module.css'
-import {AthletesType, CategoryType, GSType, SettingsType} from "../../App";
+import {AthletesType, biathlonType, CategoryType, SettingsType} from "../../App";
 import {Header} from "../Header/Header";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
 import {TournamentsGrids} from "./TournamentsGrids/TournamentGridTo32/TournamentGridTo32";
@@ -16,8 +16,8 @@ type LeaderboardType = {
     arrCategory: CategoryType[]
     sortCategory: (value: CategoryType) => Option[]
     settings: SettingsType
-    GS: GSType[] | null
-    setGS: (value: GSType[]) => void
+    GS: biathlonType[] | null
+    setGS: (value: biathlonType[]) => void
 }
 
 
@@ -33,7 +33,7 @@ export const HoldingATournament = (props: LeaderboardType) => {
                 <ControlPanel athletes={props.athletes}
                               GS={props.GS}/>
                 <Routes>
-                    <Route path={`table/:id`} element={<TournamentsGrids settings={props.settings}
+                    <Route path={`table/:id/*`} element={<TournamentsGrids settings={props.settings}
                                                                            GS={props.GS}
                                                                            setGS={props.setGS}
                                                                            athletes={props.athletes}/>}/>

@@ -71,3 +71,9 @@
     background-color: white;
     cursor: pointer;
 }
+
+.addMemberButton:hover {
+    border: 1px #004fb0 solid;
+    color: white;
+    background-color: #187eff;
+}

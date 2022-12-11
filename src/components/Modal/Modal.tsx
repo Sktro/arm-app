@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import styleM from "./Modal.module.css"
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
 import {
-    AgeType,
+    AgeType, biathlonType,
     CategoryAthleteType,
     CategoryType,
-    GenderType, GSType,
+    GenderType,
     SettingsType,
     TableForArmType
 } from "../../App";
@@ -42,7 +42,7 @@ type ModalPropsType = {
     ageAthletes: AgeType[]
     categoryAthlete: CategoryAthleteType[]
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void
-    setGS: (value: GSType[]) => void
+    setGS: (value: biathlonType[]) => void
 }
 
 export const Modal = (props: ModalPropsType) => {

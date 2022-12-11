@@ -12,6 +12,9 @@
     border: 1px #05a200 solid;
     font-weight: bold;
     color: #05a200;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
     border-radius: 5px;
     width: 200px;
     background-color: white;
@@ -20,6 +23,7 @@
 
 .deleteTournamentButton {
     padding: 3px;
+    font-size: 14px;
     margin-right: 15px;
     margin-bottom: 3px;
     border: 1px #af0000 solid;
@@ -29,4 +33,16 @@
     width: 200px;
     background-color: white;
     cursor: pointer;
+}
+
+.startTournamentButton:hover {
+    background-color: #05a200;
+    color: white;
+    border: 1px #047e00 solid;
+}
+
+.deleteTournamentButton:hover {
+    background-color: #af0000;
+    color: white;
+    border: 1px #650000 solid;
 }

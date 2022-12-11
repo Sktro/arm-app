@@ -1,6 +1,6 @@
 import React from "react";
 import styleCheckInfoWindow from "./CheckInfoWindow.module.css";
-import {CategoryType, GSType, SettingsType} from "../../../App";
+import {biathlonType, CategoryType, SettingsType} from "../../../App";
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
 import {Link} from "react-router-dom";
 import {createdCategories} from "../../../App";
@@ -15,7 +15,7 @@ type CheckInfoWindowType = {
     endTournamentDate: string
     arrCategory: CategoryType[]
     sortCategory: (value: CategoryType) => Option[]
-    setGS: (value: GSType[]) => void
+    setGS: (value: biathlonType[]) => void
 }
 
 export const CheckInfoWindow = (props: CheckInfoWindowType) => {
@@ -38,10 +38,18 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
         for (let i = 0; i < arrMale.length; i++) {
             for (let j = 0; j < arr[i].length; j++) {
                 if (Number(arr[i][j])) {
-                    createdCategories.push({id: v1(),title: arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`,gender: 'муж'})
+                    createdCategories.push({
+                        id: v1(),
+                        title: arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`,
+                        gender: 'муж'
+                    })
                 }
                 if (arr[i][j].includes('+')) {
-                    createdCategories.push({id: v1(),title: arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`,gender: 'муж'})
+                    createdCategories.push({
+                        id: v1(),
+                        title: arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`,
+                        gender: 'муж'
+                    })
                 }
             }
         }
@@ -52,10 +60,18 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
         for (let i = 0; i < arrFemale.length; i++) {
             for (let j = 0; j < arr[i].length; j++) {
                 if (Number(arr[i][j])) {
-                    createdCategories.push({id: v1(),title: arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`, gender:'жен'})
+                    createdCategories.push({
+                        id: v1(),
+                        title: arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`,
+                        gender: 'жен'
+                    })
                 }
                 if (arr[i][j].includes('+')) {
-                    createdCategories.push({id: v1(),title: arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`, gender:'жен'})
+                    createdCategories.push({
+                        id: v1(),
+                        title: arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`,
+                        gender: 'жен'
+                    })
                 }
             }
         }
@@ -64,12 +80,13 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
     const createTournament = () => {
         newArrayCategoryMale(arrWeightMale)
         newArrayCategoryFemale(arrWeightFemale)
-        props.setGS(new Array(createdCategories.length).fill({id: null, gs: new Array(130).fill(null)}))
+        //props.setGS(new Array(createdCategories.length).fill({id: null, gs: new Array(130).fill(null)}))
+        props.setGS(new Array(createdCategories.length).fill({
+                id: '',
+                leftHand: new Array(1),
+                rightHand: new Array(1)
+        }))
     }
-
-
-
-
 
 
     const listOfWeightCategories = props.arrCategory
@@ -107,8 +124,11 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
                 изменений турнира будет невозможна.
             </div>
             <div className={styleCheckInfoWindow.buttonAcceptCancel}>
-                <Link to={'/registrationMembers'} className={styleCheckInfoWindow.creatableTournament} onClick={createTournament}>Создать турнир</Link>
-                <button className={styleCheckInfoWindow.cancel} onClick={() => props.setCreateNewTournament(false)}>Отмена</button>
+                <Link to={'/registrationMembers'} className={styleCheckInfoWindow.creatableTournament}
+                      onClick={createTournament}>Создать турнир</Link>
+                <button className={styleCheckInfoWindow.cancel}
+                        onClick={() => props.setCreateNewTournament(false)}>Отмена
+                </button>
             </div>
         </div>
     )

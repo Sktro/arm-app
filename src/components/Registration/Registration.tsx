@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import styleRegistration from './Registration.module.css'
 import {
-    AthletesType,
+    AthletesType, biathlonType,
     CategoryJudgeType,
     CategoryType, CreatedCategoryType, FilterType,
-    GenderType, GSType, JudgeType,
+    GenderType, JudgeType,
     RankType,
     SettingsType,
     StatusJudgeType
@@ -66,8 +66,8 @@ type RegistrationPropsType = {
     startTournamentDate: string
     location:string
     createdCategories: CreatedCategoryType[]
-    setGS: (value: GSType[]) => void
-    GS: GSType[] | null
+    setGS: (value: biathlonType[]) => void
+    GS: biathlonType[] | null
 }
 
 export const Registration = (props: RegistrationPropsType) => {
