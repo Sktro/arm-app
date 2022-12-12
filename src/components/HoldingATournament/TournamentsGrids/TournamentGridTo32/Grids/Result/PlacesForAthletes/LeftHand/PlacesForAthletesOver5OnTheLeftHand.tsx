@@ -69,10 +69,6 @@ export const PlacesForAthletesOver5OnTheLeftHand = (props: PlacesForAthletesOver
         }
     }
 
-
-    const sortArrayAthletes = props.arrAthletes.map(a => a).sort((a, b) => a.placeOnTheLeftHand! - b.placeOnTheLeftHand!)
-
-
     let maxW: number = 0
 
     for (let i = 0; i < props.countAthletes; i++) {
@@ -128,6 +124,7 @@ export const PlacesForAthletesOver5OnTheLeftHand = (props: PlacesForAthletesOver
         Num = Num + WC
     }
 
+    const sortArrayAthletes = props.arrAthletes.map(a => a).sort((a, b) => a.placeOnTheLeftHand! - b.placeOnTheLeftHand!)
 
     return (
         <div>
