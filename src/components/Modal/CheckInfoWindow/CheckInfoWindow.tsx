@@ -80,11 +80,10 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
     const createTournament = () => {
         newArrayCategoryMale(arrWeightMale)
         newArrayCategoryFemale(arrWeightFemale)
-        //props.setGS(new Array(createdCategories.length).fill({id: null, gs: new Array(130).fill(null)}))
         props.setGS(new Array(createdCategories.length).fill({
-                id: '',
-                leftHand: new Array(1),
-                rightHand: new Array(1)
+            id: '',
+            leftHand: new Array(1),
+            rightHand: new Array(1)
         }))
     }
 
@@ -109,8 +108,9 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
                 </div>
                 <div className={styleCheckInfoWindow.settingsAll}><span>Настройки турнира:</span>
                     <div>- Кол-во столов: {props.settings.tableNumb}</div>
-                    {props.settings.place5_6 && <div> - Борьба за 5-6 место</div>}
-                    {!props.settings.wrestlingSeparately && <div>- Двоеборье</div>}
+                    {props.settings.doubleEvent && <div>- Двоеборье</div>}
+                    {props.settings.place5_6 && <div>- Борьба за 5-6 место</div>}
+                    {props.settings.wrestlingSeparately && <div>- Борьба на каждую руку отдельно</div>}
                     {props.settings.leftHand && <div>- Борьба на левой руке </div>}
                     {props.settings.rightHand && <div>- Борьба на правой руке </div>}
                     {props.settings.final && props.settings.semifinal ?

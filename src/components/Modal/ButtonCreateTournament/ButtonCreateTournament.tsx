@@ -1,8 +1,9 @@
 import React from "react";
 import styleButtonCreateTournament from "./ButtonCreateTournament.module.css";
-import {CategoryType} from "../../../App";
+import {CategoryType, SettingsType} from "../../../App";
 
 type ButtonCreateTournamentType = {
+    settings: SettingsType
     tournament: string
     startTournamentDate: string
     arrCategory: CategoryType[]
@@ -14,12 +15,13 @@ type ButtonCreateTournamentType = {
 }
 
 export const ButtonCreateTournament = (props: ButtonCreateTournamentType) => {
-
     const addTournament = () => {
         if (props.tournament !== ''
             && props.startTournamentDate !== ''
             && props.arrCategory.length > 0
-            && props.location !== '') {
+            && props.location !== ''
+            && (props.settings.doubleEvent || props.settings.wrestlingSeparately)
+        ) {
             props.setCreateNewTournament(true)
             props.setActiveCategory({value: '', label: '', gender: ''})
         } else {
@@ -27,8 +29,8 @@ export const ButtonCreateTournament = (props: ButtonCreateTournamentType) => {
             props.setErrorCategory(false)
         }
     }
-
-    const newClassButton = props.tournament !== '' && props.location !== '' && props.arrCategory.length > 0
+    //change!
+    const newClassButton = props.tournament !== '' && props.location !== '' && props.arrCategory.length > 0 && (props.settings.doubleEvent || props.settings.wrestlingSeparately)
         ? `${styleButtonCreateTournament.creatableTournamentButton} ${styleButtonCreateTournament.creatableTournamentButtonActive}`
         : styleButtonCreateTournament.creatableTournamentButton
 

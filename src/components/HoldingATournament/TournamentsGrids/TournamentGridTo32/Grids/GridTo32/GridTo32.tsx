@@ -16,6 +16,7 @@ type GridTo32Type = {
 }
 
 export const GridTo32 = (props: GridTo32Type) => {
+
     const athlete = (num: number) => {
         if (!props.GSAthletes) return
         let name = <div></div>
@@ -29,8 +30,8 @@ export const GridTo32 = (props: GridTo32Type) => {
         return name
     }
 
-   const superFinal = props.countAthletes < 6 ? (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
-       : (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 3
+    const superFinal = props.countAthletes < 6 ? (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
+        : (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 3
 
     return (
         <>

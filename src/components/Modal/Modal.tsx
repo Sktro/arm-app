@@ -46,6 +46,9 @@ type ModalPropsType = {
 }
 
 export const Modal = (props: ModalPropsType) => {
+
+    const [render, serRender] = useState(false)
+
     const [error, setError] = useState(false)
     const [errorCategory, setErrorCategory] = useState<boolean>(false)
     const [buttonActive, setButtonActive] = useState(true)
@@ -75,6 +78,9 @@ export const Modal = (props: ModalPropsType) => {
                 <ButtonCategoryAndSettings buttonActive={buttonActive}
                                            setButtonActive={setButtonActive}/>
                 {!buttonActive && <SettingsTournament tableForArm={props.tableForArm}
+                                                      serRender={serRender}
+                                                      render={render}
+                                                      setError={setError}
                                                       settings={props.settings}/>}
                 {buttonActive && <InfoCategory addNewCategoryAthletes={props.addNewCategoryAthletes}
                                                sortCategory={props.sortCategory}
@@ -90,9 +96,12 @@ export const Modal = (props: ModalPropsType) => {
                                                setWeightNewCategory={props.setWeightNewCategory}
                                                setError={setError}/>}
                 <ModalError error={error}
+                            settings={props.settings}
                             location={props.location}
+                            arrCategory={props.arrCategory}
                             tournament={props.tournament}/>
                 <ButtonCreateTournament tournament={props.tournament}
+                                        settings={props.settings}
                                         setError={setError}
                                         setErrorCategory={setErrorCategory}
                                         arrCategory={props.arrCategory}

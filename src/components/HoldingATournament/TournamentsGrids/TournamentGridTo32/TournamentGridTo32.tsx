@@ -71,8 +71,18 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
         if (props.GS && GSAthletesForTheLeftHand && GSAthletesForTheRightHand) {
             props.setGS(props.GS.map(ob => ob.id === id ? {
                 ...ob,
-                leftHand: {...ob.leftHand, gs: GSAthletesForTheLeftHand, lLosS: lLosSForTheLeftHand},
-                rightHand: {...ob.rightHand, gs: GSAthletesForTheRightHand, lLosS: lLosSForTheRightHand}
+                leftHand: {
+                    ...ob.leftHand,
+                    gs: GSAthletesForTheLeftHand,
+                    lLosS: lLosSForTheLeftHand,
+                    jer: true
+                },
+                rightHand: {
+                    ...ob.rightHand,
+                    gs: GSAthletesForTheRightHand,
+                    lLosS: lLosSForTheRightHand,
+                    jer: true
+                }
             } : ob))
         }
         console.log('useEffect')
@@ -83,10 +93,27 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
         return <div>no GS</div>
     }
 
+    const shuffle = (arr: number[]) => {
+        let j: number, temp: number
+        for (let i = arr.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1))
+            temp = arr[j]
+            arr[j] = arr[i]
+            arr[i] = temp
+        }
+        return arr
+    }
+
+    const newArrGSForLeftHand = shuffle(Array.from({length: countAthletes}, (_, index) => index))
+    const newArrGSForRightHand = shuffle(Array.from({length: countAthletes}, (_, index) => index))
+
+
     const GSAthletesForTheLeftHand = ourObj.leftHand.gs.map((a, index) => {
-            for (let i = 0; i < countAthletes; i++) {
-                if (index === i) {
-                    a = i
+            if (!ourObj.leftHand.jer) {
+                for (let i = 0; i < newArrGSForLeftHand.length; i++) {
+                    if (index === i) {
+                        a = newArrGSForLeftHand[i]
+                    }
                 }
             }
             return a
@@ -94,15 +121,16 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
     )
 
     const GSAthletesForTheRightHand = ourObj.rightHand.gs.map((a, index) => {
-            for (let i = 0; i < countAthletes; i++) {
-                if (index === i) {
-                    a = i
+            if (!ourObj.rightHand.jer) {
+                for (let i = 0; i < newArrGSForRightHand.length; i++) {
+                    if (index === i) {
+                        a = newArrGSForRightHand[i]
+                    }
                 }
             }
             return a
         }
     )
-
 
     const lLosSForTheLeftHand = ourObj.leftHand.lLosS.map((o, index) => {
         if (index === ourObj.leftHand.N - 1) {
@@ -152,10 +180,12 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                                                                       count={count}
                                                                       GSAthletes={GSAthletesForTheLeftHand}
                                                                       setGS={props.setGS}
+                                                                      categories={ourObj}
                                                                       GS={props.GS}
                                                                       settings={props.settings}
                                                                       id={id}/>}/>
                 <Route path={'rightHand'} element={<GridForTheRightHand ourObj={ourObj.rightHand}
+                                                                        category={ourObj}
                                                                         countAthletes={countAthletes}
                                                                         arrAthletes={arrAthletes}
                                                                         count={count}

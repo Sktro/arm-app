@@ -3,7 +3,6 @@ import styleButtonForTheWinner from "./ButtonForTheWinner.module.css";
 import {biathlonType, GSType} from "../../../../../App";
 import {winner} from "../../../../../twoDimensionalArray/winner";
 import {loser} from "../../../../../twoDimensionalArray/loser";
-import {Rollback} from "./Rollback/Rollback";
 
 
 type ButtonForTheWinnerType = {
@@ -199,17 +198,6 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                             {props.arrAthletes[props.GSAthletes[2 * props.ourObj!.N - 1]!]?.athlete}</button>
                     </div>
                 </>}
-                <Rollback N={props.N}
-                          hand={props.hand}
-                          id={props.id}
-                          arrAthletes={props.arrAthletes}
-                          GS={props.GS}
-                          ourObj={props.ourObj}
-                          setGS={props.setGS}
-                          count={props.count}/>
-                <div className={styleButtonForTheWinner.buttonAthleteWinner}>
-                    <button onClick={() => console.log(props.ourObj)}>LOG</button>
-                </div>
             </div>
         </div>
     )

@@ -87,7 +87,7 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
                                   onChangeOption={onChangeCategory}/>
             </div>
             <div className={styleRegistrationOfJudges.regionContain}>
-                <SelectForCategoryJudge placeholder={"Статус судьи"}
+                <SelectForCategoryJudge placeholder={"Должность"}
                                         options={props.statusJudge}
                                         value={status}
                                         onChangeOption={onChangeStatusJudge}/>

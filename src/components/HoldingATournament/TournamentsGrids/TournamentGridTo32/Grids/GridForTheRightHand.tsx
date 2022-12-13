@@ -3,6 +3,8 @@ import {Ready} from "./Ready/Ready";
 import {biathlonType, GSType, SettingsType} from "../../../../../App";
 import {GridTo32} from "./GridTo32/GridTo32";
 import {ButtonForTheWinner} from "../ButtonForTheWinner/ButtonForTheWinner";
+import {Rollback} from "../ButtonForTheWinner/Rollback/Rollback";
+import styleGrids from "./grids.module.css"
 
 type GridsType = {
     ourObj: GSType | null | undefined
@@ -23,6 +25,7 @@ type GridsType = {
     GS: biathlonType[] | null
     settings: SettingsType
     id: string | undefined
+    category: biathlonType
 }
 
 export const GridForTheRightHand = (props: GridsType) => {
@@ -31,6 +34,7 @@ export const GridForTheRightHand = (props: GridsType) => {
 
     return (
         <>
+
             <GridTo32 GSAthletes={props.GSAthletes}
                       count={props.count}
                       ourObj={props.ourObj}
@@ -41,17 +45,28 @@ export const GridForTheRightHand = (props: GridsType) => {
                       arrAthletes={props.arrAthletes}
                       settings={props.settings}/>
             {props.arrAthletes.length > 1 && <>
-                <ButtonForTheWinner id={props.id}
-                                    hand={right}
-                                    N={props.ourObj!.N}
-                                    count={props.count}
-                                    countAthletes={props.countAthletes}
-                                    ourObj={props.ourObj}
-                                    setGS={props.setGS}
-                                    GS={props.GS}
-                                    GSAthletes={props.GSAthletes}
-                                    arrAthletes={props.arrAthletes}/>
-                <Ready ourObj={props.ourObj} arrAthletes={props.arrAthletes} GSAthletes={props.GSAthletes}/>
+                <div className={styleGrids.buttonContain}>
+                    <ButtonForTheWinner id={props.id}
+                                        hand={right}
+                                        N={props.ourObj!.N}
+                                        count={props.count}
+                                        countAthletes={props.countAthletes}
+                                        ourObj={props.ourObj}
+                                        setGS={props.setGS}
+                                        GS={props.GS}
+                                        GSAthletes={props.GSAthletes}
+                                        arrAthletes={props.arrAthletes}/>
+                    <Rollback N={props.ourObj!.N}
+                              hand={right}
+                              id={props.id}
+                              arrAthletes={props.arrAthletes}
+                              GS={props.GS}
+                              ourObj={props.ourObj}
+                              setGS={props.setGS}
+                              count={props.count}/>
+                </div>
+                {!props.ourObj?.theWrestlingIsOver &&
+                    <Ready ourObj={props.ourObj} arrAthletes={props.arrAthletes} GSAthletes={props.GSAthletes}/>}
             </>}
         </>
 

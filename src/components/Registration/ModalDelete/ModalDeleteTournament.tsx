@@ -24,7 +24,7 @@ export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => 
     const modalDeleteActive = props.modalDelete ? `${styleMD.modalDeleteContain} ${styleMD.active}` : styleMD.modalDeleteContain
 
     const deleteTournament = () => {
-        props.SetSettings({tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, wrestlingSeparately: false})
+        props.SetSettings({tableNumb: '1', place5_6: false, semifinalAndFinal:false, semifinal: false, final: false, leftHand: false, rightHand: false, doubleEvent: false, wrestlingSeparately: false})
         props.setArrCategory([])
         props.createdCategories.length = 0
         props.setJudge([])

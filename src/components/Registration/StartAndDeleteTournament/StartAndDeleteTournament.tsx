@@ -13,7 +13,6 @@ type StartAndDeleteTournamentPropsType = {
 }
 
 export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsType) => {
-
     const startTournament = () => {
         if (props.GS) {
                         props.setGS(props.GS
@@ -31,7 +30,8 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
                                     winCount: new Array(64).fill(0),
                                     N: 1,
                                     theWrestlingIsOver: false,
-                                    superFinal: 0
+                                    superFinal: 0,
+                                    jer: false
                                 },
                                 rightHand: {
                                     hand: 'rightHand',
@@ -45,12 +45,13 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
                                     winCount: new Array(64).fill(0),
                                     N: 1,
                                     theWrestlingIsOver: false,
-                                    superFinal: 0
+                                    superFinal: 0,
+                                    jer: false
                                 }
 
                             })))
         }
-        props.athletes.sort(() => Math.random() - 0.5)
+        //props.athletes.sort(() => Math.random() - 0.5)
     }
     return (
         <div className={styleStartAndDeleteTournament.startAndDeleteTournamentButton}>

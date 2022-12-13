@@ -29,7 +29,7 @@ export type GenderType =
 export type FilterType = GenderType | 'all' | 'judges'
 
 export type StatusJudgeType =
-    'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'судья'
+    'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'рефери' | 'боковой судья'
 
 export type CategoryJudgeType =
     'б/к' | '3 кат.' | '2 кат.' | '1 кат.' | 'ВК' | 'МК'
@@ -84,6 +84,7 @@ export type CategoryType = {
 export type SettingsType = {
     tableNumb: TableForArmType
     place5_6: boolean
+    doubleEvent: boolean
     wrestlingSeparately: boolean
     leftHand: boolean
     rightHand: boolean
@@ -117,6 +118,7 @@ export type GSType = {
     gender: string // пол весовой категории
     theWrestlingIsOver: boolean // окончание борьбы
     superFinal: 0 | 1 | 2 // 0 - суперфинала не было, 1 - в супер финале победил первый, 2 - в суперфинале победил второй
+    jer: boolean
 }
 
 export type biathlonType = {
@@ -127,7 +129,7 @@ export type biathlonType = {
 
 
 export const createdCategories: CreatedCategoryType[] = []
-export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'судья']
+export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'рефери', 'боковой судья']
 export const categoryJudge: CategoryJudgeType[] = ['б/к', '3 кат.', '2 кат.', '1 кат.', 'ВК', 'МК']
 export const TableForArm: TableForArmType[] = ['1', '2', '3', '4', '5', '6']
 export const categoryAthlete: CategoryAthleteType[] = ['Общая', 'Любители', 'Проф-лы', 'Инвалиды', 'Инв.(VIS)', 'Инв.(STAND)', 'Инв.(SIT)']
@@ -136,6 +138,9 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
+
+
+
     const [GS, setGS] = useState<biathlonType[] | null>(null)
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
@@ -163,6 +168,7 @@ function App() {
             final: false,
             leftHand: false,
             rightHand: false,
+            doubleEvent: false,
             wrestlingSeparately: false
         }
     )
