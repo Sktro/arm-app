@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import styleButtonForTheWinner from "./ButtonForTheWinner.module.css";
-import {biathlonType, GSType} from "../../../../../App";
-import {winner} from "../../../../../twoDimensionalArray/winner";
-import {loser} from "../../../../../twoDimensionalArray/loser";
+import {biathlonType, GSType} from "../../../../../../App";
+import {winner} from "../../../../../../twoDimensionalArray/winner";
+import {loser} from "../../../../../../twoDimensionalArray/loser";
 
 
 type ButtonForTheWinnerType = {

@@ -157,7 +157,7 @@ export const PlacesForAthletesOver5OnTheRightHand = (props: PlacesForAthletesOve
     return (
         <div>
             <div>Правая рука:</div>
-            {sortArrayAthletes.map(a => <div key={Number(a.idAthletes)}>{a.placeOnTheRightHand} место - {a.athlete} очки({a.pointsOnTheRightHand}) итого({a.pointsSum})</div>)}
+            {sortArrayAthletes.map(a => <div key={Number(a.idAthletes)}>{a.placeOnTheRightHand} место - {a.athlete} очки({a.pointsOnTheRightHand})</div>)}
         </div>
     )
 }

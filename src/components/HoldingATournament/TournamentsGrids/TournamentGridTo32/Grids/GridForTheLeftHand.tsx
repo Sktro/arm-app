@@ -2,9 +2,9 @@ import React from "react";
 import {GridTo32} from "./GridTo32/GridTo32";
 import {Ready} from "./Ready/Ready";
 import {biathlonType, GSType, SettingsType} from "../../../../../App";
-import {ButtonForTheWinner} from "../ButtonForTheWinner/ButtonForTheWinner";
+import {ButtonForTheWinner} from "./ButtonForTheWinner/ButtonForTheWinner";
 import styleGrids from "./grids.module.css"
-import {Rollback} from "../ButtonForTheWinner/Rollback/Rollback";
+import {Rollback} from "./Rollback/Rollback";
 
 type GridsType = {
     ourObj: GSType | null | undefined

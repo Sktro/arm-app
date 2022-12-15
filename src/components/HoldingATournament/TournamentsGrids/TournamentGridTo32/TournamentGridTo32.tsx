@@ -28,6 +28,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
             athleteWeight: number,
             placeOnTheLeftHand: null | number,
             placeOnTheRightHand: null | number,
+            placeForDoubleEvent: number,
             pointsOnTheLeftHand: number,
             pointsOnTheRightHand: number,
             pointsSum: number
@@ -42,6 +43,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                         athleteWeight: arrAthletes[i].weight,
                         placeOnTheLeftHand: null,
                         placeOnTheRightHand: null,
+                        placeForDoubleEvent: 0,
                         pointsOnTheLeftHand: 0,
                         pointsOnTheRightHand: 0,
                         pointsSum: 0
@@ -59,11 +61,12 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
             athleteWeight: a.athleteWeight,
             placeOnTheLeftHand: null,
             placeOnTheRightHand: null,
+            placeForDoubleEvent: 0,
             pointsOnTheLeftHand: 0,
             pointsOnTheRightHand: 0,
             pointsSum: 0
         }))
-
+        console.log(arrAthletes)
     const countAthletes = arrAthletes.length
     const count = arrAthletes.length - 2
 

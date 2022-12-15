@@ -92,7 +92,7 @@ export const PlacesForAthletesTop5OnTheRightHand = (props: PlacesForAthletesForR
         <div>
             <div>Правая рука:</div>
             {sortArrayAthletes.map(a => <div key={Number(a.idAthletes)}>{a.placeOnTheRightHand} место
-                - {a.athlete} очки({a.pointsOnTheRightHand}) итого({a.pointsSum})</div>)}
+                - {a.athlete} очки({a.pointsOnTheRightHand})</div>)}
         </div>
     )
 }

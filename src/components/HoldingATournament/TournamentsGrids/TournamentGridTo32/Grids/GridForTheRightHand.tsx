@@ -2,8 +2,8 @@ import React from "react";
 import {Ready} from "./Ready/Ready";
 import {biathlonType, GSType, SettingsType} from "../../../../../App";
 import {GridTo32} from "./GridTo32/GridTo32";
-import {ButtonForTheWinner} from "../ButtonForTheWinner/ButtonForTheWinner";
-import {Rollback} from "../ButtonForTheWinner/Rollback/Rollback";
+import {ButtonForTheWinner} from "./ButtonForTheWinner/ButtonForTheWinner";
+import {Rollback} from "./Rollback/Rollback";
 import styleGrids from "./grids.module.css"
 
 type GridsType = {
