@@ -320,7 +320,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/arm-app" element={<Modal setActiveCategory={setActiveCategory}
+                <Route path="/" element={<Modal setActiveCategory={setActiveCategory}
                                                        sortCategory={sortCategory}
                                                        settings={settings}
                                                        setGS={setGS}

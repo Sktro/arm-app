@@ -14,7 +14,7 @@ export const NotFoundPage = () => {
                         <div className={styleNotFound.textError1}>Sorry, it looks like the page get lost</div>
                         <div className={styleNotFound.textError2}>(or someone has stolen it recently)</div>
                     </div>
-                    <Link className={styleNotFound.buttonBack} to={'/arm-app' }>Back to Registration</Link>
+                    <Link className={styleNotFound.buttonBack} to={'/' }>Back to Registration</Link>
                 </div>
             </div>
             <footer className={styleNotFound.footer}>2022©</footer>

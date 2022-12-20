@@ -76,7 +76,7 @@ export const Registration = (props: RegistrationPropsType) => {
     const [modalDeleteAthlete, setModalDeleteAthlete] = useState(false)
 
     if(props.location === '' && props.arrCategory.length === 0 && props.tournament === '') {
-        return <Navigate to={'/arm-app'}/>
+        return <Navigate to={'/'}/>
     }
 
     return (
