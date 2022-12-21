@@ -90,7 +90,6 @@ export const PlacesForAthletesTop5OnTheRightHand = (props: PlacesForAthletesForR
     const sortArrayAthletes = props.arrAthletes.map(a => a).sort((a, b) => a.placeOnTheRightHand! - b.placeOnTheRightHand!)
 
     return (
-
         <div className={styleResult.result}>
             <div className={styleResult.resultSpecific}>Правая рука</div>
             <ul className={styleResult.chapters}>
