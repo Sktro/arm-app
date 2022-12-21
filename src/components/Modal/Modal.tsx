@@ -16,6 +16,7 @@ import {CheckInfoWindow} from "./CheckInfoWindow/CheckInfoWindow";
 import {ModalError} from "./ModalError/ModalError";
 import {ButtonCategoryAndSettings} from "./ButtonCategoryAndSettings/ButtonCategoryAndSettings";
 import {ButtonCreateTournament} from "./ButtonCreateTournament/ButtonCreateTournament";
+import {Navigate} from "react-router-dom";
 
 type ModalPropsType = {
     settings: SettingsType
@@ -43,6 +44,7 @@ type ModalPropsType = {
     categoryAthlete: CategoryAthleteType[]
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void
     setGS: (value: biathlonType[]) => void
+    GS: biathlonType[] | null
 }
 
 export const Modal = (props: ModalPropsType) => {
@@ -53,6 +55,10 @@ export const Modal = (props: ModalPropsType) => {
     const [errorCategory, setErrorCategory] = useState<boolean>(false)
     const [buttonActive, setButtonActive] = useState(true)
     const [createNewTournament, setCreateNewTournament] = useState<boolean>(false)
+
+    if(props.GS !== null) {
+        return <Navigate to={'/registrationMembers'}/>
+    }
 
     return (
         <div className={styleM.modal}>

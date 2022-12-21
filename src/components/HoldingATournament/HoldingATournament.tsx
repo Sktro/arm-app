@@ -5,7 +5,7 @@ import {Header} from "../Header/Header";
 import {Option} from "../../common/WeightsSelect/WeightsSelect";
 import {TournamentsGrids} from "./TournamentsGrids/TournamentGridTo32/TournamentGridTo32";
 import {ControlPanel} from "./ControlPanel/ControlPanel";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 type LeaderboardType = {
     athletes: AthletesType[]
@@ -22,6 +22,10 @@ type LeaderboardType = {
 
 
 export const HoldingATournament = (props: LeaderboardType) => {
+
+    if(props.GS === null) {
+        return <Navigate to={'/'}/>
+    }
 
     return (
         <>

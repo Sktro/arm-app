@@ -1,7 +1,8 @@
 import React from "react";
 import styleMD from './ModalDeleteTournament.module.css'
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
-import {AthletesType, CategoryType, CreatedCategoryType, JudgeType, SettingsType} from "../../../App";
+import {AthletesType, biathlonType, CategoryType, CreatedCategoryType, JudgeType, SettingsType} from "../../../App";
+import {useNavigate} from "react-router-dom";
 
 type ModalDeleteTournamentPropsType = {
     setArrCategory:(value: CategoryType[]) => void
@@ -16,11 +17,13 @@ type ModalDeleteTournamentPropsType = {
     SetSettings: (value: SettingsType) => void
     setJudge: (value: JudgeType[]) => void
     createdCategories: CreatedCategoryType[]
+    setGS: (value: biathlonType[] | null) => void
 }
 
 
 export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => {
 
+    const navigate = useNavigate()
     const modalDeleteActive = props.modalDelete ? `${styleMD.modalDeleteContain} ${styleMD.active}` : styleMD.modalDeleteContain
 
     const deleteTournament = () => {
@@ -34,6 +37,8 @@ export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => 
         props.setMainReferee('')
         props.setMainSecretary('')
         props.setWeightNewCategory([])
+        props.setGS(null)
+        navigate('/', {replace: true})
     }
 
     return (

@@ -2,9 +2,9 @@ import React from "react";
 import styleCheckInfoWindow from "./CheckInfoWindow.module.css";
 import {biathlonType, CategoryType, SettingsType} from "../../../App";
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
-import {Link} from "react-router-dom";
 import {createdCategories} from "../../../App";
 import {v1} from "uuid";
+import {useNavigate} from "react-router-dom";
 
 type CheckInfoWindowType = {
     settings: SettingsType
@@ -19,6 +19,8 @@ type CheckInfoWindowType = {
 }
 
 export const CheckInfoWindow = (props: CheckInfoWindowType) => {
+
+    const navigate = useNavigate()
 
     const sortArrayGender = (arr: CategoryType[], str: string) => {
         let newArr = []
@@ -80,6 +82,7 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
     const createTournament = () => {
         newArrayCategoryMale(arrWeightMale)
         newArrayCategoryFemale(arrWeightFemale)
+        navigate('registrationMembers', {replace: true})
         props.setGS(new Array(createdCategories.length).fill({
             id: '',
             leftHand: new Array(1),
@@ -124,8 +127,8 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
                 изменений турнира будет невозможна.
             </div>
             <div className={styleCheckInfoWindow.buttonAcceptCancel}>
-                <Link to={'/registrationMembers'} className={styleCheckInfoWindow.creatableTournament}
-                      onClick={createTournament}>Создать турнир</Link>
+                <button className={styleCheckInfoWindow.creatableTournament}
+                      onClick={createTournament}>Создать турнир</button>
                 <button className={styleCheckInfoWindow.cancel}
                         onClick={() => props.setCreateNewTournament(false)}>Отмена
                 </button>

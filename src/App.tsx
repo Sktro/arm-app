@@ -29,7 +29,12 @@ export type GenderType =
 export type FilterType = GenderType | 'all' | 'judges'
 
 export type StatusJudgeType =
-    'главный судья' | 'зам. главного судьи' | 'главный секретарь' | 'зам. главного секретаря' | 'рефери' | 'боковой судья'
+    'главный судья'
+    | 'зам. главного судьи'
+    | 'главный секретарь'
+    | 'зам. главного секретаря'
+    | 'рефери'
+    | 'боковой судья'
 
 export type CategoryJudgeType =
     'б/к' | '3 кат.' | '2 кат.' | '1 кат.' | 'ВК' | 'МК'
@@ -138,7 +143,6 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
-
 
 
     const [GS, setGS] = useState<biathlonType[] | null>(null)
@@ -316,35 +320,37 @@ function App() {
     }
 
     console.log(GS)
+    console.log(arrCategory)
 
     return (
         <>
             <Routes>
                 <Route path="/" element={<Modal setActiveCategory={setActiveCategory}
-                                                       sortCategory={sortCategory}
-                                                       settings={settings}
-                                                       setGS={setGS}
-                                                       tableForArm={TableForArm}
-                                                       arrCategory={arrCategory}
-                                                       deleteCategories={deleteCategories}
-                                                       addNewCategoryAthletes={addNewCategoryAthletes}
-                                                       categoryAthlete={categoryAthlete}
-                                                       location={location}
-                                                       ageAthletes={ageAthletes}
-                                                       gender={genderAthletes}
-                                                       setLocation={setLocation}
-                                                       setTournament={setTournament}
-                                                       setWeightNewCategory={setWeightNewCategory}
-                                                       weightNewCategory={weightNewCategory}
-                                                       tournament={tournament}
-                                                       startTournamentDate={startTournamentDate}
-                                                       endTournamentDate={endTournamentDate}
-                                                       setMainSecretary={setMainSecretary}
-                                                       setMainReferee={setMainReferee}
-                                                       mainReferee={mainReferee}
-                                                       mainSecretary={mainSecretary}
-                                                       setStartTournamentDate={setStartTournamentDate}
-                                                       setEndTournamentDate={setEndTournamentDate}/>}/>
+                                                GS={GS}
+                                                sortCategory={sortCategory}
+                                                settings={settings}
+                                                setGS={setGS}
+                                                tableForArm={TableForArm}
+                                                arrCategory={arrCategory}
+                                                deleteCategories={deleteCategories}
+                                                addNewCategoryAthletes={addNewCategoryAthletes}
+                                                categoryAthlete={categoryAthlete}
+                                                location={location}
+                                                ageAthletes={ageAthletes}
+                                                gender={genderAthletes}
+                                                setLocation={setLocation}
+                                                setTournament={setTournament}
+                                                setWeightNewCategory={setWeightNewCategory}
+                                                weightNewCategory={weightNewCategory}
+                                                tournament={tournament}
+                                                startTournamentDate={startTournamentDate}
+                                                endTournamentDate={endTournamentDate}
+                                                setMainSecretary={setMainSecretary}
+                                                setMainReferee={setMainReferee}
+                                                mainReferee={mainReferee}
+                                                mainSecretary={mainSecretary}
+                                                setStartTournamentDate={setStartTournamentDate}
+                                                setEndTournamentDate={setEndTournamentDate}/>}/>
                 <Route path="/registrationMembers" element={<Registration athletes={athletes}
                                                                           setGS={setGS}
                                                                           GS={GS}
@@ -404,7 +410,7 @@ function App() {
                                                                                   tournament={tournament}
                                                                                   location={location}/>}/>
 
-                <Route path={'*'} element={<NotFoundPage/>}/>
+                <Route path={'*'} element={<NotFoundPage GS={GS}/>}/>
             </Routes>
         </>
     );

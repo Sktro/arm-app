@@ -66,7 +66,7 @@ type RegistrationPropsType = {
     startTournamentDate: string
     location:string
     createdCategories: CreatedCategoryType[]
-    setGS: (value: biathlonType[]) => void
+    setGS: (value: biathlonType[] | null) => void
     GS: biathlonType[] | null
 }
 
@@ -75,8 +75,13 @@ export const Registration = (props: RegistrationPropsType) => {
     const [modalDelete, setModalDelete] = useState<boolean>(false)
     const [modalDeleteAthlete, setModalDeleteAthlete] = useState(false)
 
-    if(props.location === '' && props.arrCategory.length === 0 && props.tournament === '') {
+    if(props.location === '' || props.arrCategory.length === 0 || props.tournament === '') {
         return <Navigate to={'/'}/>
+    }
+    if(props.GS !== null){
+        if(props.GS[0].id !== '') {
+            return <Navigate to={'/holdingATournament'}/>
+        }
     }
 
     return (
@@ -138,9 +143,9 @@ export const Registration = (props: RegistrationPropsType) => {
                                           GS={props.GS}
                                           athletes={props.athletes}
                                           arrCategory={props.arrCategory}/>
-                {/*<button onClick={()=>console.log(props.createdCategories)}>LOG</button>*/}
             </div>}
             <ModalDeleteTournament setJudge={props.setJudge}
+                                   setGS={props.setGS}
                                    createdCategories={props.createdCategories}
                                    SetSettings={props.SetSettings}
                                    setArrCategory={props.setArrCategory}
