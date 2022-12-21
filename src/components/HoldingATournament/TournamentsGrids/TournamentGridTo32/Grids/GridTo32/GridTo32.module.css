@@ -3,6 +3,36 @@
 
 }
 
+.gridColor {
+    border-radius: 5px;
+    background-color: rgba(255, 248, 0, 0.73);
+    -webkit-animation: gridColor 3s linear infinite;
+    animation: gridColor 2.5s linear infinite;
+}
+
+@-webkit-keyframes gridColor {
+    0% {
+        background-color: rgba(255, 248, 0, 0.73)
+    }
+    50% {
+        background-color: rgba(255, 248, 0, 0.10)
+    }
+    100% {
+        background-color: rgba(255, 248, 0, 0.73)
+    }
+}
+@keyframes gridColor {
+    0% {
+        background-color: rgba(255, 248, 0, 0.73)
+    }
+    50% {
+        background-color: rgba(255, 248, 0, 0.10)
+    }
+    100% {
+        background-color: rgba(255, 248, 0, 0.73)
+    }
+}
+
 .but {
     border: solid 1px red;
 }
@@ -66,6 +96,7 @@
 /*secondRound ------------------------------------------------*/
 /*group A ---------------------------------------------------*/
 .secondRoundGroupA {
+    z-index: 1;
     border: solid 1px black;
     border-radius: 10px;
     width: 150px;

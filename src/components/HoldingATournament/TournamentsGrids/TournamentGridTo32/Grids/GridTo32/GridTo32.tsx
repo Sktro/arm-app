@@ -2,6 +2,7 @@ import React from "react";
 import styleGridTo32 from "./GridTo32.module.css";
 import {visibility32} from "../../../../../../twoDimensionalArray/visibility32";
 import {biathlonType, GSType, SettingsType} from "../../../../../../App";
+import {subsequence} from "../../../../../../twoDimensionalArray/subsequence";
 
 type GridTo32Type = {
     GSAthletes: (number | null)[]
@@ -17,12 +18,18 @@ type GridTo32Type = {
 
 export const GridTo32 = (props: GridTo32Type) => {
 
+    const styleW = 2 * subsequence[props.ourObj?.N! - 1][props.count] - 1
+
     const athlete = (num: number) => {
         if (!props.GSAthletes) return
+
         let name = <div></div>
+        let athlete = props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete
+        let selection = num === styleW || num === styleW + 1 ? styleGridTo32.gridColor : ''
+
         if (visibility32[num - 1][props.count] >= 0 && props.GSAthletes[visibility32[num - 1][props.count]]! >= 0) {
-            name = <div
-                id={num.toString()}>{props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count]- 1]!)]?.athlete}</div>
+            name = <div className={selection}
+                        id={num.toString()}>{athlete}</div>
         }
         if (visibility32[num - 1][props.count] === -1) {
             name = <div id={num.toString()}> ---- </div>

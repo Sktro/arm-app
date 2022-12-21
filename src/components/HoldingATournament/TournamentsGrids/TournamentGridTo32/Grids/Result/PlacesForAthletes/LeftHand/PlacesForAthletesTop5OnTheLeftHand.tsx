@@ -1,5 +1,6 @@
 import React from "react";
 import {GSType} from "../../../../../../../../App";
+import styleResult from "../../result.module.css"
 
 export type PlacesForAthletesType = {
     arrAthletes: {
@@ -67,11 +68,20 @@ export const PlacesForAthletesTop5OnTheLeftHand = (props: PlacesForAthletesType)
 
     const sortArrayAthletes = props.arrAthletes.map(a => a).sort((a, b) => a.placeOnTheLeftHand! - b.placeOnTheLeftHand!)
 
-
     return (
-        <div>
-            <div>Левая рука:</div>
-            {sortArrayAthletes.map(a => <div key={Number(a.idAthletes)}>{a.placeOnTheLeftHand} место - {a.athlete} очки ({a.pointsOnTheLeftHand})</div>)}
+        <div className={styleResult.result}>
+            <div className={styleResult.resultSpecific}>Левая рука</div>
+            <ul className={styleResult.chapters}>
+                <li>Место</li>
+                <li>Спортсмен</li>
+                <li>Очки</li>
+            </ul>
+            {sortArrayAthletes.map((a, index) => <ul className={styleResult.placeAthleteContain}
+                                                     key={Number(a.idAthletes)}>
+                <li className={index % 2 === 0 ? styleResult.styleGray : ''}>{a.placeOnTheLeftHand}</li>
+                <li className={index % 2 === 0 ? styleResult.styleGray : ''}>{a.athlete}</li>
+                <li className={index % 2 === 0 ? styleResult.styleGray : ''}>{a.pointsOnTheLeftHand}</li>
+            </ul>)}
         </div>
     )
 }

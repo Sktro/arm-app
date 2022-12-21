@@ -11,6 +11,7 @@
     }
 }
 
+
 .backToMembers {
     padding: 1px;
     margin-top: 5px;
@@ -19,10 +20,37 @@
     cursor: pointer;
     color: blue;
     width: 275px;
+    -webkit-animation: blink1 3s linear infinite;
+    animation: blink1 2.5s linear infinite;
+}
+
+@-webkit-keyframes blink1 {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes blink1 {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.1
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .backToMembers:hover {
     font-weight: bold;
+    animation: none;
 }
 
 .description {

@@ -65,7 +65,10 @@ export const GridForTheLeftHand = (props: GridsType) => {
                                                                      count={props.count}/>}
                 </div>
                 {!props.ourObj?.theWrestlingIsOver &&
-                    <Ready ourObj={props.ourObj} arrAthletes={props.arrAthletes} GSAthletes={props.GSAthletes}/>}
+                    <Ready ourObj={props.ourObj}
+                           countAthletes={props.countAthletes}
+                           arrAthletes={props.arrAthletes}
+                           GSAthletes={props.GSAthletes}/>}
             </>}
         </>
 

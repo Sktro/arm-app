@@ -1,4 +1,76 @@
 .containResult {
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result {
+    margin-top: 5px;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    border-top: solid 1px black;
+}
+/*оглавление результата*/
+.resultSpecific{
+    padding-bottom: 2px;
+    background-color: rgba(128, 128, 128, 0.11);
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+/*главы*/
+.chapters{
+    font-weight: bold;
+    background-color: rgba(128, 128, 128, 0.75);
+    text-align: center;
+    border-bottom: solid 1px black;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+/*место*/
+.chapters li:first-child {
+    width: 50px;
+    border-right: 1px solid black;
+}
+/*спортсмен*/
+.chapters li:not(:first-child):not(:last-child) {
+}
+/*очки*/
+.chapters li:last-child {
+    width: 50px;
+    border-left: 1px solid black;
+}
+
+.placeAthleteContain {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.placeAthleteContain li {
+    list-style-type: none;
+}
+/*спортсмен*/
+.placeAthleteContain li:not(:first-child):not(:last-child) {
+    min-width: 448px;
+    border-bottom: solid 1px black;
+    padding: 2px;
+}
+/*место*/
+.placeAthleteContain li:first-child {
+    width: 50px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+/*очки*/
+.placeAthleteContain li:last-child {
+    width: 50px;
+    border-bottom: 1px solid black;
+    border-left: solid 1px black;
+}
+
+.styleGray {
+    background-color: rgba(128, 128, 128, 0.29);
 }
