@@ -10,7 +10,7 @@ type ModalDeleteMemberType = {
     removeAthlete: (AthleteID: string) => void
     setModalDeleteAthlete: (value: boolean) => void
     removeRegisteredCategoryAtAthlete: (athleteID: string, category: { value: string, label: string }) => void
-    activeCategory: { value: string, label: string, gender: string } | undefined
+    activeCategory: { value: string, label: string, gender: string } | null
     member: string
     setFilter: (filter: FilterType) => void
     setActive: (value: string) => void

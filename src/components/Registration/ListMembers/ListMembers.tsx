@@ -39,7 +39,7 @@ type AthletesListPropsType = {
     categoryVisibility: boolean
     setCategoryVisibility: (value: boolean) => void
     removeRegisteredCategoryAtAthlete: (athleteID: string, category: { value: string, label: string }) => void
-    activeCategory: { value: string, label: string, gender: string } | undefined
+    activeCategory: { value: string, label: string, gender: string } | null
     modalDeleteAthlete: boolean
     setModalDeleteAthlete: (value: boolean) => void
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void

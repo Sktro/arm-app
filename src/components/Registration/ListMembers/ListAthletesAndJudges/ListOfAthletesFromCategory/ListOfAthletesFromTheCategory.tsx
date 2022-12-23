@@ -8,7 +8,7 @@ import {AthletesType} from "../../../../../App";
 
 type ListOfAthletesFromTheCategoryType = {
     athletes: AthletesType[]
-    activeCategory: { value: string, label: string, gender: string } | undefined
+    activeCategory: { value: string, label: string, gender: string } | null
     setModalDeleteAthlete: (value: boolean) => void
     setMember: (value: string) => void
     setIdMember: (value: string) => void

@@ -13,7 +13,7 @@ type CategoriesListPropsType = {
     changeFilter: (allAthlete: AthletesType[], filter: FilterType) => void
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void
     setModalDeleteAthlete: (value: boolean) => void
-    activeCategory: { value: string; label: string; gender: string; } | undefined
+    activeCategory: { value: string; label: string; gender: string; } | null
 }
 
 export const CategoriesList = (props: CategoriesListPropsType) => {

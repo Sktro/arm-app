@@ -1,6 +1,6 @@
 import React from "react";
 import styleCheckInfoWindow from "./CheckInfoWindow.module.css";
-import {biathlonType, CategoryType, SettingsType} from "../../../App";
+import {biathlonType, CategoryType, CreatedCategoryType, SettingsType} from "../../../App";
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
 import {createdCategories} from "../../../App";
 import {v1} from "uuid";
@@ -16,6 +16,7 @@ type CheckInfoWindowType = {
     arrCategory: CategoryType[]
     sortCategory: (value: CategoryType) => Option[]
     setGS: (value: biathlonType[]) => void
+    setCopyCategory: (value: CreatedCategoryType[]) => void
 }
 
 export const CheckInfoWindow = (props: CheckInfoWindowType) => {
@@ -79,6 +80,8 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
         }
     }
 
+    //localStorage.setItem("createdCategoriesArray", JSON.stringify(createdCategories))
+
     const createTournament = () => {
         newArrayCategoryMale(arrWeightMale)
         newArrayCategoryFemale(arrWeightFemale)
@@ -88,6 +91,7 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
             leftHand: new Array(1),
             rightHand: new Array(1)
         }))
+        props.setCopyCategory(createdCategories)
     }
 
 

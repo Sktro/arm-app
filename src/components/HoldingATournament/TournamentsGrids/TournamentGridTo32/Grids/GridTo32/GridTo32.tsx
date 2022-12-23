@@ -20,19 +20,19 @@ export const GridTo32 = (props: GridTo32Type) => {
 
     const styleW = 2 * subsequence[props.ourObj?.N! - 1][props.count] - 1
 
-    const athlete = (num: number) => {
+    const athlete = (num: number, style: string) => {
+
         if (!props.GSAthletes) return
 
-        let name = <div></div>
+        let name = <div className={style}></div>
         let athlete = props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete
-        let selection = num === styleW || num === styleW + 1 ? styleGridTo32.gridColor : ''
-
+        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32[style]} ${styleGridTo32.gridColor}`: styleGridTo32[style]
         if (visibility32[num - 1][props.count] >= 0 && props.GSAthletes[visibility32[num - 1][props.count]]! >= 0) {
             name = <div className={selection}
                         id={num.toString()}>{athlete}</div>
         }
         if (visibility32[num - 1][props.count] === -1) {
-            name = <div id={num.toString()}> ---- </div>
+            name = <div id={num.toString()} className={style}> ---- </div>
         }
         return name
     }
@@ -46,38 +46,38 @@ export const GridTo32 = (props: GridTo32Type) => {
                 <div className={styleGridTo32.firstRoundContain}>
                     <div className={styleGridTo32.RoundName}>1-й тур</div>
                     <div className={styleGridTo32.firstRound}>
-                        {athlete(1)}
-                        {athlete(2)}
-                        {athlete(3)}
-                        {athlete(4)}
-                        {athlete(5)}
-                        {athlete(6)}
-                        {athlete(7)}
-                        {athlete(8)}
-                        {athlete(9)}
-                        {athlete(10)}
-                        {athlete(11)}
-                        {athlete(12)}
-                        {athlete(13)}
-                        {athlete(14)}
-                        {athlete(15)}
-                        {athlete(16)}
-                        {athlete(17)}
-                        {athlete(18)}
-                        {athlete(19)}
-                        {athlete(20)}
-                        {athlete(21)}
-                        {athlete(22)}
-                        {athlete(23)}
-                        {athlete(24)}
-                        {athlete(25)}
-                        {athlete(26)}
-                        {athlete(27)}
-                        {athlete(28)}
-                        {athlete(29)}
-                        {athlete(30)}
-                        {athlete(31)}
-                        {athlete(32)}
+                        {athlete(1, 'gridGray')}
+                        {athlete(2, 'gridGray')}
+                        {athlete(3, 'gridWhite')}
+                        {athlete(4,'gridWhite')}
+                        {athlete(5, 'gridGray')}
+                        {athlete(6, 'gridGray')}
+                        {athlete(7,'gridWhite')}
+                        {athlete(8,'gridWhite')}
+                        {athlete(9, 'gridGray')}
+                        {athlete(10, 'gridGray')}
+                        {athlete(11,'gridWhite')}
+                        {athlete(12,'gridWhite')}
+                        {athlete(13, 'gridGray')}
+                        {athlete(14, 'gridGray')}
+                        {athlete(15,'gridWhite')}
+                        {athlete(16,'gridWhite')}
+                        {athlete(17, 'gridGray')}
+                        {athlete(18, 'gridGray')}
+                        {athlete(19,'gridWhite')}
+                        {athlete(20,'gridWhite')}
+                        {athlete(21, 'gridGray')}
+                        {athlete(22, 'gridGray')}
+                        {athlete(23,'gridWhite')}
+                        {athlete(24, 'gridWhite')}
+                        {athlete(25, 'gridGray')}
+                        {athlete(26, 'gridGray')}
+                        {athlete(27,'gridWhite')}
+                        {athlete(28,'gridWhite')}
+                        {athlete(29, 'gridGray')}
+                        {athlete(30, 'gridGray')}
+                        {athlete(31,'gridWhite')}
+                        {athlete(32,'gridWhite')}
                     </div>
                 </div>
 
@@ -86,71 +86,71 @@ export const GridTo32 = (props: GridTo32Type) => {
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>2-й тур | Группа А</div>
                             <div className={styleGridTo32.secondRoundGroupA}>
-                                {athlete(33)}
-                                {athlete(34)}
-                                {athlete(35)}
-                                {athlete(36)}
-                                {athlete(37)}
-                                {athlete(38)}
-                                {athlete(39)}
-                                {athlete(40)}
-                                {athlete(41)}
-                                {athlete(42)}
-                                {athlete(43)}
-                                {athlete(44)}
-                                {athlete(45)}
-                                {athlete(46)}
-                                {athlete(47)}
-                                {athlete(48)}
+                                {athlete(33, 'gridGray')}
+                                {athlete(34, 'gridGray')}
+                                {athlete(35,'gridWhite')}
+                                {athlete(36,'gridWhite')}
+                                {athlete(37, 'gridGray')}
+                                {athlete(38, 'gridGray')}
+                                {athlete(39,'gridWhite')}
+                                {athlete(40,'gridWhite')}
+                                {athlete(41, 'gridGray')}
+                                {athlete(42, 'gridGray')}
+                                {athlete(43,'gridWhite')}
+                                {athlete(44,'gridWhite')}
+                                {athlete(45, 'gridGray')}
+                                {athlete(46, 'gridGray')}
+                                {athlete(47,'gridWhite')}
+                                {athlete(48,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>3-й тур | Группа А</div>
                             <div className={styleGridTo32.thirdRoundGroupA}>
-                                {athlete(65)}
-                                {athlete(66)}
-                                {athlete(67)}
-                                {athlete(68)}
-                                {athlete(69)}
-                                {athlete(70)}
-                                {athlete(71)}
-                                {athlete(72)}
+                                {athlete(65, 'gridGray')}
+                                {athlete(66, 'gridGray')}
+                                {athlete(67,'gridWhite')}
+                                {athlete(68,'gridWhite')}
+                                {athlete(69, 'gridGray')}
+                                {athlete(70, 'gridGray')}
+                                {athlete(71,'gridWhite')}
+                                {athlete(72,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>4-й тур | Группа А</div>
                             <div className={styleGridTo32.fourthRoundGroupA}>
-                                {athlete(89)}
-                                {athlete(90)}
-                                {athlete(91)}
-                                {athlete(92)}
+                                {athlete(89, 'gridGray')}
+                                {athlete(90, 'gridGray')}
+                                {athlete(91,'gridWhite')}
+                                {athlete(92,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>5-й тур | Группа А</div>
                             <div className={styleGridTo32.fifthRoundGroupA}>
-                                {athlete(117)}
-                                {athlete(118)}
+                                {athlete(117, 'gridGray')}
+                                {athlete(118,'gridWhite')}
                             </div>
                         </div>
 
-                        {props.settings.place5_6 &&
+
                             <div className={styleGridTo32.groupContainPlace5_6}>
                                 <div className={styleGridTo32.RoundName}>5-6 место</div>
                                 <div className={styleGridTo32.place5_6}>
-                                    {athlete(121)}
-                                    {athlete(122)}
+                                    {athlete(121, 'gridGray')}
+                                    {athlete(122,'gridWhite')}
                                 </div>
-                            </div>}
+                            </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>Полуфинал</div>
                             <div className={styleGridTo32.semiFinalRound}>
-                                {athlete(123)}
-                                {athlete(124)}
+                                {athlete(123, 'gridGray')}
+                                {athlete(124,'gridWhite')}
                             </div>
                         </div>
 
@@ -160,15 +160,15 @@ export const GridTo32 = (props: GridTo32Type) => {
                                 <div className={styleGridTo32.firstFightContain}>
                                     <div className={styleGridTo32.RoundName}>1-й Поединок</div>
                                     <div className={styleGridTo32.finalRound}>
-                                        {athlete(125)}
-                                        {athlete(126)}
+                                        {athlete(125, 'gridGray')}
+                                        {athlete(126,'gridWhite')}
                                     </div>
                                 </div>
                                 {superFinal && <div className={styleGridTo32.secondFightContain}>
                                     <div className={styleGridTo32.RoundName}>2-й Поединок</div>
                                     <div className={styleGridTo32.finalRound}>
-                                        {athlete(127)}
-                                        {athlete(128)}
+                                        {athlete(127, 'gridGray')}
+                                        {athlete(128,'gridWhite')}
                                     </div>
                                 </div>}
                             </div>
@@ -179,94 +179,94 @@ export const GridTo32 = (props: GridTo32Type) => {
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>2-й тур | Группа Б</div>
                             <div className={styleGridTo32.secondRoundGroupB}>
-                                {athlete(49)}
-                                {athlete(50)}
-                                {athlete(51)}
-                                {athlete(52)}
-                                {athlete(53)}
-                                {athlete(54)}
-                                {athlete(55)}
-                                {athlete(56)}
-                                {athlete(57)}
-                                {athlete(58)}
-                                {athlete(59)}
-                                {athlete(60)}
-                                {athlete(61)}
-                                {athlete(62)}
-                                {athlete(63)}
-                                {athlete(64)}
+                                {athlete(49, 'gridGray')}
+                                {athlete(50, 'gridGray')}
+                                {athlete(51,'gridWhite')}
+                                {athlete(52,'gridWhite')}
+                                {athlete(53, 'gridGray')}
+                                {athlete(54, 'gridGray')}
+                                {athlete(55,'gridWhite')}
+                                {athlete(56,'gridWhite')}
+                                {athlete(57, 'gridGray')}
+                                {athlete(58, 'gridGray')}
+                                {athlete(59,'gridWhite')}
+                                {athlete(60,'gridWhite')}
+                                {athlete(61, 'gridGray')}
+                                {athlete(62, 'gridGray')}
+                                {athlete(63,'gridWhite')}
+                                {athlete(64,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>3-й тур | Группа Б</div>
                             <div className={styleGridTo32.thirdRoundGroupB}>
-                                {athlete(73)}
-                                {athlete(74)}
-                                {athlete(75)}
-                                {athlete(76)}
-                                {athlete(77)}
-                                {athlete(78)}
-                                {athlete(79)}
-                                {athlete(80)}
-                                {athlete(81)}
-                                {athlete(82)}
-                                {athlete(83)}
-                                {athlete(84)}
-                                {athlete(85)}
-                                {athlete(86)}
-                                {athlete(87)}
-                                {athlete(88)}
+                                {athlete(73, 'gridGray')}
+                                {athlete(74, 'gridGray')}
+                                {athlete(75,'gridWhite')}
+                                {athlete(76,'gridWhite')}
+                                {athlete(77, 'gridGray')}
+                                {athlete(78, 'gridGray')}
+                                {athlete(79,'gridWhite')}
+                                {athlete(80,'gridWhite')}
+                                {athlete(81, 'gridGray')}
+                                {athlete(82, 'gridGray')}
+                                {athlete(83,'gridWhite')}
+                                {athlete(84,'gridWhite')}
+                                {athlete(85, 'gridGray')}
+                                {athlete(86, 'gridGray')}
+                                {athlete(87,'gridWhite')}
+                                {athlete(88,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>4-й тур | Группа Б</div>
                             <div className={styleGridTo32.fourthRoundGroupB}>
-                                {athlete(93)}
-                                {athlete(94)}
-                                {athlete(95)}
-                                {athlete(96)}
-                                {athlete(97)}
-                                {athlete(98)}
-                                {athlete(99)}
-                                {athlete(100)}
-                                {athlete(101)}
-                                {athlete(102)}
-                                {athlete(103)}
-                                {athlete(104)}
+                                {athlete(93, 'gridGray')}
+                                {athlete(94, 'gridGray')}
+                                {athlete(95,'gridWhite')}
+                                {athlete(96,'gridWhite')}
+                                {athlete(97, 'gridGray')}
+                                {athlete(98, 'gridGray')}
+                                {athlete(99,'gridWhite')}
+                                {athlete(100,'gridWhite')}
+                                {athlete(101, 'gridGray')}
+                                {athlete(102, 'gridGray')}
+                                {athlete(103,'gridWhite')}
+                                {athlete(104,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>5-й тур | Группа Б</div>
                             <div className={styleGridTo32.fifthRoundGroupB}>
-                                {athlete(105)}
-                                {athlete(106)}
-                                {athlete(107)}
-                                {athlete(108)}
-                                {athlete(109)}
-                                {athlete(110)}
-                                {athlete(111)}
-                                {athlete(112)}
+                                {athlete(105, 'gridGray')}
+                                {athlete(106, 'gridGray')}
+                                {athlete(107,'gridWhite')}
+                                {athlete(108,'gridWhite')}
+                                {athlete(109, 'gridGray')}
+                                {athlete(110, 'gridGray')}
+                                {athlete(111,'gridWhite')}
+                                {athlete(112,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>6-й тур | Группа Б</div>
                             <div className={styleGridTo32.sixthRoundGroupB}>
-                                {athlete(113)}
-                                {athlete(114)}
-                                {athlete(115)}
-                                {athlete(116)}
+                                {athlete(113, 'gridGray')}
+                                {athlete(114, 'gridGray')}
+                                {athlete(115,'gridWhite')}
+                                {athlete(116,'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>7-й тур | Группа Б</div>
                             <div className={styleGridTo32.seventhRoundGroupB}>
-                                {athlete(119)}
-                                {athlete(120)}
+                                {athlete(119, 'gridGray')}
+                                {athlete(120,'gridWhite')}
                             </div>
                         </div>
                     </div>

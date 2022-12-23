@@ -4,7 +4,7 @@ import {Option} from "../../common/WeightsSelect/WeightsSelect";
 import {
     AgeType, biathlonType,
     CategoryAthleteType,
-    CategoryType,
+    CategoryType, CreatedCategoryType,
     GenderType,
     SettingsType,
     TableForArmType
@@ -33,10 +33,6 @@ type ModalPropsType = {
     setWeightNewCategory: (value: readonly Option[]) => void
     startTournamentDate: string
     endTournamentDate: string
-    setMainSecretary: (value: string) => void
-    mainReferee: string
-    setMainReferee: (value: string) => void
-    mainSecretary: string
     setStartTournamentDate: (separator: string) => void
     setEndTournamentDate: (separator: string) => void
     gender: GenderType[]
@@ -45,11 +41,11 @@ type ModalPropsType = {
     setActiveCategory: (value: { value: string, label: string, gender: string }) => void
     setGS: (value: biathlonType[]) => void
     GS: biathlonType[] | null
+    setSettings: (value: SettingsType) => void
+    setCopyCategory: (value: CreatedCategoryType[]) => void
 }
 
 export const Modal = (props: ModalPropsType) => {
-
-    const [render, serRender] = useState(false)
 
     const [error, setError] = useState(false)
     const [errorCategory, setErrorCategory] = useState<boolean>(false)
@@ -63,6 +59,7 @@ export const Modal = (props: ModalPropsType) => {
     return (
         <div className={styleM.modal}>
             {createNewTournament && <CheckInfoWindow settings={props.settings}
+                                                     setCopyCategory={props.setCopyCategory}
                                                      setGS={props.setGS}
                                                      location={props.location}
                                                      sortCategory={props.sortCategory}
@@ -84,8 +81,7 @@ export const Modal = (props: ModalPropsType) => {
                 <ButtonCategoryAndSettings buttonActive={buttonActive}
                                            setButtonActive={setButtonActive}/>
                 {!buttonActive && <SettingsTournament tableForArm={props.tableForArm}
-                                                      serRender={serRender}
-                                                      render={render}
+                                                      setSettings={props.setSettings}
                                                       setError={setError}
                                                       settings={props.settings}/>}
                 {buttonActive && <InfoCategory addNewCategoryAthletes={props.addNewCategoryAthletes}

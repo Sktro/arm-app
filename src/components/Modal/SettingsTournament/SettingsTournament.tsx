@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect} from "react";
 import styleSettingsTournament from './SettingsTournament.module.css'
 import {SettingsType, TableForArmType} from "../../../App";
 import {SelectNumberTable} from "../../../common/Select/SelectNumberTable";
@@ -7,86 +7,67 @@ type SettingsTournamentType = {
     tableForArm: TableForArmType[]
     settings: SettingsType
     setError: (value: boolean) => void
-    serRender: (value: boolean) => void
-    render: boolean
+    setSettings: (value: SettingsType) => void
 }
 
 export const SettingsTournament = (props: SettingsTournamentType) => {
 
-    const [table, setTable] = useState<TableForArmType>(props.settings.tableNumb)
-    const [place, setPlace] = useState<boolean>(props.settings.place5_6)
-    const [wrestlingSeparately, setWrestlingSeparately] = useState<boolean>(props.settings.wrestlingSeparately)
-    const [doubleEvent, setDoubleEvent] = useState<boolean>(props.settings.doubleEvent)
-    const [semifinalFinal, setSemifinalFinal] = useState<boolean>(props.settings.semifinalAndFinal)
-    const [leftHand, setLeftHand] = useState<boolean>(props.settings.leftHand)
-    const [rightHand, setRightHand] = useState<boolean>(props.settings.rightHand)
-    const [semifinal, setSemifinal] = useState<boolean>(props.settings.semifinal)
-    const [final, setFinal] = useState<boolean>(props.settings.final)
+    useEffect(()=> {
+        if (!props.settings.wrestlingSeparately) {
+            props.setSettings({...props.settings, leftHand: false, rightHand: false})
+        } else {
+            props.setSettings({...props.settings, leftHand: true, rightHand: true})
+        }
+    },[props.settings.wrestlingSeparately])
+
+    useEffect(()=> {
+        if (!props.settings.semifinalAndFinal) {
+            props.setSettings({...props.settings, final: false, semifinal: false})
+        } else {
+            props.setSettings({...props.settings, final: true})
+        }
+    },[props.settings.semifinalAndFinal])
 
     const onChangeTable = (value: string) => {
-        setTable(value as TableForArmType)
-        props.settings.tableNumb = value as TableForArmType
+        props.setSettings({...props.settings, tableNumb: value as TableForArmType})
     }
 
     const onChangePlace = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings.place5_6 = e.currentTarget.checked
-        setPlace(props.settings.place5_6)
+        props.setSettings({...props.settings, place5_6: e.currentTarget.checked})
     }
 
     const onChangeDoubleEvent = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings.doubleEvent = e.currentTarget.checked
-        setDoubleEvent(props.settings.doubleEvent)
+        props.setSettings({...props.settings, doubleEvent: e.currentTarget.checked})
         props.setError(false)
-        props.serRender(!props.render)
     }
 
     const onChangeWrestlingSeparately = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings.wrestlingSeparately = e.currentTarget.checked
+        props.setSettings({...props.settings, wrestlingSeparately: e.currentTarget.checked})
         props.setError(false)
-        props.serRender(!props.render)
-        setWrestlingSeparately(props.settings.wrestlingSeparately)
-        if (wrestlingSeparately) {
-            setLeftHand(props.settings.leftHand = false)
-            setRightHand(props.settings.rightHand = false)
-        } else {
-            setLeftHand(props.settings.leftHand = true)
-            setRightHand(props.settings.rightHand = true)
-        }
     }
 
     const onChangeSemifinalFinal = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings.semifinalAndFinal = e.currentTarget.checked
-        setSemifinalFinal(props.settings.semifinalAndFinal)
-        if (semifinalFinal) {
-            setFinal(props.settings.final = false)
-            setSemifinal(props.settings.semifinal = false)
-        } else {
-            setFinal(props.settings.final = true)
-        }
+        props.setSettings({...props.settings, semifinalAndFinal: e.currentTarget.checked})
     }
 
     const onChangeLeftHand = (e: ChangeEvent<HTMLInputElement>) => {
         if (props.settings.rightHand) {
-            props.settings.leftHand = e.currentTarget.checked
-            setLeftHand(props.settings.leftHand)
+            props.setSettings({...props.settings, leftHand: e.currentTarget.checked})
         }
     }
 
     const onChangeRightHand = (e: ChangeEvent<HTMLInputElement>) => {
         if (props.settings.leftHand) {
-            props.settings.rightHand = e.currentTarget.checked
-            setRightHand(props.settings.rightHand)
+            props.setSettings({...props.settings, rightHand: e.currentTarget.checked})
         }
     }
 
     const onChangeSemifinal = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings.semifinal = e.currentTarget.checked
-        setSemifinal(props.settings.semifinal)
+        props.setSettings({...props.settings, semifinal: e.currentTarget.checked})
     }
 
     const onChangeFinal = (e: ChangeEvent<HTMLInputElement>) => {
-        props.settings.final = e.currentTarget.checked
-        setFinal(props.settings.final = true)
+        props.setSettings({...props.settings, final: true})
     }
 
     return (
@@ -94,56 +75,56 @@ export const SettingsTournament = (props: SettingsTournamentType) => {
             <div className={styleSettingsTournament.settingsOn}>Кол-во столов:<SelectNumberTable
                 options={props.tableForArm}
                 placeholder={''}
-                value={table}
+                value={props.settings.tableNumb}
                 onChangeOption={onChangeTable}/></div>
             <div
-                className={doubleEvent ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Двоеборье<input
+                className={props.settings.doubleEvent ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Двоеборье<input
                 type={"checkbox"}
-                disabled={wrestlingSeparately}
-                checked={doubleEvent}
+                disabled={props.settings.wrestlingSeparately}
+                checked={props.settings.doubleEvent}
                 onChange={onChangeDoubleEvent}/></div>
-            <div className={place ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Поединок
+            <div className={props.settings.place5_6 ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Поединок
                 за 5-6 место <input type={"checkbox"}
-                                    checked={place}
+                                    checked={props.settings.place5_6}
                                     onChange={onChangePlace}/></div>
             <div
-                className={wrestlingSeparately ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Борьба
+                className={props.settings.wrestlingSeparately ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Борьба
                 на каждую руку отдельно<input type={"checkbox"}
-                                              disabled={doubleEvent}
+                                              disabled={props.settings.doubleEvent}
                                               onChange={onChangeWrestlingSeparately}
-                                              checked={wrestlingSeparately}/></div>
-            {wrestlingSeparately && <div className={styleSettingsTournament.settingsOn}>
+                                              checked={props.settings.wrestlingSeparately}/></div>
+            {props.settings.wrestlingSeparately && <div className={styleSettingsTournament.settingsOn}>
                 <div
-                    className={leftHand ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Левая
+                    className={props.settings.leftHand ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Левая
                     рука: <input type="checkbox"
                                  onChange={onChangeLeftHand}
-                                 checked={leftHand}/></div>
+                                 checked={props.settings.leftHand}/></div>
                 |
                 <div
-                    className={rightHand ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Правая
+                    className={props.settings.rightHand ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Правая
                     рука: <input type="checkbox"
                                  onChange={onChangeRightHand}
-                                 checked={rightHand}/></div>
+                                 checked={props.settings.rightHand}/></div>
             </div>}
 
             <div
-                className={semifinalFinal ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Проводятся
+                className={props.settings.semifinalAndFinal ? styleSettingsTournament.settingsOn : styleSettingsTournament.settingsOff}>Проводятся
                 отдельно(полуфиналы, финалы): <input type={"checkbox"}
-                                                     checked={semifinalFinal}
+                                                     checked={props.settings.semifinalAndFinal}
                                                      onChange={onChangeSemifinalFinal}/>
             </div>
-            {semifinalFinal && <div className={styleSettingsTournament.settingsOn}>
+            {props.settings.semifinalAndFinal && <div className={styleSettingsTournament.settingsOn}>
                 <div
-                    className={semifinal ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Полуфиналы: <input
+                    className={props.settings.semifinal ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Полуфиналы: <input
                     type="checkbox"
                     onChange={onChangeSemifinal}
-                    checked={semifinal}/></div>
+                    checked={props.settings.semifinal}/></div>
                 |
                 <div
-                    className={final ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Финалы: <input
+                    className={props.settings.final ? styleSettingsTournament.additionalSettingsOn : styleSettingsTournament.additionalSettingsOff}>Финалы: <input
                     type="checkbox"
                     onChange={onChangeFinal}
-                    checked={final}/></div>
+                    checked={props.settings.final}/></div>
             </div>}
         </div>
     )

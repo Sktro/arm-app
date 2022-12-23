@@ -1,7 +1,7 @@
 import React from "react";
 import styleStartAndDeleteTournament from "./StartAndDeleteTournament.module.css";
 import {Link} from "react-router-dom";
-import {AthletesType, biathlonType, CategoryType} from "../../../App";
+import {AthletesType, biathlonType, CategoryType, CreatedCategoryType} from "../../../App";
 import {createdCategories} from "../../../App";
 
 type StartAndDeleteTournamentPropsType = {
@@ -10,6 +10,7 @@ type StartAndDeleteTournamentPropsType = {
     setGS: (value: biathlonType[]) => void
     GS: biathlonType[] | null
     arrCategory: CategoryType[]
+    copyCategory: CreatedCategoryType[]
 }
 
 export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsType) => {
@@ -17,12 +18,12 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
         if (props.GS) {
                         props.setGS(props.GS
                             .map((a, index) => ({
-                                id: createdCategories[index]?.id,
+                                id: props.copyCategory[index]?.id,
                                 leftHand: {
                                     hand: 'leftHand',
-                                    gender: createdCategories[index].gender,
-                                    title: createdCategories[index].title,
-                                    id: createdCategories[index]?.id,
+                                    gender: props.copyCategory[index].gender,
+                                    title: props.copyCategory[index].title,
+                                    id: props.copyCategory[index]?.id,
                                     gs: new Array(130).fill(null),
                                     LLos: new Array(64).fill(null),
                                     lLosS: new Array(256).fill(null).map(() => Array(64).fill(null)),
@@ -35,9 +36,9 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
                                 },
                                 rightHand: {
                                     hand: 'rightHand',
-                                    gender: createdCategories[index].gender,
-                                    title: createdCategories[index].title,
-                                    id: createdCategories[index]?.id,
+                                    gender: props.copyCategory[index].gender,
+                                    title: props.copyCategory[index].title,
+                                    id: props.copyCategory[index]?.id,
                                     gs: new Array(130).fill(null),
                                     LLos: new Array(64).fill(null),
                                     lLosS: new Array(256).fill(null).map(() => Array(64).fill(null)),
@@ -51,7 +52,6 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
 
                             })))
         }
-        //props.athletes.sort(() => Math.random() - 0.5)
     }
     return (
         <div className={styleStartAndDeleteTournament.startAndDeleteTournamentButton}>

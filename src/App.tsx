@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Registration} from "./components/Registration/Registration";
 import {v1} from "uuid";
 import {Modal} from "./components/Modal/Modal";
@@ -143,25 +143,21 @@ export const ranksAthletes: RankType[] = ['б/р', '3ю.р.', '2ю.р.', '1ю.р
 export const genderAthletes: GenderType[] = ['муж', 'жен']
 
 function App() {
-
-
+    // General Sequence
     const [GS, setGS] = useState<biathlonType[] | null>(null)
     // information for tournament
     const [tournament, setTournament] = useState<string>('')
     const [location, setLocation] = useState<string>('')
     const [startTournamentDate, setStartTournamentDate] = useState<string>(getCurrentDate())
     const [endTournamentDate, setEndTournamentDate] = useState<string>(getCurrentDate())
-    const [mainReferee, setMainReferee] = useState<string>('')
-    const [mainSecretary, setMainSecretary] = useState<string>('')
-    // settings for tournament
-    const [weightNewCategory, setWeightNewCategory] = useState<readonly Option[]>([])
-    // New athlete
-    const [athletes, setAthletes] = useState<Array<AthletesType>>([])
-    const [categoryVisibility, setCategoryVisibility] = useState<boolean>(false)
-    // New judge
-    const [judge, setJudge] = useState<Array<JudgeType>>([])
-    // New category
+    // weights Categories
     const [arrCategory, setArrCategory] = useState<Array<CategoryType>>([])
+    const [weightNewCategory, setWeightNewCategory] = useState<readonly Option[]>([]) // superSelect
+    const [activeCategory, setActiveCategory] = useState<{ value: string, label: string, gender: string } | null>(null)
+    const [copyCategory, setCopyCategory] = useState<CreatedCategoryType[]>([])
+    // New members
+    const [athletes, setAthletes] = useState<Array<AthletesType>>([])
+    const [judge, setJudge] = useState<Array<JudgeType>>([])
     // Settings tournament
     const [settings, SetSettings] = useState<SettingsType>(
         {
@@ -179,10 +175,37 @@ function App() {
     // filter
     const [filterAthletes, setFilterAthletes] = useState<Array<AthletesType>>([])
     const [filter, setFilter] = useState<FilterType>('all')
-    //
-    const [activeCategory, setActiveCategory] = useState<{ value: string, label: string, gender: string }>()
+    const [categoryVisibility, setCategoryVisibility] = useState<boolean>(false)
+    // USE-EFFECT
+    useEffect(() => {
+        setTournament(JSON.parse(localStorage.getItem('tournamentValue')!))
+        setLocation(JSON.parse(localStorage.getItem('locationValue')!))
+        setStartTournamentDate(JSON.parse(localStorage.getItem('dateValue')!))
+        setEndTournamentDate(JSON.parse(localStorage.getItem('EndDateValue')!))
+        setArrCategory(JSON.parse(localStorage.getItem('arrCategory')!))
+        SetSettings(JSON.parse(localStorage.getItem('settingsValue')!))
+        setGS(JSON.parse(localStorage.getItem('generalSequenceValue')!))
+        setActiveCategory(JSON.parse(localStorage.getItem('activeCategoryValue')!))
+        setAthletes(JSON.parse(localStorage.getItem('athletesValue')!))
+        setJudge(JSON.parse(localStorage.getItem('judgesValue')!))
+        setFilterAthletes(JSON.parse(localStorage.getItem('filterAthletesValue')!))
+        setCopyCategory(JSON.parse(localStorage.getItem('createdCategoriesArray')!))
+    }, [])
 
-    //
+    useEffect(() => {
+        localStorage.setItem('tournamentValue', JSON.stringify(tournament))
+        localStorage.setItem('locationValue', JSON.stringify(location))
+        localStorage.setItem('dateValue', JSON.stringify(startTournamentDate))
+        localStorage.setItem('EndDateValue', JSON.stringify(endTournamentDate))
+        localStorage.setItem('arrCategory', JSON.stringify(arrCategory))
+        localStorage.setItem('settingsValue', JSON.stringify(settings))
+        localStorage.setItem('generalSequenceValue', JSON.stringify(GS))
+        localStorage.setItem('activeCategoryValue', JSON.stringify(activeCategory))
+        localStorage.setItem('athletesValue', JSON.stringify(athletes))
+        localStorage.setItem('judgesValue', JSON.stringify(judge))
+        localStorage.setItem('filterAthletesValue', JSON.stringify(filterAthletes))
+        localStorage.setItem('createdCategoriesArray', JSON.stringify(copyCategory))
+    }, [tournament, location, startTournamentDate, endTournamentDate, arrCategory, settings, GS, activeCategory, athletes, judge, filterAthletes, copyCategory])
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -319,14 +342,13 @@ function App() {
         }
     }
 
-    console.log(GS)
-    console.log(arrCategory)
-
     return (
         <>
             <Routes>
                 <Route path="/" element={<Modal setActiveCategory={setActiveCategory}
                                                 GS={GS}
+                                                setCopyCategory={setCopyCategory}
+                                                setSettings={SetSettings}
                                                 sortCategory={sortCategory}
                                                 settings={settings}
                                                 setGS={setGS}
@@ -345,15 +367,12 @@ function App() {
                                                 tournament={tournament}
                                                 startTournamentDate={startTournamentDate}
                                                 endTournamentDate={endTournamentDate}
-                                                setMainSecretary={setMainSecretary}
-                                                setMainReferee={setMainReferee}
-                                                mainReferee={mainReferee}
-                                                mainSecretary={mainSecretary}
                                                 setStartTournamentDate={setStartTournamentDate}
                                                 setEndTournamentDate={setEndTournamentDate}/>}/>
                 <Route path="/registrationMembers" element={<Registration athletes={athletes}
                                                                           setGS={setGS}
                                                                           GS={GS}
+                                                                          copyCategory={copyCategory}
                                                                           createdCategories={createdCategories}
                                                                           location={location}
                                                                           endTournamentDate={endTournamentDate}
@@ -395,8 +414,6 @@ function App() {
                                                                           weightNewCategory={weightNewCategory}
                                                                           setTournament={setTournament}
                                                                           setLocation={setLocation}
-                                                                          setMainReferee={setMainReferee}
-                                                                          setMainSecretary={setMainSecretary}
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
                 <Route path={'holdingATournament/*'} element={<HoldingATournament athletes={athletes}

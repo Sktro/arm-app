@@ -41,8 +41,6 @@ type RegistrationPropsType = {
     setTournament: (value: string) => void
     setLocation: (value: string) => void
     setWeightNewCategory: (value: readonly Option[]) => void
-    setMainSecretary: (value: string) => void
-    setMainReferee: (value: string) => void
     setAthletes: (value: AthletesType[]) => void
     gender: GenderType[]
     changeFullNameJudge: (judgeID: string, fullName: string) => void
@@ -60,7 +58,7 @@ type RegistrationPropsType = {
     changeFilter: (allAthlete: AthletesType[], filter: FilterType) => void
     removeRegisteredCategoryAtAthlete: (athleteID: string, category: {value: string, label: string}) => void
     setActiveCategory: (value: {value: string, label: string, gender: string}) => void
-    activeCategory: {value: string, label: string, gender: string} | undefined
+    activeCategory: {value: string, label: string, gender: string} | null
     tournament: string
     endTournamentDate: string
     startTournamentDate: string
@@ -68,6 +66,7 @@ type RegistrationPropsType = {
     createdCategories: CreatedCategoryType[]
     setGS: (value: biathlonType[] | null) => void
     GS: biathlonType[] | null
+    copyCategory: CreatedCategoryType[]
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -139,6 +138,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                     sortCategory={props.sortCategory}/>
                 </div>
                 <StartAndDeleteTournament setModalDelete={setModalDelete}
+                                          copyCategory={props.copyCategory}
                                           setGS={props.setGS}
                                           GS={props.GS}
                                           athletes={props.athletes}
@@ -153,8 +153,6 @@ export const Registration = (props: RegistrationPropsType) => {
                                    setModalDelete={setModalDelete}
                                    setTournament={props.setTournament}
                                    setLocation={props.setLocation}
-                                   setMainReferee={props.setMainReferee}
-                                   setMainSecretary={props.setMainSecretary}
                                    setWeightNewCategory={props.setWeightNewCategory}
                                    modalDelete={modalDelete}/>
         </div>

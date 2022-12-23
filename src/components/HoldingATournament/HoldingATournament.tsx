@@ -23,7 +23,7 @@ type LeaderboardType = {
 
 export const HoldingATournament = (props: LeaderboardType) => {
 
-    if(props.GS === null) {
+    if (props.GS === null) {
         return <Navigate to={'/'}/>
     }
 
