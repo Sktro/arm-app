@@ -23,12 +23,12 @@ export const GridTo32 = (props: GridTo32Type) => {
     const athlete = (num: number, style: string) => {
 
         if (!props.GSAthletes) return
-
+        let athlete = props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete
         let name = <div className={style}></div>
-        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32.gridColor}`: styleGridTo32[style]
+        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32[style]} ${styleGridTo32.gridColor}`: styleGridTo32[style]
         if (visibility32[num - 1][props.count] >= 0 && props.GSAthletes[visibility32[num - 1][props.count]]! >= 0) {
             name = <div className={selection}
-                        id={num.toString()}>{props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete}</div>
+                        id={num.toString()}>{athlete}</div>
         }
         if (visibility32[num - 1][props.count] === -1) {
             name = <div id={num.toString()} className={styleGridTo32[style]}> ---- </div>
