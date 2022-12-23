@@ -25,14 +25,13 @@ export const GridTo32 = (props: GridTo32Type) => {
         if (!props.GSAthletes) return
 
         let name = <div className={style}></div>
-        let athlete = props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete
-        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32[style]} ${styleGridTo32.gridColor}`: styleGridTo32[style]
+        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32.gridColor}`: styleGridTo32[style]
         if (visibility32[num - 1][props.count] >= 0 && props.GSAthletes[visibility32[num - 1][props.count]]! >= 0) {
             name = <div className={selection}
-                        id={num.toString()}>{athlete}</div>
+                        id={num.toString()}>{props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete}</div>
         }
         if (visibility32[num - 1][props.count] === -1) {
-            name = <div id={num.toString()} className={style}> ---- </div>
+            name = <div id={num.toString()} className={styleGridTo32[style]}> ---- </div>
         }
         return name
     }
@@ -133,7 +132,7 @@ export const GridTo32 = (props: GridTo32Type) => {
                             <div className={styleGridTo32.RoundName}>5-й тур | Группа А</div>
                             <div className={styleGridTo32.fifthRoundGroupA}>
                                 {athlete(117, 'gridGray')}
-                                {athlete(118,'gridWhite')}
+                                {athlete(118,'gridGray')}
                             </div>
                         </div>
 
@@ -142,14 +141,14 @@ export const GridTo32 = (props: GridTo32Type) => {
                                 <div className={styleGridTo32.RoundName}>5-6 место</div>
                                 <div className={styleGridTo32.place5_6}>
                                     {athlete(121, 'gridGray')}
-                                    {athlete(122,'gridWhite')}
+                                    {athlete(122,'gridGray')}
                                 </div>
                             </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>Полуфинал</div>
                             <div className={styleGridTo32.semiFinalRound}>
-                                {athlete(123, 'gridGray')}
+                                {athlete(123, 'gridWhite')}
                                 {athlete(124,'gridWhite')}
                             </div>
                         </div>
@@ -161,13 +160,13 @@ export const GridTo32 = (props: GridTo32Type) => {
                                     <div className={styleGridTo32.RoundName}>1-й Поединок</div>
                                     <div className={styleGridTo32.finalRound}>
                                         {athlete(125, 'gridGray')}
-                                        {athlete(126,'gridWhite')}
+                                        {athlete(126,'gridGray')}
                                     </div>
                                 </div>
                                 {superFinal && <div className={styleGridTo32.secondFightContain}>
                                     <div className={styleGridTo32.RoundName}>2-й Поединок</div>
                                     <div className={styleGridTo32.finalRound}>
-                                        {athlete(127, 'gridGray')}
+                                        {athlete(127, 'gridWhite')}
                                         {athlete(128,'gridWhite')}
                                     </div>
                                 </div>}
@@ -265,7 +264,7 @@ export const GridTo32 = (props: GridTo32Type) => {
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>7-й тур | Группа Б</div>
                             <div className={styleGridTo32.seventhRoundGroupB}>
-                                {athlete(119, 'gridGray')}
+                                {athlete(119, 'gridWhite')}
                                 {athlete(120,'gridWhite')}
                             </div>
                         </div>

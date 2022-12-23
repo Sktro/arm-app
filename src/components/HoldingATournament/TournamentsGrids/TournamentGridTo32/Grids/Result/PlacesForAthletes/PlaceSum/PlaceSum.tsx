@@ -136,7 +136,6 @@ export const PlaceSum = (props: PlaceSumType) => {
         }
     }
 
-
     return (
         <div className={styleResult.result}>
             <div className={styleResult.resultSpecific}>Места по двоеборью</div>
