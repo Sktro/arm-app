@@ -36,6 +36,8 @@ export const GridTo32 = (props: GridTo32Type) => {
         return name
     }
 
+    console.log(2 * subsequence[props.ourObj?.N! - 1][props.count] - 1)
+
     const superFinal = props.countAthletes < 6 ? (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
         : (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 3
 
@@ -131,8 +133,8 @@ export const GridTo32 = (props: GridTo32Type) => {
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>5-й тур | Группа А</div>
                             <div className={styleGridTo32.fifthRoundGroupA}>
-                                {athlete(117, 'gridGray')}
-                                {athlete(118,'gridGray')}
+                                {athlete(105, 'gridGray')}
+                                {athlete(106, 'gridGray')}
                             </div>
                         </div>
 
@@ -240,24 +242,24 @@ export const GridTo32 = (props: GridTo32Type) => {
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>5-й тур | Группа Б</div>
                             <div className={styleGridTo32.fifthRoundGroupB}>
-                                {athlete(105, 'gridGray')}
-                                {athlete(106, 'gridGray')}
-                                {athlete(107,'gridWhite')}
-                                {athlete(108,'gridWhite')}
-                                {athlete(109, 'gridGray')}
-                                {athlete(110, 'gridGray')}
-                                {athlete(111,'gridWhite')}
-                                {athlete(112,'gridWhite')}
+                                {athlete(107,'gridGray')}
+                                {athlete(108,'gridGray')}
+                                {athlete(109, 'gridWhite')}
+                                {athlete(110, 'gridWhite')}
+                                {athlete(111,'gridGray')}
+                                {athlete(112,'gridGray')}
+                                {athlete(113, 'gridWhite')}
+                                {athlete(114, 'gridWhite')}
                             </div>
                         </div>
 
                         <div className={styleGridTo32.groupContain}>
                             <div className={styleGridTo32.RoundName}>6-й тур | Группа Б</div>
                             <div className={styleGridTo32.sixthRoundGroupB}>
-                                {athlete(113, 'gridGray')}
-                                {athlete(114, 'gridGray')}
-                                {athlete(115,'gridWhite')}
-                                {athlete(116,'gridWhite')}
+                                {athlete(115,'gridGray')}
+                                {athlete(116,'gridGray')}
+                                {athlete(117, 'gridWhite')}
+                                {athlete(118,'gridWhite')}
                             </div>
                         </div>
 
