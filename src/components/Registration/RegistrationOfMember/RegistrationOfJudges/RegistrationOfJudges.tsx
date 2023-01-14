@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useRef, useState} from "react";
 import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration/InputAnimationForRegistration";
 import {SelectForRegAthl} from "../../common/SelectForRefAthl/SelectForRegAthl";
 import {CategoryJudgeType, GenderType, StatusJudgeType} from "../../../../App";
@@ -23,6 +23,12 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
     const [judgesCategory, setJudgesCategory] = useState(props.categoryJudge[0])
     const [gender, setGender] = useState(props.gender[0])
     const [status, setStatus] = useState(props.statusJudge[4])
+
+    const inputRef: React.RefObject<HTMLInputElement> = useRef(null)
+
+    const handleClick = () => {
+        inputRef.current && inputRef.current.focus()
+    }
 
     const onChangeFullNameJudges = (e: ChangeEvent<HTMLInputElement>) => {
         setFullNameJudges(e.currentTarget.value)
@@ -55,6 +61,7 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
             setJudgesCategory(props.categoryJudge[0])
             setGender(props.gender[0])
             setStatus(props.statusJudge[4])
+            handleClick()
         } else {
             props.setError(true)
         }
@@ -69,6 +76,7 @@ export const RegistrationOfJudges = (props: RegistrationOfJudgesType) => {
                                                placeholder={"Судья"}
                                                autofocus={true}
                                                onChange={onChangeFullNameJudges}
+                                               inputRef={inputRef}
                                                value={fullNameJudges}/>
                 <InputAnimationForRegistration type={"text"}
                                                placeholder={"Регион"}

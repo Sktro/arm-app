@@ -43,14 +43,14 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
                 if (Number(arr[i][j])) {
                     createdCategories.push({
                         id: v1(),
-                        title: arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`,
+                        title: arrMale[i].categoryAthlete + ` (${arrMale[i].age}): ${arr[i][j]}`,
                         gender: 'муж'
                     })
                 }
                 if (arr[i][j].includes('+')) {
                     createdCategories.push({
                         id: v1(),
-                        title: arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`,
+                        title: arrMale[i].categoryAthlete + ` (${arrMale[i].age}): ${arr[i][j]}`,
                         gender: 'муж'
                     })
                 }
@@ -65,14 +65,14 @@ export const CheckInfoWindow = (props: CheckInfoWindowType) => {
                 if (Number(arr[i][j])) {
                     createdCategories.push({
                         id: v1(),
-                        title: arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`,
+                        title: arrFemale[i].categoryAthlete + ` (${arrFemale[i].age}): ${arr[i][j]}`,
                         gender: 'жен'
                     })
                 }
                 if (arr[i][j].includes('+')) {
                     createdCategories.push({
                         id: v1(),
-                        title: arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`,
+                        title: arrFemale[i].categoryAthlete + ` (${arrFemale[i].age}): ${arr[i][j]}`,
                         gender: 'жен'
                     })
                 }

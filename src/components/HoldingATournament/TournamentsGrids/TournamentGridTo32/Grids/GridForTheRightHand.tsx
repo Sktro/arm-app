@@ -47,6 +47,7 @@ export const GridForTheRightHand = (props: GridsType) => {
             {props.arrAthletes.length > 1 && <>
                 <div className={styleGrids.buttonContain}>
                     <ButtonForTheWinner id={props.id}
+                                        category={props.category}
                                         hand={right}
                                         N={props.ourObj!.N}
                                         count={props.count}

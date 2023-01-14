@@ -57,7 +57,7 @@ type RegistrationPropsType = {
     categoryVisibility: boolean
     changeFilter: (allAthlete: AthletesType[], filter: FilterType) => void
     removeRegisteredCategoryAtAthlete: (athleteID: string, category: {value: string, label: string}) => void
-    setActiveCategory: (value: {value: string, label: string, gender: string}) => void
+    setActiveCategory: (value: {value: string, label: string, gender: string} | null) => void
     activeCategory: {value: string, label: string, gender: string} | null
     tournament: string
     endTournamentDate: string
@@ -67,6 +67,7 @@ type RegistrationPropsType = {
     setGS: (value: biathlonType[] | null) => void
     GS: biathlonType[] | null
     copyCategory: CreatedCategoryType[]
+    setCopyCategory: (value: CreatedCategoryType[]) => void
 }
 
 export const Registration = (props: RegistrationPropsType) => {
@@ -145,6 +146,8 @@ export const Registration = (props: RegistrationPropsType) => {
                                           arrCategory={props.arrCategory}/>
             </div>}
             <ModalDeleteTournament setJudge={props.setJudge}
+                                   setActiveCategory={props.setActiveCategory}
+                                   setCopyCategory={props.setCopyCategory}
                                    setGS={props.setGS}
                                    createdCategories={props.createdCategories}
                                    SetSettings={props.SetSettings}
@@ -153,6 +156,7 @@ export const Registration = (props: RegistrationPropsType) => {
                                    setModalDelete={setModalDelete}
                                    setTournament={props.setTournament}
                                    setLocation={props.setLocation}
+                                   setCategoryVisibility={props.setCategoryVisibility}
                                    setWeightNewCategory={props.setWeightNewCategory}
                                    modalDelete={modalDelete}/>
         </div>

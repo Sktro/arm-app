@@ -1,0 +1,382 @@
+import React from "react";
+import styleGrid from './Grid.module.css'
+
+
+export const Grid = () => {
+    return (
+        <div className={styleGrid.contain}>
+            <div className={styleGrid.containInformation}>
+                <div>
+                    <div>ВЕСОВАЯ КАТЕГОРИЯ:</div>
+                    <span>ПОЛ:</span><span>ВОЗРАСТ:</span>
+                    <div>РЕЗУЛЬТАТЫ ПО "ДВОЕБОРЬЮ"</div>
+                </div>
+
+                <div>НАЗВАНИЕ СОРЕВНОВАНИЯ:</div>
+
+                <div>
+                    <div>МЕСТО ПРОВЕДЕНИЯ:</div>
+                    <div>ДАТА:</div>
+                </div>
+            </div>
+            <div className={styleGrid.gridContain}>
+                <ul className={styleGrid.placeForDoubleEvent}>
+                    <li>Место по "двоеборью"</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.fullName}>
+                    <li>Фамилия, Имя</li>
+                    <li>Магомедвели Халиков</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.qualification}>
+                    <li>Квалификация</li>
+                    <li>1 разряд</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.team}>
+                    <li>Команда</li>
+                    <li>Лотошинские Медведи</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.placeForHand}>
+                    <li>Место на левой руке</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.points}>
+                    <li>Очки</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.placeForHand}>
+                    <li>Место на правой руке</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.points}>
+                    <li>Очки</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.points}>
+                    <li>Сумма очков</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+                <ul className={styleGrid.weight}>
+                    <li>Собственный вес</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                    <li>Info</li>
+                </ul>
+            </div>
+            <div className={styleGrid.judges}>
+                <ul>
+                    <li>Главный судья:</li>
+                    <li>Главный Секретарь:</li>
+                </ul>
+            </div>
+        </div>
+    )
+}

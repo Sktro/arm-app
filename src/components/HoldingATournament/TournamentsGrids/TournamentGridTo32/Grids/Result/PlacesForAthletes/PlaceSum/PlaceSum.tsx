@@ -21,11 +21,13 @@ export const PlaceSum = (props: PlaceSumType) => {
 // добавить условие, если один из спортсменов не боролся на одной руке
     // добавить условие, преимущество отдается тому, кто занял на одной из рук более высокое место
     const athletesArrayCopy = props.arrAthletes.map(a => a)
+    athletesArrayCopy.map((a, index) => a.placeForDoubleEvent = index + 1)
     let flagEqualWeights: boolean = false
-
+    console.log(athletesArrayCopy)
     for (let j = 0; j < props.countAthletes; j++) {
         for (let i = 0; i < props.countAthletes - 1; i++) {
             if (athletesArrayCopy[i].pointsSum < athletesArrayCopy[i + 1].pointsSum) {
+                console.log('0')
                 let rt = athletesArrayCopy[i]
                 athletesArrayCopy[i] = athletesArrayCopy[i + 1]
                 athletesArrayCopy[i + 1] = rt
@@ -107,34 +109,37 @@ export const PlaceSum = (props: PlaceSumType) => {
             }
         }
     }
-
-    for (let i = 0; i < athletesArrayCopy.length; i++) {
-        if (athletesArrayCopy[i].placeOnTheLeftHand === 3
-            && athletesArrayCopy[i].placeOnTheRightHand === 3
-            && (athletesArrayCopy[i].placeForDoubleEvent === 4
-                || athletesArrayCopy[i].placeForDoubleEvent === 5)) {
-            if (athletesArrayCopy[i].placeForDoubleEvent === 4) {
-                athletesArrayCopy.map((a, index) => {
-                    console.log('занял 4')
-                    if (index > 2) {
-                        a.placeForDoubleEvent = index
-                    }
-                    return a
-                })
-            } else if (athletesArrayCopy[i].placeForDoubleEvent === 5) {
-                console.log('занял 5')
-                let rt = athletesArrayCopy[i]
-                athletesArrayCopy[i] = athletesArrayCopy[i - 1]
-                athletesArrayCopy[i - 1] = rt
-                athletesArrayCopy.map((a, index) => {
-                    if (index > 2) {
-                        a.placeForDoubleEvent = index
-                    }
-                    return a
-                })
+    if (props.countAthletes > 3) {
+        console.log('два 3 места')
+        for (let i = 0; i < athletesArrayCopy.length; i++) {
+            if (athletesArrayCopy[i].placeOnTheLeftHand === 3
+                && athletesArrayCopy[i].placeOnTheRightHand === 3
+                && (athletesArrayCopy[i].placeForDoubleEvent === 4
+                    || athletesArrayCopy[i].placeForDoubleEvent === 5)) {
+                if (athletesArrayCopy[i].placeForDoubleEvent === 4) {
+                    athletesArrayCopy.map((a, index) => {
+                        console.log('занял 4')
+                        if (index > 2) {
+                            a.placeForDoubleEvent = index
+                        }
+                        return a
+                    })
+                } else if (athletesArrayCopy[i].placeForDoubleEvent === 5) {
+                    console.log('занял 5')
+                    let rt = athletesArrayCopy[i]
+                    athletesArrayCopy[i] = athletesArrayCopy[i - 1]
+                    athletesArrayCopy[i - 1] = rt
+                    athletesArrayCopy.map((a, index) => {
+                        if (index > 2) {
+                            a.placeForDoubleEvent = index
+                        }
+                        return a
+                    })
+                }
             }
         }
     }
+
 
     return (
         <div className={styleResult.result}>

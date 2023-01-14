@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FocusEvent} from "react";
+import React, {ChangeEvent, FocusEvent, LegacyRef} from "react";
 import style from "./InputAnimationForRegistration.module.css"
 
 type  InputAnimationPropsType = {
@@ -9,6 +9,7 @@ type  InputAnimationPropsType = {
     handleFocusEvent?: (e: FocusEvent<HTMLInputElement>) => void
     obligatoryField?: boolean
     autofocus?: boolean
+    inputRef?: LegacyRef<HTMLInputElement>
 }
 
 
@@ -20,6 +21,7 @@ export const InputAnimationForRegistration =(props: InputAnimationPropsType) => 
                    autoFocus={props.autofocus}
                    className={style.form__input}
                    autoComplete="off"
+                   ref={props.inputRef}
                    placeholder=" "
                    onChange={props.onChange}
                    value={props.value}

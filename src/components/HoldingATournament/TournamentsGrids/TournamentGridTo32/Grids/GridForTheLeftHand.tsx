@@ -25,7 +25,7 @@ type GridsType = {
     GS: biathlonType[] | null
     settings: SettingsType
     id: string | undefined
-    categories: biathlonType
+    category: biathlonType
 }
 
 export const GridForTheLeftHand = (props: GridsType) => {
@@ -46,6 +46,7 @@ export const GridForTheLeftHand = (props: GridsType) => {
             {props.arrAthletes.length > 1 && <>
                 <div className={styleGrids.buttonContain}>
                     <ButtonForTheWinner id={props.id}
+                                        category={props.category}
                                         hand={left}
                                         N={props.ourObj!.N}
                                         count={props.count}
@@ -55,14 +56,14 @@ export const GridForTheLeftHand = (props: GridsType) => {
                                         GS={props.GS}
                                         GSAthletes={props.GSAthletes}
                                         arrAthletes={props.arrAthletes}/>
-                    {props.categories.rightHand.N === 1 && <Rollback N={props.ourObj!.N}
-                                                                     hand={left}
-                                                                     id={props.id}
-                                                                     arrAthletes={props.arrAthletes}
-                                                                     GS={props.GS}
-                                                                     ourObj={props.ourObj}
-                                                                     setGS={props.setGS}
-                                                                     count={props.count}/>}
+                    {props.category.rightHand.N === 1 && <Rollback N={props.ourObj!.N}
+                                                                   hand={left}
+                                                                   id={props.id}
+                                                                   arrAthletes={props.arrAthletes}
+                                                                   GS={props.GS}
+                                                                   ourObj={props.ourObj}
+                                                                   setGS={props.setGS}
+                                                                   count={props.count}/>}
                 </div>
                 {!props.ourObj?.theWrestlingIsOver &&
                     <Ready ourObj={props.ourObj}

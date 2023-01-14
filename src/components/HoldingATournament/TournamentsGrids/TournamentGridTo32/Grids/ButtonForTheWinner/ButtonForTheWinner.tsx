@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styleButtonForTheWinner from "./ButtonForTheWinner.module.css";
 import {biathlonType, GSType} from "../../../../../../App";
 import {winner} from "../../../../../../twoDimensionalArray/winner";
@@ -25,10 +25,20 @@ type ButtonForTheWinnerType = {
     N: number
     countAthletes: number
     hand: 'leftHand' | 'rightHand'
+    category: biathlonType
 }
 
 export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
     const [disable, setDisable] = useState<boolean>(false)
+
+    useEffect(()=> {
+        if(props.category.rightHand.theWrestlingIsOver){
+            props.setGS(props.GS!.map(ob=> ob.id === props.id ? {
+                ...ob,
+                categoryClosed: true
+            } : ob))
+        }
+    },[props.category.rightHand.theWrestlingIsOver])
 
     const foo1 = (hand: 'leftHand' | 'rightHand') => {
         if ((props.count + 2 < 6 && props.N < 2 * (props.count + 2) - 2) || (props.count + 2 >= 6 && props.N < 2 * (props.count + 2) - 1)) { // ограничение

@@ -7,6 +7,9 @@
     min-height: 771px;
     font-weight: bold;
     border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .nameControlPanel {
@@ -26,4 +29,15 @@
 
 .buttonCategory:hover {
     color: darkorange;
+}
+
+.closed {
+    padding: 3px;
+    width: 240px;
+    border: 2px solid white;
+    border-radius: 10px;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
 }

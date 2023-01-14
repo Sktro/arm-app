@@ -16,6 +16,9 @@ type ModalDeleteTournamentPropsType = {
     setJudge: (value: JudgeType[]) => void
     createdCategories: CreatedCategoryType[]
     setGS: (value: biathlonType[] | null) => void
+    setCopyCategory: (value: CreatedCategoryType[]) => void
+    setActiveCategory: (value: {value: string, label: string, gender: string} | null) => void
+    setCategoryVisibility: (value: boolean) => void
 }
 
 
@@ -34,6 +37,10 @@ export const ModalDeleteTournament = (props: ModalDeleteTournamentPropsType) => 
         props.setLocation('')
         props.setWeightNewCategory([])
         props.setGS(null)
+        props.setCopyCategory([])
+        props.setActiveCategory(null)
+        props.setCategoryVisibility(false)
+        localStorage.clear()
         navigate('/', {replace: true})
     }
 

@@ -2,7 +2,6 @@ import React from "react";
 import styleStartAndDeleteTournament from "./StartAndDeleteTournament.module.css";
 import {Link} from "react-router-dom";
 import {AthletesType, biathlonType, CategoryType, CreatedCategoryType} from "../../../App";
-import {createdCategories} from "../../../App";
 
 type StartAndDeleteTournamentPropsType = {
     setModalDelete: (value: boolean) => void
@@ -48,8 +47,8 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
                                     theWrestlingIsOver: false,
                                     superFinal: 0,
                                     jer: false
-                                }
-
+                                },
+                                categoryClosed: false
                             })))
         }
     }

@@ -7,6 +7,8 @@ import {MultiValue} from "react-select";
 import {Route, Routes} from "react-router-dom";
 import {NotFoundPage} from "./components/NotFoundPage/NotFoundPage";
 import {HoldingATournament} from "./components/HoldingATournament/HoldingATournament";
+import {TournamentRating} from "./components/StarRating/StarRating";
+import {Grid} from "./components/grid/Grid";
 
 export type TableForArmType = '1' | '2' | '3' | '4' | '5' | '6'
 export type RankType =
@@ -130,8 +132,8 @@ export type biathlonType = {
     id: string
     leftHand: GSType
     rightHand: GSType
+    categoryClosed: boolean
 }
-
 
 export const createdCategories: CreatedCategoryType[] = []
 export const statusJudge: StatusJudgeType[] = ['главный судья', 'зам. главного судьи', 'главный секретарь', 'зам. главного секретаря', 'рефери', 'боковой судья']
@@ -169,7 +171,7 @@ function App() {
             leftHand: false,
             rightHand: false,
             doubleEvent: false,
-            wrestlingSeparately: false
+            wrestlingSeparately: false,
         }
     )
     // filter
@@ -190,6 +192,7 @@ function App() {
         setJudge(JSON.parse(localStorage.getItem('judgesValue')!))
         setFilterAthletes(JSON.parse(localStorage.getItem('filterAthletesValue')!))
         setCopyCategory(JSON.parse(localStorage.getItem('createdCategoriesArray')!))
+        setCategoryVisibility(JSON.parse(localStorage.getItem('categoryVisibilityValue')!))
     }, [])
 
     useEffect(() => {
@@ -205,7 +208,10 @@ function App() {
         localStorage.setItem('judgesValue', JSON.stringify(judge))
         localStorage.setItem('filterAthletesValue', JSON.stringify(filterAthletes))
         localStorage.setItem('createdCategoriesArray', JSON.stringify(copyCategory))
-    }, [tournament, location, startTournamentDate, endTournamentDate, arrCategory, settings, GS, activeCategory, athletes, judge, filterAthletes, copyCategory])
+        localStorage.setItem('categoryVisibilityValue', JSON.stringify(categoryVisibility))
+    }, [tournament, location, startTournamentDate, endTournamentDate, arrCategory, settings, GS, activeCategory, athletes, judge, filterAthletes, copyCategory, categoryVisibility
+    ])
+    console.log(GS)
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()
@@ -341,7 +347,6 @@ function App() {
             findJudge.category = category
         }
     }
-
     return (
         <>
             <Routes>
@@ -370,6 +375,7 @@ function App() {
                                                 setStartTournamentDate={setStartTournamentDate}
                                                 setEndTournamentDate={setEndTournamentDate}/>}/>
                 <Route path="/registrationMembers" element={<Registration athletes={athletes}
+                                                                          setCopyCategory={setCopyCategory}
                                                                           setGS={setGS}
                                                                           GS={GS}
                                                                           copyCategory={copyCategory}
@@ -417,7 +423,18 @@ function App() {
                                                                           setWeightNewCategory={setWeightNewCategory}
                                                                           changeRankAthlete={changeRankAthlete}/>}/>
                 <Route path={'holdingATournament/*'} element={<HoldingATournament athletes={athletes}
+                                                                                  setJudge={setJudge}
+                                                                                  setCopyCategory={setCopyCategory}
+                                                                                  setWeightNewCategory={setWeightNewCategory}
+                                                                                  setTournament={setTournament}
+                                                                                  setSettings={SetSettings}
+                                                                                  setLocation={setLocation}
+                                                                                  setAthletes={setAthletes}
+                                                                                  setCategoryVisibility={setCategoryVisibility}
+                                                                                  setArrCategory={setArrCategory}
+                                                                                  createdCategories={createdCategories}
                                                                                   GS={GS}
+                                                                                  setActiveCategory={setActiveCategory}
                                                                                   setGS={setGS}
                                                                                   settings={settings}
                                                                                   sortCategory={sortCategory}
@@ -426,7 +443,8 @@ function App() {
                                                                                   endTournamentDate={endTournamentDate}
                                                                                   tournament={tournament}
                                                                                   location={location}/>}/>
-
+                <Route path={'/tournamentRating'} element={<TournamentRating/>}/>
+                <Route path={'/grid'} element={<Grid/>}/>
                 <Route path={'*'} element={<NotFoundPage GS={GS}/>}/>
             </Routes>
         </>

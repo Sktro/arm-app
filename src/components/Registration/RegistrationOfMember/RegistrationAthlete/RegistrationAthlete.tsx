@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useRef, useState} from "react";
 import styleRegistrationAthlete from "./RegistrationAthlete.module.css";
 import styleRegistrationOfMembers from "../RegistrationOfMembers.module.css"
 import {InputAnimationForRegistration} from "../../common/InputAnimationForRegistration/InputAnimationForRegistration";
@@ -33,6 +33,8 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
         return count
     }
 
+    const inputRef: React.RefObject<HTMLInputElement> = useRef(null)
+
     const [availableCategories, setAvailableCategories] = useState<MultiValue<{ value: string, label: string }>>([])
     const [fullName, setFullName] = useState('')
     const [weight, setWeight] = useState('')
@@ -41,6 +43,11 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
     const [genderAthlete, setGenderAthlete] = useState(findQty('муж') === 0 ? props.gender[1] : props.gender[0])
 
     const disableGender = findQty('муж') === 0 || findQty('жен') === 0
+
+
+    const handleClick = () => {
+        inputRef.current && inputRef.current.focus()
+    }
 
     const onChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {
         setFullName(e.currentTarget.value)
@@ -74,6 +81,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
             setWeight('')
             setRank(props.ranks[0])
             setTeam('')
+            handleClick()
         } else {
             props.setError(true)
         }
@@ -99,10 +107,10 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
         for (let i = 0; i < arrMale.length; i++) {
             for (let j = 0; j < arr[i].length; j++) {
                 if (Number(arr[i][j]) >= Number(weight)) {
-                    newArr.push(arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`)
+                    newArr.push(arrMale[i].categoryAthlete + ` (${arrMale[i].age}): ${arr[i][j]}`)
                 }
                 if (arr[i][j].includes('+')) {
-                    newArr.push(arrMale[i].categoryAthlete + `(${arrMale[i].age}): ${arr[i][j]}`)
+                    newArr.push(arrMale[i].categoryAthlete + ` (${arrMale[i].age}): ${arr[i][j]}`)
                 }
             }
         }
@@ -115,10 +123,10 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
         for (let i = 0; i < arrFemale.length; i++) {
             for (let j = 0; j < arr[i].length; j++) {
                 if (Number(arr[i][j]) >= Number(weight)) {
-                    newArr.push(arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`)
+                    newArr.push(arrFemale[i].categoryAthlete + ` (${arrFemale[i].age}): ${arr[i][j]}`)
                 }
                 if (arr[i][j].includes('+')) {
-                    newArr.push(arrFemale[i].categoryAthlete + `(${arrFemale[i].age}): ${arr[i][j]}`)
+                    newArr.push(arrFemale[i].categoryAthlete + ` (${arrFemale[i].age}): ${arr[i][j]}`)
                 }
             }
         }
@@ -137,6 +145,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                                                obligatoryField={true}
                                                placeholder={"Участник"}
                                                autofocus={true}
+                                               inputRef={inputRef}
                                                onChange={onChangeFullName}
                                                value={fullName}/>
             </div>

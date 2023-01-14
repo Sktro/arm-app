@@ -86,18 +86,18 @@ export const CategoriesList = (props: CategoriesListPropsType) => {
         {sortArrayGender(props.arrCategory, 'жен')
             .map(c => <div key={c.id}><span
                 className={styleCategoryList.listFemale}>- {c.categoryAthlete}({c.age}):</span><span>{props.sortCategory(c)
-                .map((w, index) => <button key={index} className={`${c.categoryAthlete}(${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
+                .map((w, index) => <button key={index} className={`${c.categoryAthlete} (${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
                     ? `${styleCategoryList.weightListF} ${styleCategoryList.weightListFActive}` : styleCategoryList.weightListF}
-                                           onClick={() => activateButtonFemale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}</span>
+                                           onClick={() => activateButtonFemale(`${c.categoryAthlete} (${c.age}): ` + w.value, true)}>{w.value}</button>)}</span>
             </div>)}</div>
 
     const maleCategory = <div>{sortArrayGender(props.arrCategory, 'муж')
         .map(c => <div key={c.id}><span
             className={styleCategoryList.listMale}>- {c.categoryAthlete}({c.age}):</span>
             <span>{props.sortCategory(c)
-                .map((w, index) => <button  key={index} className={`${c.categoryAthlete}(${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
+                .map((w, index) => <button  key={index} className={`${c.categoryAthlete} (${c.age}): ` + w.value === props.activeCategory!.value && c.gender === props.activeCategory!.gender
                     ?`${styleCategoryList.weightListM} ${styleCategoryList.weightListMActive}` :styleCategoryList.weightListM}
-                                           onClick={() => activateButtonMale(`${c.categoryAthlete}(${c.age}): ` + w.value, true)}>{w.value}</button>)}
+                                           onClick={() => activateButtonMale(`${c.categoryAthlete} (${c.age}): ` + w.value, true)}>{w.value}</button>)}
                                 </span>
         </div>)}</div>
 

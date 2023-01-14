@@ -183,7 +183,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                                                                       count={count}
                                                                       GSAthletes={GSAthletesForTheLeftHand}
                                                                       setGS={props.setGS}
-                                                                      categories={ourObj}
+                                                                      category={ourObj}
                                                                       GS={props.GS}
                                                                       settings={props.settings}
                                                                       id={id}/>}/>

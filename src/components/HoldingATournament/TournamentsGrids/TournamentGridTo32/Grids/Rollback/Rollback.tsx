@@ -39,6 +39,7 @@ export const Rollback = (props: RollbackType) => {
         }
         props.setGS(props.GS!.map(ob => ob.id === props.id ? {
             ...ob,
+            categoryClosed: false,
             [hand]: {
                 ...ob[hand], N: ob[hand].N - 1,
                 gs: ob[hand].gs.map((gs, index) => index === winner[ob[hand].N - 2][props.count] - 1 ? null

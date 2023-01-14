@@ -1,0 +1,163 @@
+.contain {
+    display: flex;
+    flex-direction: column;
+    width: 1100px;
+    margin-left: 11px;
+}
+
+.gridContain {
+    height: 660px;
+    width: 1100px;
+    border: solid 1px black;
+    display: flex;
+    font-family: "Arial Narrow", "sans-serif";
+}
+
+.containInformation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gridContain ul li {
+    list-style-type: none;
+    height: 19.41px;
+    font-size: 15px;
+}
+
+.gridContain ul li:first-child {
+    display: flex;
+    flex-direction: column;
+    height: 37.8px;
+    text-align: center;
+    justify-content: center;
+}
+
+.gridContain ul li:nth-child(even) {
+    background-color: rgba(128, 128, 128, 0.27);
+}
+
+/*Место по двоеборью*/
+
+.placeForDoubleEvent li {
+    border: solid black 1px;
+    width: 98px;
+    text-align: center;
+}
+
+.placeForDoubleEvent li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+
+/*Фамилия, Имя*/
+
+.fullName li {
+    width: 190px;
+    border: 1px solid black;
+    padding-left: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.fullName li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+
+
+
+
+/*Квалификация*/
+
+.qualification li{
+    width: 110px;
+    border: 1px solid black;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.qualification li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+/*Команда*/
+
+.team li{
+    width: 190px;
+    border: 1px solid black;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.team li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+/*Место на руке*/
+
+.placeForHand li{
+    width: 110px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.placeForHand li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+/*Очки*/
+
+.points li {
+    width: 60px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.points li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+/*Собственный вес*/
+
+.weight li {
+    width: 110px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.weight li:not(:last-child) {
+    border-bottom: none;
+}
+
+/*---------------------------------*/
+
+.judges{
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-around;
+}
+
+.judges li{
+    list-style-type: none;
+}
+
+.judges li:first-child{
+    margin-bottom: 7px;
+}
