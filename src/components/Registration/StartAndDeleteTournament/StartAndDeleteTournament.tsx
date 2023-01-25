@@ -29,6 +29,8 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
                                     app: new Array(256).fill(null),
                                     winCount: new Array(64).fill(0),
                                     N: 1,
+                                    numberForUnderline: 0,
+                                    underlineStyle: new Array(130).fill(''),
                                     theWrestlingIsOver: false,
                                     superFinal: 0,
                                     jer: false
@@ -44,6 +46,8 @@ export const StartAndDeleteTournament = (props: StartAndDeleteTournamentPropsTyp
                                     app: new Array(256).fill(null),
                                     winCount: new Array(64).fill(0),
                                     N: 1,
+                                    numberForUnderline: 0,
+                                    underlineStyle: new Array(130).fill(''),
                                     theWrestlingIsOver: false,
                                     superFinal: 0,
                                     jer: false

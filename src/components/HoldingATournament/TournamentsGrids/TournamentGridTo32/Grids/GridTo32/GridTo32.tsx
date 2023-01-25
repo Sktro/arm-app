@@ -21,11 +21,11 @@ export const GridTo32 = (props: GridTo32Type) => {
     const styleW = 2 * subsequence[props.ourObj?.N! - 1][props.count] - 1
 
     const athlete = (num: number, style: string) => {
-
         if (!props.GSAthletes) return
+        let nameUnderline = props.ourObj?.underlineStyle[num] === 'underline' ? styleGridTo32.underline : ''
         let athlete = props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete
         let name = <div className={style}></div>
-        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32[style]} ${styleGridTo32.gridColor}` : styleGridTo32[style]
+        let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32[style]} ${styleGridTo32.gridColor}` : `${styleGridTo32[style]} ${nameUnderline}`
         if (visibility32[num - 1][props.count] >= 0 && props.GSAthletes[visibility32[num - 1][props.count]]! >= 0) {
             name = <div className={selection}
                         id={num.toString()}>{athlete}</div>
@@ -36,7 +36,6 @@ export const GridTo32 = (props: GridTo32Type) => {
         return name
     }
 
-    console.log(2 * subsequence[props.ourObj?.N! - 1][props.count] - 1)
 
     const superFinal = props.countAthletes < 6 ? (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
         : (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 3

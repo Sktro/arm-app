@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styleTournamentGridTo32 from "./TournamentGridTo32.module.css";
 import {AthletesType, biathlonType, SettingsType} from "../../../../App";
 import {NavLink, Route, Routes, useParams} from "react-router-dom";
@@ -18,6 +18,8 @@ type TournamentGridTo32Type = {
 export const TournamentsGrids = (props: TournamentGridTo32Type) => {
 
     const {id} = useParams<{ id: string }>()
+
+    const [flag, setFlag] = useState<boolean>(false)
 
     const ourObj = props.GS ? props.GS.find(ob => ob.id === id) : null
 
@@ -66,7 +68,6 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
             pointsOnTheRightHand: 0,
             pointsSum: 0
         }))
-        console.log(arrAthletes)
     const countAthletes = arrAthletes.length
     const count = arrAthletes.length - 2
 
@@ -78,17 +79,18 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                     ...ob.leftHand,
                     gs: GSAthletesForTheLeftHand,
                     lLosS: lLosSForTheLeftHand,
-                    jer: true
+                    jer: true,
+                    numberForUnderline: 0
                 },
                 rightHand: {
                     ...ob.rightHand,
                     gs: GSAthletesForTheRightHand,
                     lLosS: lLosSForTheRightHand,
-                    jer: true
+                    jer: true,
+                    numberForUnderline: 0
                 }
             } : ob))
         }
-        console.log('useEffect')
     }, [id])
 
 
@@ -162,6 +164,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
         userSelect: 'none' as 'none'
     }
 
+
     return (
         <div className={styleTournamentGridTo32.contain}>
 
@@ -178,6 +181,8 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
 
             <Routes>
                 <Route path={'leftHand'} element={<GridForTheLeftHand ourObj={ourObj.leftHand}
+                                                                      flag={flag}
+                                                                      setFlag={setFlag}
                                                                       countAthletes={countAthletes}
                                                                       arrAthletes={arrAthletes}
                                                                       count={count}
@@ -189,6 +194,8 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                                                                       id={id}/>}/>
                 <Route path={'rightHand'} element={<GridForTheRightHand ourObj={ourObj.rightHand}
                                                                         category={ourObj}
+                                                                        flag={flag}
+                                                                        setFlag={setFlag}
                                                                         countAthletes={countAthletes}
                                                                         arrAthletes={arrAthletes}
                                                                         count={count}

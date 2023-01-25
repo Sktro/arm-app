@@ -3,6 +3,7 @@ import styleButtonForTheWinner from "./ButtonForTheWinner.module.css";
 import {biathlonType, GSType} from "../../../../../../App";
 import {winner} from "../../../../../../twoDimensionalArray/winner";
 import {loser} from "../../../../../../twoDimensionalArray/loser";
+import {subsequence} from "../../../../../../twoDimensionalArray/subsequence";
 
 
 type ButtonForTheWinnerType = {
@@ -26,19 +27,83 @@ type ButtonForTheWinnerType = {
     countAthletes: number
     hand: 'leftHand' | 'rightHand'
     category: biathlonType
+    flag: boolean
+    setFlag: (value: boolean) => void
 }
 
 export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
     const [disable, setDisable] = useState<boolean>(false)
 
-    useEffect(()=> {
-        if(props.category.rightHand.theWrestlingIsOver){
-            props.setGS(props.GS!.map(ob=> ob.id === props.id ? {
+    useEffect(() => {
+        if (props.category.rightHand.theWrestlingIsOver) {
+            props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
                 categoryClosed: true
             } : ob))
         }
-    },[props.category.rightHand.theWrestlingIsOver])
+
+        if (!props.flag) {
+            props.setGS(props.GS!.map(ob => ob.id === props.id ? {
+                ...ob,
+                [props.hand]: {
+                    ...ob[props.hand],
+                    underlineStyle: ob[props.hand].underlineStyle.map((e, i) => {
+                        if (ob[props.hand].numberForUnderline === 0) {
+                            return e
+                        } else if (i === ob[props.hand].numberForUnderline) {
+                            return 'underline'
+                        } else if (e !== 'underline') {
+                            return ''
+                        } else if (e === 'underline') {
+                            return 'underline'
+                        } else {
+                            return e
+                        }
+                    })
+                }
+            } : ob))
+        }
+        if (props.flag) {
+            props.setGS(props.GS!.map(ob => ob.id === props.id ? {
+                ...ob,
+                [props.hand]: {
+                    ...ob[props.hand],
+                    underlineStyle: ob[props.hand].underlineStyle.map((e, i) => {
+                        if (i === ob[props.hand].numberForUnderline) {
+                            return ''
+                        }
+                        if (i === ob[props.hand].numberForUnderline + 1) {
+                            return ''
+                        }
+                        if (e === '') {
+                            return ''
+                        }
+                        if (e === 'underline') {
+                            return 'underline'
+                        } else {
+                            return e
+                        }
+                    })
+                }
+            } : ob))
+
+        }
+        if (props.ourObj?.N === 1){
+            props.setGS(props.GS!.map(ob => ob.id === props.id ? {
+                ...ob,
+                [props.hand]: {
+                    ...ob[props.hand],
+                    underlineStyle: ob[props.hand].underlineStyle.map(() => ''),
+                    numberForUnderline: 0
+                }
+            } : ob))
+            props.setFlag(false)
+        }
+
+    }, [props.category.rightHand.theWrestlingIsOver, props.ourObj?.numberForUnderline, props.flag])
+
+    console.log(props.ourObj?.underlineStyle)
+    console.log(props.flag)
 
     const foo1 = (hand: 'leftHand' | 'rightHand') => {
         if ((props.count + 2 < 6 && props.N < 2 * (props.count + 2) - 2) || (props.count + 2 >= 6 && props.N < 2 * (props.count + 2) - 1)) { // ограничение
@@ -59,6 +124,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                     }),
                     winCount: ob[hand].winCount.map((count, index) => index === ob[hand].gs[2 * ob[hand].N - 2] ? count + 1 : count),
                     N: ob[hand].N + 1,
+                    numberForUnderline: ob[hand].numberForUnderline = 2 * subsequence[ob[hand].N - 1][props.count] - 1,
                     app: ob[hand].app.map((o, index) => {
                         if (index + 1 === ob[hand].N) {
                             o = 1
@@ -73,6 +139,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                 },
 
             } : ob))
+            props.setFlag(false)
             setDisable(true)
             setTimeout(() => setDisable(false), 800)
 
@@ -95,6 +162,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                         }
                         return o
                     }),
+                    numberForUnderline: ob[hand].numberForUnderline = 2 * subsequence[ob[hand].N - 1][props.count] - 1,
                     theWrestlingIsOver: true
                 }
             } : ob))
@@ -118,6 +186,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                         }
                         return o
                     }),
+                    numberForUnderline: ob[hand].numberForUnderline = 2 * subsequence[ob[hand].N - 1][props.count] - 1,
                     theWrestlingIsOver: true,
                     superFinal: 1
                 }
@@ -145,6 +214,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                     }),
                     winCount: ob[hand].winCount.map((count, index) => index === ob[hand].gs[2 * ob[hand].N - 1] ? count + 1 : count),
                     N: ob[hand].N + 1,
+                    numberForUnderline: ob[hand].numberForUnderline = 2 * subsequence[ob[hand].N - 1][props.count],
                     app: ob[hand].app.map((o, index) => {
                         if (index + 1 === ob[hand].N) {
                             o = 1
@@ -159,7 +229,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                 }
 
             } : ob))
-
+            props.setFlag(false)
             setDisable(true)
             setTimeout(() => setDisable(false), 800)
 
@@ -181,6 +251,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                         }
                         return o
                     }),
+                    numberForUnderline: ob[hand].numberForUnderline = 2 * subsequence[ob[hand].N - 1][props.count],
                     N: ob[hand].N + 1,
                     theWrestlingIsOver: true,
                     superFinal: 2
@@ -189,7 +260,6 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
 
         }
     }
-    console.log(props.hand, 'HAND')
 
     return (
         <div className={styleButtonForTheWinner.contain}>

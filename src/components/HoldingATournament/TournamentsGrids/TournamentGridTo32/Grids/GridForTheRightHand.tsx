@@ -26,6 +26,8 @@ type GridsType = {
     settings: SettingsType
     id: string | undefined
     category: biathlonType
+    flag: boolean
+    setFlag: (value: boolean) => void
 }
 
 export const GridForTheRightHand = (props: GridsType) => {
@@ -34,7 +36,6 @@ export const GridForTheRightHand = (props: GridsType) => {
 
     return (
         <>
-
             <GridTo32 GSAthletes={props.GSAthletes}
                       count={props.count}
                       ourObj={props.ourObj}
@@ -47,6 +48,7 @@ export const GridForTheRightHand = (props: GridsType) => {
             {props.arrAthletes.length > 1 && <>
                 <div className={styleGrids.buttonContain}>
                     <ButtonForTheWinner id={props.id}
+                                        flag={props.flag}
                                         category={props.category}
                                         hand={right}
                                         N={props.ourObj!.N}
@@ -55,9 +57,11 @@ export const GridForTheRightHand = (props: GridsType) => {
                                         ourObj={props.ourObj}
                                         setGS={props.setGS}
                                         GS={props.GS}
+                                        setFlag={props.setFlag}
                                         GSAthletes={props.GSAthletes}
                                         arrAthletes={props.arrAthletes}/>
                     <Rollback N={props.ourObj!.N}
+                              setFlag={props.setFlag}
                               hand={right}
                               id={props.id}
                               arrAthletes={props.arrAthletes}

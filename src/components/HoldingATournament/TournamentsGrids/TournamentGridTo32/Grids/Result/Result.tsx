@@ -27,7 +27,6 @@ type ResultType = {
 }
 
 export const Result = (props: ResultType) => {
-    console.log('result')
     return (
         <>
             <div className={styleResult.containResult}>

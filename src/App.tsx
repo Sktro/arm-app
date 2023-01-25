@@ -119,6 +119,8 @@ export type GSType = {
     app: (number | null)[] // Указатель на возможность апелляции (1 - возможна; 0 - невозможна)
     winCount: number[] // Колличество побед участника
     N: number // номер поединка
+    numberForUnderline: number
+    underlineStyle: string[]
     LLos: number[] // Массив тех, кому последнему проиграл участник
     lLosS: number[][] // Массив тех, кому последнему проиграл участник (Сохранение)
     title: string // наименование весовой категории
@@ -211,7 +213,6 @@ function App() {
         localStorage.setItem('categoryVisibilityValue', JSON.stringify(categoryVisibility))
     }, [tournament, location, startTournamentDate, endTournamentDate, arrCategory, settings, GS, activeCategory, athletes, judge, filterAthletes, copyCategory, categoryVisibility
     ])
-    console.log(GS)
 
     function getCurrentDate(separator = '-') {
         let newDate = new Date()

@@ -1,7 +1,7 @@
 import React from "react";
 import styleControlPanel from "./ControlPanel.module.css";
 import {AthletesType, biathlonType, CategoryType, CreatedCategoryType, JudgeType, SettingsType} from "../../../App";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {Option} from "../../../common/WeightsSelect/WeightsSelect";
 
 type ControlPanelType = {
@@ -24,6 +24,8 @@ type ControlPanelType = {
 export const ControlPanel = (props: ControlPanelType) => {
 
     const navigate = useNavigate()
+    const location = useLocation().pathname.split('/', 5)
+    const locationID = location[3]
 
     const arrCategory = (gender: string) => {
         let newArr = []
@@ -36,25 +38,25 @@ export const ControlPanel = (props: ControlPanelType) => {
         return newArr
     }
 
-    const activeClass = (navData: any) => navData.isActive ? styleControlPanel.buttonCategoryOn : styleControlPanel.buttonCategory
+    const activeClass = (id: string) => locationID === id ? styleControlPanel.buttonCategoryOn : styleControlPanel.buttonCategory
 
-    const categoryMale = arrCategory('муж').map(c => <NavLink className={activeClass} to={`table/${c.id}/`}
+    const categoryMale = arrCategory('муж').map(c => <NavLink className={activeClass(c.id)} to={`table/${c.id}/`}
                                                               key={c.id}>{c.leftHand.title}</NavLink>)
-    const categoryFemale = arrCategory('жен').map(c => <NavLink className={activeClass} to={`table/${c.id}/`}
+    const categoryFemale = arrCategory('жен').map(c => <NavLink className={activeClass(c.id)} to={`table/${c.id}/`}
                                                                 key={c.id}>{c.leftHand.title}</NavLink>)
 
     const tournamentClosed = props.GS?.map(el => el.categoryClosed).every(el => el)
 
 
-/*        let text = JSON.stringify('<h1></h1>')
+    /*        let text = JSON.stringify('<h1></h1>')
 
-        function downloadAsFile(data: any) {
-            let a = document.createElement("a")
-            let file = new Blob([JSON.parse(data)], {type: 'application/json'})
-            a.href = URL.createObjectURL(file)
-            a.download = "exam.html"
-            a.click()
-        }*/
+            function downloadAsFile(data: any) {
+                let a = document.createElement("a")
+                let file = new Blob([JSON.parse(data)], {type: 'application/json'})
+                a.href = URL.createObjectURL(file)
+                a.download = "exam.html"
+                a.click()
+            }*/
 
     const finishTheTournament = () => {
         props.setSettings({
