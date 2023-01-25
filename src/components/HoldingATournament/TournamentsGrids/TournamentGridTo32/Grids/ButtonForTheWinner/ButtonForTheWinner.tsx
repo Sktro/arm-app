@@ -35,13 +35,14 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
     const [disable, setDisable] = useState<boolean>(false)
 
     useEffect(() => {
-        if (props.category.rightHand.theWrestlingIsOver) {
+/*        if (props.category.rightHand.theWrestlingIsOver) {
+            console.log('YO1')
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
                 categoryClosed: true
             } : ob))
-        }
-
+        }*/
+        console.log(props.ourObj?.theWrestlingIsOver, props.ourObj?.hand, props.GS![0].categoryClosed)
         if (!props.flag) {
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
@@ -63,6 +64,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                 }
             } : ob))
         }
+
         if (props.flag) {
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
@@ -88,7 +90,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
             } : ob))
 
         }
-        if (props.ourObj?.N === 1){
+        if (props.ourObj?.N === 1) {
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
                 [props.hand]: {
@@ -100,11 +102,10 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
             props.setFlag(false)
         }
 
-    }, [props.category.rightHand.theWrestlingIsOver, props.ourObj?.numberForUnderline, props.flag])
+    }, [props.ourObj?.numberForUnderline, props.flag])
 
     console.log(props.ourObj?.underlineStyle)
     console.log(props.flag)
-
     const foo1 = (hand: 'leftHand' | 'rightHand') => {
         if ((props.count + 2 < 6 && props.N < 2 * (props.count + 2) - 2) || (props.count + 2 >= 6 && props.N < 2 * (props.count + 2) - 1)) { // ограничение
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
@@ -147,6 +148,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
 
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
+                categoryClosed: hand === 'rightHand',
                 [hand]: {
                     ...ob[hand],
                     gs: ob[hand].gs.map((gs, index) => index === winner[ob[hand].N - 1][props.count] - 1 ? ob[hand].gs[2 * ob[hand].N - 2]
@@ -166,11 +168,12 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                     theWrestlingIsOver: true
                 }
             } : ob))
-
+            props.setFlag(false)
         } else if ((props.count + 2 < 6 && props.N === 2 * (props.count + 2) - 1) || (props.count + 2 >= 6 && props.N === 2 * (props.count + 2))) { // В Суперфинале победил первый
 
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
+                categoryClosed: hand === 'rightHand',
                 [hand]: {
                     ...ob[hand],
                     gs: ob[hand].gs.map((gs, index) => index === winner[ob[hand].N - 1][props.count] - 1 ? ob[hand].gs[2 * ob[hand].N - 2]
@@ -192,6 +195,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                 }
 
             } : ob))
+            props.setFlag(false)
         }
     }
 
@@ -237,6 +241,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
 
             props.setGS(props.GS!.map(ob => ob.id === props.id ? {
                 ...ob,
+                categoryClosed: hand === 'rightHand',
                 [hand]: {
                     ...ob[hand],
                     gs: ob[hand].gs.map((gs, index) => index === winner[ob[hand].N - 1][props.count] - 1 ? ob[hand].gs[2 * ob[hand].N - 1]
@@ -257,7 +262,7 @@ export const ButtonForTheWinner = (props: ButtonForTheWinnerType) => {
                     superFinal: 2
                 }
             } : ob))
-
+            props.setFlag(false)
         }
     }
 

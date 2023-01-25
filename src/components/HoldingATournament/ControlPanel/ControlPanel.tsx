@@ -40,12 +40,23 @@ export const ControlPanel = (props: ControlPanelType) => {
 
     const activeClass = (id: string) => locationID === id ? styleControlPanel.buttonCategoryOn : styleControlPanel.buttonCategory
 
-    const categoryMale = arrCategory('муж').map(c => <NavLink className={activeClass(c.id)} to={`table/${c.id}/`}
+    const categoryMale = arrCategory('муж').map(c => <NavLink className={activeClass(c.id)}
+                                                              to={`table/${c.id}/${!c.leftHand.theWrestlingIsOver
+                                                                  ? 'leftHand' : c.leftHand.theWrestlingIsOver && !c.rightHand.theWrestlingIsOver
+                                                                      ? 'rightHand' : c.leftHand.theWrestlingIsOver && c.rightHand.theWrestlingIsOver
+                                                                          ? 'result' : ''}`}
                                                               key={c.id}>{c.leftHand.title}</NavLink>)
-    const categoryFemale = arrCategory('жен').map(c => <NavLink className={activeClass(c.id)} to={`table/${c.id}/`}
+    const categoryFemale = arrCategory('жен').map(c => <NavLink className={activeClass(c.id)}
+                                                                to={`table/${c.id}/${!c.leftHand.theWrestlingIsOver
+                                                                    ? 'leftHand' : c.leftHand.theWrestlingIsOver && !c.rightHand.theWrestlingIsOver
+                                                                        ? 'rightHand' : c.leftHand.theWrestlingIsOver && c.rightHand.theWrestlingIsOver
+                                                                            ? 'result' : ''}`}
                                                                 key={c.id}>{c.leftHand.title}</NavLink>)
 
     const tournamentClosed = props.GS?.map(el => el.categoryClosed).every(el => el)
+    const closed = props.GS?.map(el => el.categoryClosed)
+    console.log(closed)
+    console.log(tournamentClosed)
 
 
     /*        let text = JSON.stringify('<h1></h1>')
@@ -89,11 +100,17 @@ export const ControlPanel = (props: ControlPanelType) => {
         <div className={styleControlPanel.controlPanelContain}>
             <div className={styleControlPanel.nameControlPanel}>Управление турниром</div>
             <div>
-                {categoryMale.length > 0 && <div>Мужские категории:</div>}
-                <div>{categoryMale}</div>
+                <div className={styleControlPanel.maleCategoryContain}>
+                    {categoryMale.length > 0 && <div>Мужские категории:</div>}
+                    <div className={styleControlPanel.listCategories}>{categoryMale}</div>
+                </div>
+                <div className={styleControlPanel.femaleCategoryContain}>
+                    {categoryFemale.length > 0 && <div>Женские категории:</div>}
+                    <div className={styleControlPanel.listCategories}>{categoryFemale}</div>
+                </div>
             </div>
-            {categoryFemale.length > 0 && <div>Женские категории:</div>}
-            <div>{categoryFemale}</div>
+
+
             {tournamentClosed && <div>
                 <button className={styleControlPanel.closed} onClick={finishTheTournament}>Завершить турнир</button>
             </div>}

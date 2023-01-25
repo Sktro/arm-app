@@ -47,35 +47,38 @@ export const GridForTheLeftHand = (props: GridsType) => {
                       arrAthletes={props.arrAthletes}
                       settings={props.settings}/>
             {props.arrAthletes.length > 1 && <>
-                <div className={styleGrids.buttonContain}>
-                    <ButtonForTheWinner id={props.id}
-                                        flag={props.flag}
-                                        setFlag={props.setFlag}
-                                        category={props.category}
-                                        hand={left}
-                                        N={props.ourObj!.N}
-                                        count={props.count}
-                                        countAthletes={props.countAthletes}
-                                        ourObj={props.ourObj}
-                                        setGS={props.setGS}
-                                        GS={props.GS}
-                                        GSAthletes={props.GSAthletes}
-                                        arrAthletes={props.arrAthletes}/>
-                    {props.category.rightHand.N === 1 && <Rollback N={props.ourObj!.N}
-                                                                   setFlag={props.setFlag}
-                                                                   hand={left}
-                                                                   id={props.id}
-                                                                   arrAthletes={props.arrAthletes}
-                                                                   GS={props.GS}
-                                                                   ourObj={props.ourObj}
-                                                                   setGS={props.setGS}
-                                                                   count={props.count}/>}
+                <div className={styleGrids.control}>
+                    <div className={styleGrids.buttonContain}>
+                        <ButtonForTheWinner id={props.id}
+                                            flag={props.flag}
+                                            setFlag={props.setFlag}
+                                            category={props.category}
+                                            hand={left}
+                                            N={props.ourObj!.N}
+                                            count={props.count}
+                                            countAthletes={props.countAthletes}
+                                            ourObj={props.ourObj}
+                                            setGS={props.setGS}
+                                            GS={props.GS}
+                                            GSAthletes={props.GSAthletes}
+                                            arrAthletes={props.arrAthletes}/>
+                        {props.category.rightHand.N === 1 && <Rollback N={props.ourObj!.N}
+                                                                       setFlag={props.setFlag}
+                                                                       hand={left}
+                                                                       id={props.id}
+                                                                       arrAthletes={props.arrAthletes}
+                                                                       GS={props.GS}
+                                                                       ourObj={props.ourObj}
+                                                                       setGS={props.setGS}
+                                                                       count={props.count}/>}
+                    </div>
+                    {!props.ourObj?.theWrestlingIsOver &&
+                        <Ready ourObj={props.ourObj}
+                               countAthletes={props.countAthletes}
+                               arrAthletes={props.arrAthletes}
+                               GSAthletes={props.GSAthletes}/>}
                 </div>
-                {!props.ourObj?.theWrestlingIsOver &&
-                    <Ready ourObj={props.ourObj}
-                           countAthletes={props.countAthletes}
-                           arrAthletes={props.arrAthletes}
-                           GSAthletes={props.GSAthletes}/>}
+
             </>}
         </>
 

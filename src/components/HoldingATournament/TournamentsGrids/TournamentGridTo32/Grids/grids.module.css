@@ -1,3 +1,9 @@
 .buttonContain {
     display: flex;
 }
+
+.control {
+    position: absolute;
+    bottom: 660px;
+    right: 100px;
+}

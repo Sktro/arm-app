@@ -1,5 +1,6 @@
 .contain {
     display: flex;
+    position: relative;
     flex-direction: column;
     min-width: 1085px;
 }
@@ -13,7 +14,7 @@
     width: 150px;
     padding: 3px 10px 5px 10px;
     margin: 0 5px 0 5px;
-    background-color: #f4511e;
+    background-color: #222222;
     border: none;
     border-bottom-right-radius: 7px ;
     border-bottom-left-radius: 7px ;

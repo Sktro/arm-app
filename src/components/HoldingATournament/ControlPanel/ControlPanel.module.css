@@ -1,15 +1,14 @@
 .controlPanelContain {
-    background-color: #9344e5;
+    background-color: #202123;
     color: white;
-    padding: 10px;
+    padding: 5px;
     min-width: 260px;
     max-width: 260px;
     min-height: 771px;
-    font-weight: bold;
     border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    position: relative;
 }
 
 .nameControlPanel {
@@ -22,22 +21,71 @@
     color: white;
 }
 .buttonCategoryOn {
-    color: darkorange;
+    color: white;
+    border-radius: 7px;
+    padding: 5px;
+    margin: 3px;
+    text-align: center;
+    min-width: 230px;
     display: inline-block;
     text-decoration: none;
+    background-color: #474756;
 }
 
 .buttonCategory:hover {
-    color: darkorange;
+    color: white;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.maleCategoryContain {
+    position: absolute;
+    height: 175px;
+    top: 100px;
+}
+
+.femaleCategoryContain {
+    position: absolute;
+    height: 175px;
+    top: 290px;
+}
+
+.listCategories {
+    padding: 3px;
+    max-height: 150px;
+    overflow: auto;
+    z-index: 1;
+}
+
+.listCategories::-webkit-scrollbar-track {
+    background-color: #e0e0e0; /*Цвет скролла*/
+    border-radius: 80px;
+    z-index: 0;
+}
+
+.listCategories::-webkit-scrollbar-thumb {
+    border-radius: 80px; /*Закругление ползунка*/
+    background-color: #818080; /*Цвет ползунка*/
+}
+
+.listCategories::-webkit-scrollbar {
+    width: 6px; /*Толщина скролла*/
 }
 
 .closed {
-    padding: 3px;
+    position: absolute;
+    top: 730px;
+    right: 10px;
+    padding: 4px;
     width: 240px;
-    border: 2px solid white;
+    border: 1px solid white;
     border-radius: 10px;
     font: inherit;
     color: inherit;
     background-color: transparent;
     cursor: pointer;
+}
+
+.closed:hover {
+    background-color: #474756;
 }
