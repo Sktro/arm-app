@@ -2,7 +2,7 @@ import React from "react";
 import styleGridTo32 from "./GridTo32.module.css";
 import {visibility32} from "../../../../../../twoDimensionalArray/visibility32";
 import {biathlonType, GSType, SettingsType} from "../../../../../../App";
-import {subsequence} from "../../../../../../twoDimensionalArray/subsequence";
+import {visibility32Without5_6} from "../../../../../../twoDimensionalArray/visibility32Without5_6";
 
 type GridTo32Type = {
     GSAthletes: (number | null)[]
@@ -14,23 +14,25 @@ type GridTo32Type = {
     GS: biathlonType[] | null
     id: string | undefined
     setGS: (value: biathlonType[]) => void
+    seq: number[][]
 }
 
 export const GridTo32 = (props: GridTo32Type) => {
 
-    const styleW = 2 * subsequence[props.ourObj?.N! - 1][props.count] - 1
+    const styleW = 2 * props.seq[props.ourObj?.N! - 1][props.count] - 1
+    const vis = props.settings.place5_6 ? visibility32 : visibility32Without5_6
 
     const athlete = (num: number, style: string) => {
         if (!props.GSAthletes) return
         let nameUnderline = props.ourObj?.underlineStyle[num] === 'underline' ? styleGridTo32.underline : ''
-        let athlete = props.arrAthletes[(props.GSAthletes[visibility32[num - 1][props.count] - 1]!)]?.athlete
+        let athlete = props.arrAthletes[(props.GSAthletes[vis[num - 1][props.count] - 1]!)]?.athlete
         let name = <div className={style}></div>
         let selection = num === styleW || num === styleW + 1 ? `${styleGridTo32[style]} ${styleGridTo32.gridColor}` : `${styleGridTo32[style]} ${nameUnderline}`
-        if (visibility32[num - 1][props.count] >= 0 && props.GSAthletes[visibility32[num - 1][props.count]]! >= 0) {
+        if (vis[num - 1][props.count] >= 0 && props.GSAthletes[vis[num - 1][props.count]]! >= 0) {
             name = <div className={selection}
                         id={num.toString()}>{athlete}</div>
         }
-        if (visibility32[num - 1][props.count] === -1) {
+        if (vis[num - 1][props.count] === -1) {
             name = <div id={num.toString()} className={styleGridTo32[style]}> ---- </div>
         }
         return name
@@ -39,7 +41,8 @@ export const GridTo32 = (props: GridTo32Type) => {
 
     const superFinal = props.countAthletes < 6 ? (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
         : (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 3
-
+    const superFinalWithout5_6 = (props.ourObj?.N! === 2 * (props.countAthletes - 1) + 1 && !props.ourObj?.theWrestlingIsOver) || props.ourObj?.N! === 2 * (props.countAthletes - 1) + 2
+    const sFinal = props.settings.place5_6 ? superFinal : superFinalWithout5_6
     return (
         <>
             <div className={styleGridTo32.leaderboardContain}>
@@ -165,7 +168,7 @@ export const GridTo32 = (props: GridTo32Type) => {
                                         {athlete(126, 'gridGray')}
                                     </div>
                                 </div>
-                                {superFinal && <div className={styleGridTo32.secondFightContain}>
+                                {sFinal && <div className={styleGridTo32.secondFightContain}>
                                     <div className={styleGridTo32.RoundName}>2-й Поединок</div>
                                     <div className={styleGridTo32.finalRound}>
                                         {athlete(127, 'gridWhite')}

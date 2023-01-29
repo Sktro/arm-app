@@ -2,9 +2,15 @@ import React, {useEffect, useState} from "react";
 import styleTournamentGridTo32 from "./TournamentGridTo32.module.css";
 import {AthletesType, biathlonType, SettingsType} from "../../../../App";
 import {NavLink, Route, Routes, useParams} from "react-router-dom";
+import {winner} from "../../../../twoDimensionalArray/winner";
+import {loser} from "../../../../twoDimensionalArray/loser";
+import {loserWithout5_6} from "../../../../twoDimensionalArray/loserWithout5_6";
+import {winnerWithout5_6} from "../../../../twoDimensionalArray/winnerWithout5_6";
 import {Result} from "./Grids/Result/Result";
 import {GridForTheLeftHand} from "./Grids/GridForTheLeftHand";
 import {GridForTheRightHand} from "./Grids/GridForTheRightHand";
+import {subsequence} from "../../../../twoDimensionalArray/subsequence";
+import {subsequenceWithout5_6} from "../../../../twoDimensionalArray/subsequenceWithout5_6";
 
 
 type TournamentGridTo32Type = {
@@ -22,6 +28,10 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
     const [flag, setFlag] = useState<boolean>(false)
 
     const ourObj = props.GS ? props.GS.find(ob => ob.id === id) : null
+
+    const win = props.settings.place5_6 ? winner : winnerWithout5_6
+    const los = props.settings.place5_6 ? loser : loserWithout5_6
+    const seq = props.settings.place5_6 ? subsequence : subsequenceWithout5_6
 
     const fooForAthletesInCategory = (title: string, gender: string) => {
         let newArr: {
@@ -70,7 +80,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
         }))
     const countAthletes = arrAthletes.length
     const count = arrAthletes.length - 2
-
+    console.log(arrAthletes)
     useEffect(() => {
         if (props.GS && GSAthletesForTheLeftHand && GSAthletesForTheRightHand) {
             props.setGS(props.GS.map(ob => ob.id === id ? {
@@ -181,6 +191,9 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
 
             <Routes>
                 <Route path={'leftHand'} element={<GridForTheLeftHand ourObj={ourObj.leftHand}
+                                                                      win={win}
+                                                                      los={los}
+                                                                      seq={seq}
                                                                       flag={flag}
                                                                       setFlag={setFlag}
                                                                       countAthletes={countAthletes}
@@ -194,6 +207,9 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                                                                       id={id}/>}/>
                 <Route path={'rightHand'} element={<GridForTheRightHand ourObj={ourObj.rightHand}
                                                                         category={ourObj}
+                                                                        win={win}
+                                                                        los={los}
+                                                                        seq={seq}
                                                                         flag={flag}
                                                                         setFlag={setFlag}
                                                                         countAthletes={countAthletes}
@@ -205,6 +221,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                                                                         settings={props.settings}
                                                                         id={id}/>}/>
                 <Route path={'result'} element={<Result ourObj={ourObj}
+                                                        settings={props.settings}
                                                         countAthletes={countAthletes}
                                                         GSAthletesForRightHand={GSAthletesForTheRightHand}
                                                         GSAthletesForLeftHand={GSAthletesForTheLeftHand}

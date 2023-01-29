@@ -20,7 +20,7 @@ type PlacesForAthletesOver5TypeRightHand = {
 
 
 export const PlacesForAthletesOver5OnTheRightHand = (props: PlacesForAthletesOver5TypeRightHand) => {
-
+    console.log('YO')
     const placesForAthletesOver5At1_2OnTheRightHand = () => {
         if (props.arrAthletes[props.GSAthletes[(23 + 4 * (props.count - 4)) - 1]!] !== undefined) {
             props.arrAthletes[props.GSAthletes[(23 + 4 * (props.count - 4)) - 1]!].placeOnTheRightHand = 1

@@ -28,6 +28,9 @@ type GridsType = {
     category: biathlonType
     flag: boolean
     setFlag: (value: boolean) => void
+    win: number[][]
+    los: number[][]
+    seq: number[][]
 }
 
 export const GridForTheLeftHand = (props: GridsType) => {
@@ -38,6 +41,7 @@ export const GridForTheLeftHand = (props: GridsType) => {
     return (
         <>
             <GridTo32 GSAthletes={props.GSAthletes}
+                      seq={props.seq}
                       count={props.count}
                       ourObj={props.ourObj}
                       id={props.id}
@@ -50,6 +54,10 @@ export const GridForTheLeftHand = (props: GridsType) => {
                 <div className={styleGrids.control}>
                     <div className={styleGrids.buttonContain}>
                         <ButtonForTheWinner id={props.id}
+                                            seq={props.seq}
+                                            win={props.win}
+                                            los={props.los}
+                                            settings={props.settings}
                                             flag={props.flag}
                                             setFlag={props.setFlag}
                                             category={props.category}
@@ -63,6 +71,9 @@ export const GridForTheLeftHand = (props: GridsType) => {
                                             GSAthletes={props.GSAthletes}
                                             arrAthletes={props.arrAthletes}/>
                         {props.category.rightHand.N === 1 && <Rollback N={props.ourObj!.N}
+                                                                       win={props.win}
+                                                                       los={props.los}
+                                                                       seq={props.seq}
                                                                        setFlag={props.setFlag}
                                                                        hand={left}
                                                                        id={props.id}

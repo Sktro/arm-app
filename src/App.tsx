@@ -250,7 +250,7 @@ function App() {
             return []
         }
     }
-
+    console.log(GS)
     const filteredAthletes = changeFilter(athletes, filter)
 
     const removeAthlete = (AthleteID: string) => {

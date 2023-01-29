@@ -1,10 +1,7 @@
 import React, {useState} from "react";
 import {biathlonType, GSType} from "../../../../../../App";
-import {winner} from "../../../../../../twoDimensionalArray/winner";
-import {loser} from "../../../../../../twoDimensionalArray/loser";
 import styleRollback from "./Rollback.module.css";
 import ReactTooltip from "react-tooltip";
-import {subsequence} from "../../../../../../twoDimensionalArray/subsequence";
 
 type RollbackType = {
     N: number
@@ -25,30 +22,15 @@ type RollbackType = {
     }[]
     hand: 'leftHand' | 'rightHand'
     setFlag: (value: boolean) => void
+    win: number[][]
+    los: number[][]
+    seq: number[][]
 }
 
 
 export const Rollback = (props: RollbackType) => {
 
     const [disable, setDisable] = useState(false)
-
-    /*useEffect(() => {
-        props.setGS(props.GS!.map(ob => ob.id === props.id ? {
-            ...ob,
-            [props.hand]: {
-                ...ob[props.hand],
-                underlineStyle: ob[props.hand].underlineStyle.map((e, i) => {
-                    if (i === ob[props.hand].numberForUnderline) {
-                        return ''
-                    }
-                    if (i === ob[props.hand].numberForUnderline + 1) {
-                        return ''
-                    }
-                })
-            }
-        } : ob))
-
-    }, [props.ourObj?.numberForUnderline])*/
 
     const previousMatch = (hand: 'leftHand' | 'rightHand') => {
         if (props.ourObj?.theWrestlingIsOver) {
@@ -62,9 +44,9 @@ export const Rollback = (props: RollbackType) => {
             categoryClosed: false,
             [hand]: {
                 ...ob[hand], N: ob[hand].N - 1,
-                gs: ob[hand].gs.map((gs, index) => index === winner[ob[hand].N - 2][props.count] - 1 ? null
-                    : index === loser[ob[hand].N - 2][props.count] - 1 ? null : gs),
-                winCount: ob[hand].winCount.map((count, index) => index === ob[hand].gs[winner[ob[hand].N - 2][props.count] - 1]! ? count - 1 : count),
+                gs: ob[hand].gs.map((gs, index) => index === props.win[ob[hand].N - 2][props.count] - 1 ? null
+                    : index === props.los[ob[hand].N - 2][props.count] - 1 ? null : gs),
+                winCount: ob[hand].winCount.map((count, index) => index === ob[hand].gs[props.win[ob[hand].N - 2][props.count] - 1]! ? count - 1 : count),
                 LLos: ob[hand].LLos.map((o, index) => ob[hand].lLosS[ob[hand].N - 2][index]),
                 app: ob[hand].app.map((o, index) => {
                     if (index === ob[hand].N - 2) {
@@ -84,7 +66,7 @@ export const Rollback = (props: RollbackType) => {
                     }
                     return o
                 }),
-                numberForUnderline: ob[hand].numberForUnderline = 2 * subsequence[ob[hand].N - 2][props.count] - 1,
+                numberForUnderline: ob[hand].numberForUnderline = 2 * props.seq[ob[hand].N - 2][props.count] - 1,
                 theWrestlingIsOver: false,
                 superFinal: 0
             }
