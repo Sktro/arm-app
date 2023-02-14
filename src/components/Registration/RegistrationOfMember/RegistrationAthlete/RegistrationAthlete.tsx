@@ -148,13 +148,24 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                                                inputRef={inputRef}
                                                onChange={onChangeFullName}
                                                value={fullName}/>
-            </div>
-            <div className={styleRegistrationAthlete.sectionWeightAndSelect}>
                 <InputWeight type={"text"}
                              obligatoryField={true}
                              placeholder={"Вес"}
                              onChange={onChangeWeight}
                              value={weight}/>
+            </div>
+            <MultiSelect setAvailableCategories={setAvailableCategories}
+                         options={genderAthlete === 'муж' ? optionsMale : optionsFemale}
+                         value={availableCategories}
+                         disable={weight === ''}/>
+            <div className={styleRegistrationAthlete.sectionTeam}>
+                <InputAnimationForRegistration type={"text"}
+                                               style={{width: '19.4rem'}}
+                                               placeholder={"Команда"}
+                                               onChange={onChangeTeam}
+                                               value={team}/>
+            </div>
+            <div className={styleRegistrationAthlete.sectionWeightAndSelect}>
                 <SelectForModalGender options={props.gender}
                                       value={genderAthlete}
                                       disabled={disableGender}
@@ -166,16 +177,8 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
                                   value={rank}
                                   onChangeOption={onChangeRank}/>
             </div>
-            <div className={styleRegistrationAthlete.centerContain}>
-                <InputAnimationForRegistration type={"text"}
-                                               placeholder={"Команда"}
-                                               onChange={onChangeTeam}
-                                               value={team}/>
-            </div>
-            <MultiSelect setAvailableCategories={setAvailableCategories}
-                         options={genderAthlete === 'муж' ? optionsMale : optionsFemale}
-                         value={availableCategories}
-                         disable={weight === ''}/>
+
+
             {props.error && <span className={styleRegistrationOfMembers.error}>Заполните обязательные поля ( * )</span>}
             <button className={styleRegistrationOfMembers.addMemberButton} onClick={addNewAthlete}>Добавить</button>
         </div>

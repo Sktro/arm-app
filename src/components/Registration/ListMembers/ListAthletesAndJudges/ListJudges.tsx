@@ -58,7 +58,7 @@ export const ListJudges = (props: ListJudgesType) => {
                                                                               value={jud.category}
                                                                               changeOptions={changeCategoryJudge}/>
                     </div>
-                    <button className={styleListAthletesAndJudges.removeButton} onClick={() => removeJudge(jud.id, jud.fullName)}>Удалить
+                    <button className={styleListAthletesAndJudges.removeButton} onClick={() => removeJudge(jud.id, jud.fullName)}>
                     </button>
                 </div>
             )

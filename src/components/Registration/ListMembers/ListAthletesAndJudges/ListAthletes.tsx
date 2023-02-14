@@ -61,7 +61,7 @@ export const ListAthletes = (props: ListAthletesType) => {
                                                                                          value={atl.rank}
                                                                                          changeOptions={changeRankAthlete}/></div>
                     <button className={styleListAthletesAndJudges.removeButton}
-                            onClick={()=> removeAthlete(atl.id, atl.gender, atl.fullName)}>Удалить
+                            onClick={()=> removeAthlete(atl.id, atl.gender, atl.fullName)}>
                     </button>
                 </div>
             )

@@ -21,7 +21,10 @@ export const GridTo32 = (props: GridTo32Type) => {
 
     const styleW = 2 * props.seq[props.ourObj?.N! - 1][props.count] - 1
     const vis = props.settings.place5_6 ? visibility32 : visibility32Without5_6
-
+    console.log(props.ourObj?.N! - 1)
+    console.log(props.count)
+    console.log(props.seq[1][0])
+    console.log(props.seq[props.ourObj?.N! - 1][props.count])
     const athlete = (num: number, style: string) => {
         if (!props.GSAthletes) return
         let nameUnderline = props.ourObj?.underlineStyle[num] === 'underline' ? styleGridTo32.underline : ''

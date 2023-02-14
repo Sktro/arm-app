@@ -29,10 +29,6 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
 
     const ourObj = props.GS ? props.GS.find(ob => ob.id === id) : null
 
-    const win = props.settings.place5_6 ? winner : winnerWithout5_6
-    const los = props.settings.place5_6 ? loser : loserWithout5_6
-    const seq = props.settings.place5_6 ? subsequence : subsequenceWithout5_6
-
     const fooForAthletesInCategory = (title: string, gender: string) => {
         let newArr: {
             idAthletes: string,
@@ -118,6 +114,10 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
         }
         return arr
     }
+
+    const win = props.settings.place5_6 ? winner : winnerWithout5_6
+    const los = props.settings.place5_6 ? loser : loserWithout5_6
+    const seq = props.settings.place5_6 && countAthletes < 6 ? subsequence : subsequenceWithout5_6
 
     const newArrGSForLeftHand = shuffle(Array.from({length: countAthletes}, (_, index) => index))
     const newArrGSForRightHand = shuffle(Array.from({length: countAthletes}, (_, index) => index))

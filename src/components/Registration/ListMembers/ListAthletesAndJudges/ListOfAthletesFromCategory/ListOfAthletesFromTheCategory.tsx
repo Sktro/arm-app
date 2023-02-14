@@ -45,7 +45,7 @@ export const ListOfAthletesFromTheCategory = (props: ListOfAthletesFromTheCatego
                         <div className={styleListAthletes.regionJudge}>{atl.weight} кг</div>
                         <div className={styleListAthletes.regionJudge}>{atl.rank}</div>
                         <button className={styleListAthletes.removeButton}
-                                onClick={() => deleteAthleteFromCategory(atl.fullName, atl.id, atl.categoryMember!.length)}>Удалить
+                                onClick={() => deleteAthleteFromCategory(atl.fullName, atl.id, atl.categoryMember!.length)}>
                         </button>
                     </div>}
                 </div>

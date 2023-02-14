@@ -1,10 +1,16 @@
 .centerContain {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .sectionWeightAndSelect {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.sectionTeam {
+    display: flex;
     width: 100%;
 }
