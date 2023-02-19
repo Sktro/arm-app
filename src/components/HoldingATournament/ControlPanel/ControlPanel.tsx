@@ -114,6 +114,7 @@ export const ControlPanel = (props: ControlPanelType) => {
             {tournamentClosed && <div>
                 <button className={styleControlPanel.closed} onClick={finishTheTournament}>Завершить турнир</button>
             </div>}
+            <button onClick={() => localStorage.clear()}>CLEAR</button>
         </div>
     )
 
