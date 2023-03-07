@@ -117,7 +117,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
 
     const win = props.settings.place5_6 ? winner : winnerWithout5_6
     const los = props.settings.place5_6 ? loser : loserWithout5_6
-    const seq = props.settings.place5_6 && countAthletes < 6 ? subsequence : subsequenceWithout5_6
+    const seq = props.settings.place5_6 && countAthletes >= 6 ? subsequence : subsequenceWithout5_6
 
     const newArrGSForLeftHand = shuffle(Array.from({length: countAthletes}, (_, index) => index))
     const newArrGSForRightHand = shuffle(Array.from({length: countAthletes}, (_, index) => index))
@@ -173,7 +173,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
         backgroundColor: 'gray',
         userSelect: 'none' as 'none'
     }
-
+    console.log(arrAthletes)
 
     return (
         <div className={styleTournamentGridTo32.contain}>
@@ -188,6 +188,7 @@ export const TournamentsGrids = (props: TournamentGridTo32Type) => {
                          className={activeClass}
                          to={`result`}>Результаты</NavLink>
             </div>
+
 
             <Routes>
                 <Route path={'leftHand'} element={<GridForTheLeftHand ourObj={ourObj.leftHand}

@@ -82,6 +82,7 @@ export const RegistrationAthlete = (props: RegistrationAthletePropsType) => {
             setRank(props.ranks[0])
             setTeam('')
             handleClick()
+            props.setError(false)
         } else {
             props.setError(true)
         }
